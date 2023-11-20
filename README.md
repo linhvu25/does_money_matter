@@ -3,4 +3,4 @@ cs171: data visualization
 
 final group project!
 
-group members: linh vu, eric liu, micah williams
+group members: linh vu, eric lu, micah williams
