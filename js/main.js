@@ -74,5 +74,9 @@ Promise.all(promises).then((data) => {
 });
 
 function initVis(states, senateSpending) {
-  map = new MapVis("map-svg", states, senateSpending);
+  myMapVis = new MapVis("map-svg", states, senateSpending);
 }
+
+d3.csv("data/2020_senate_AZ_candidates.csv").then((data) => {
+  myPieChart = new PieChart("pieDivRight", data);
+});
