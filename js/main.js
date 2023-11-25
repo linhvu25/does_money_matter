@@ -80,7 +80,6 @@ function initVis(states, senateSpending) {
 d3.csv("data/2020_senate_AZ_candidates.csv").then((data) => {
   myPieChart = new PieChart("pieDivRight", data);
   myTreeMap = new TreeMap('treeMap', data)
-
 });
 
 
@@ -109,6 +108,7 @@ d3.csv('https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/da
       .id(function(d) { return d.name; })   // Name of the entity (column name is name in csv)
       .parentId(function(d) { return d.parent; })   // Name of the parent (column name is parent in csv)
       (data);
+
   root.sum(function(d) { return +d.value })   // Compute the numeric value for each entity
 
   console.log("example root", root)
@@ -121,31 +121,4 @@ d3.csv('https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/da
       (root)
 
   console.log("example leaves", root.leaves())
-  // use this information to add rectangles:
-  svg
-      .selectAll("rect")
-      .data(root.leaves())
-      .enter()
-      .append("rect")
-      .attr('x', function (d) {
-        console.log(d.x0)
-        return d.x0
-      })
-      .attr('y', function (d) { return d.y0; })
-      .attr('width', function (d) { return d.x1 - d.x0; })
-      .attr('height', function (d) { return d.y1 - d.y0; })
-      .style("stroke", "black")
-      .style("fill", "#69b3a2");
-
-  // and to add the text labels
-  svg
-      .selectAll("text")
-      .data(root.leaves())
-      .enter()
-      .append("text")
-      .attr("x", function(d){ return d.x0+10})    // +10 to adjust position (more right)
-      .attr("y", function(d){ return d.y0+20})    // +20 to adjust position (lower)
-      .text(function(d){ return d.data.name})
-      .attr("font-size", "15px")
-      .attr("fill", "white")
 })

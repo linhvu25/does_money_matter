@@ -54,9 +54,8 @@ class TreeMap {
             const { group, value } = currentValue;
 
             // Check if the group is already in the accumulator
-            if (!accumulator[group]) {
-                accumulator[group] = 0; // Initialize the sum for the group if not present
-            }
+            // Initialize the sum for the group if not present
+            if (!accumulator[group]) accumulator[group] = 0
 
             // Add the value to the sum for the current group
             accumulator[group] += value;
@@ -67,14 +66,18 @@ class TreeMap {
         // convert to array
         const myArray = Object.keys(groupedSum).map(key => ({ key, value: groupedSum[key] }));
 
+        // create data for treeMap
         vis.treeData = myArray.map(item => ({
             name: item.key,
             parent: 'Origin',
             value: String(item.value)
         }));
 
+        // add parent node
         const origin = {name: 'Origin', parent: '', value: ''}
         vis.treeData.push(origin)
+
+        vis.treeData.columns = ["name", "parent", "value"]
 
         console.log("my data", vis.treeData)
 
@@ -85,26 +88,28 @@ class TreeMap {
         let vis = this;
 
         // stratify the data: reformatting for d3.js
-        var root = d3.stratify()
-            .id(function(d) { return d.name; })   // Name of the entity (column name is name in csv)
-            .parentId(function(d) { return d.parent; })   // Name of the parent (column name is parent in csv)
+        // BUG SOMEWHERE BETWEEN HERE
+        vis.root = d3.stratify()
+            .id(d => d.name)   // Name of the entity (column name is name in csv)
+            .parentId(d => d.parent)   // Name of the parent (column name is parent in csv)
             (vis.treeData);
-        root.sum(function(d) { return +d.value })   // Compute the numeric value for each entity
+        vis.root.sum(d => +d.value)   // Compute the numeric value for each entity
+        // AND HERE because vis.root looks weird
 
-        console.log("my root", root)
+        console.log("my root", vis.root)
 
         // Then d3.treemap computes the position of each element of the hierarchy
         // The coordinates are added to the root object above
         d3.treemap()
             .size([vis.width, vis.height])
             .padding(4)
-            (root)
+            (vis.root)
 
-        console.log("my leaves", root.leaves())
+        console.log("my leaves", vis.root.leaves())
         // use this information to add rectangles:
         vis.svg
             .selectAll("rect")
-            .data(root.leaves())
+            .data(vis.root.leaves())
             .enter()
             .append("rect")
             .attr('x', function (d) {return d.x0; })
