@@ -79,4 +79,7 @@ function initVis(states, senateSpending) {
 
 d3.csv("data/2020_senate_AZ_candidates.csv").then((data) => {
   myPieChart = new PieChart("pieDivRight", data);
+  myTreeMap = new TreeMap('treeMap', data)
 });
+
+
