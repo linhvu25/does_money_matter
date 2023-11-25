@@ -34,31 +34,39 @@ class TreeMap {
     wrangleData(){
         let vis = this;
 
-        console.log("tree data", vis.data);
+        let treeData = vis.data.map(row => [row["specific_business"], row["broad_sector"], row["total_$"]]);
+        treeData = treeData.map(item => ({
+            child: item["0"],
+            parent: item["1"],
+            value: item["2"],
+        }));
+        console.log("tree data", treeData);
+
+        treeData.push([""])
+
         // stratify the data: reformatting for d3.js
-        var counts = {};
         var root = d3.stratify()
-            .id(function(d) {
-                if (!counts[d["specific_business"]]){
-                    counts[d["specific_business"]] = 1;
-                    return d["specific_business"];
-                } else {
-                    return d["specific_business"] + " " + ++counts[d["specific_business"]];
-                }
-            })
-            // Name of the entity (column name is name in csv)
-            .parentId(function(d) { return d["broad_sector"]; })   // Name of the parent (column name is parent in csv)
-            (vis.data);
-        root.sum(function(d) { return +d["total_$"] })   // Compute the numeric value for each entity
+            .id(function(d) { return d.child; })   // Name of the entity (column name is name in csv)
+            .parentId(function(d) { return d.parent; })   // Name of the parent (column name is parent in csv)
+            (treeData);
+        root.sum(function(d) { return +d.value })   // Compute the numeric value for each entity
 
         // Then d3.treemap computes the position of each element of the hierarchy
         // The coordinates are added to the root object above
         d3.treemap()
-            .size([vis.width, vis.height])
+            .size([width, height])
             .padding(4)
             (root)
 
         console.log(root.leaves())
+        // Then d3.treemap computes the position of each element of the hierarchy
+        // The coordinates are added to the root object above
+        // d3.treemap()
+        //     .size([vis.width, vis.height])
+        //     .padding(4)
+        //     (root)
+        //
+        // console.log(root.leaves())
         // use this information to add rectangles:
 
         vis.updateVis();
