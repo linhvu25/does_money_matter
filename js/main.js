@@ -111,6 +111,8 @@ d3.csv('https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/da
       (data);
   root.sum(function(d) { return +d.value })   // Compute the numeric value for each entity
 
+  console.log("example root", root)
+
   // Then d3.treemap computes the position of each element of the hierarchy
   // The coordinates are added to the root object above
   d3.treemap()

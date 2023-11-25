@@ -78,6 +78,12 @@ class TreeMap {
 
         console.log("my data", vis.treeData)
 
+        vis.updateVis();
+    }
+
+    updateVis(){
+        let vis = this;
+
         // stratify the data: reformatting for d3.js
         var root = d3.stratify()
             .id(function(d) { return d.name; })   // Name of the entity (column name is name in csv)
@@ -85,7 +91,7 @@ class TreeMap {
             (vis.treeData);
         root.sum(function(d) { return +d.value })   // Compute the numeric value for each entity
 
-        console.log("root", root)
+        console.log("my root", root)
 
         // Then d3.treemap computes the position of each element of the hierarchy
         // The coordinates are added to the root object above
@@ -119,12 +125,5 @@ class TreeMap {
         //     .text(function(d){ return d.data.name})
         //     .attr("font-size", "15px")
         //     .attr("fill", "white")
-        vis.updateVis();
-    }
-
-    updateVis(){
-        let vis = this;
-        // use this information to add rectangles:
-
     }
 }
