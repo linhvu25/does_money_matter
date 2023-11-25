@@ -40,7 +40,7 @@ class TreeMap {
         vis.displayData = vis.data.map(row => [row["broad_sector"], row["total_$"]]);
         vis.displayData = vis.displayData.map(item => ({
             group: item["0"],
-            value: item["1"],
+            value: item["1"]
         }));
 
         // extract contribution amount
@@ -66,19 +66,17 @@ class TreeMap {
 
         // convert to array
         const myArray = Object.keys(groupedSum).map(key => ({ key, value: groupedSum[key] }));
-        console.log("array", myArray)
 
         vis.treeData = myArray.map(item => ({
             name: item.key,
             parent: 'Origin',
-            value: item.value
+            value: String(item.value)
         }));
-
-        console.log("array data", vis.treeData)
 
         const origin = {name: 'Origin', parent: '', value: ''}
         vis.treeData.push(origin)
-        console.log("tree data", vis.treeData)
+
+        console.log("my data", vis.treeData)
 
         // stratify the data: reformatting for d3.js
         var root = d3.stratify()
@@ -86,6 +84,8 @@ class TreeMap {
             .parentId(function(d) { return d.parent; })   // Name of the parent (column name is parent in csv)
             (vis.treeData);
         root.sum(function(d) { return +d.value })   // Compute the numeric value for each entity
+
+        console.log("root", root)
 
         // Then d3.treemap computes the position of each element of the hierarchy
         // The coordinates are added to the root object above
@@ -95,31 +95,30 @@ class TreeMap {
             (root)
 
         console.log("my leaves", root.leaves())
-
+        // use this information to add rectangles:
         vis.svg
             .selectAll("rect")
             .data(root.leaves())
             .enter()
             .append("rect")
-            .attr('x', function (d) { return d.x0; })
+            .attr('x', function (d) {return d.x0; })
             .attr('y', function (d) { return d.y0; })
             .attr('width', function (d) { return d.x1 - d.x0; })
             .attr('height', function (d) { return d.y1 - d.y0; })
             .style("stroke", "black")
             .style("fill", "#69b3a2");
 
-        // and to add the text labels
-        vis.svg
-            .selectAll("text")
-            .data(root.leaves())
-            .enter()
-            .append("text")
-            .attr("x", function(d){ return d.x0+10})    // +10 to adjust position (more right)
-            .attr("y", function(d){ return d.y0+20})    // +20 to adjust position (lower)
-            .text(function(d){ return d.data.name})
-            .attr("font-size", "15px")
-            .attr("fill", "white")
-
+        // // and to add the text labels
+        // vis.svg
+        //     .selectAll("text")
+        //     .data(root.leaves())
+        //     .enter()
+        //     .append("text")
+        //     .attr("x", function(d){ return d.x0+10})    // +10 to adjust position (more right)
+        //     .attr("y", function(d){ return d.y0+20})    // +20 to adjust position (lower)
+        //     .text(function(d){ return d.data.name})
+        //     .attr("font-size", "15px")
+        //     .attr("fill", "white")
         vis.updateVis();
     }
 

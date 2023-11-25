@@ -84,10 +84,11 @@ d3.csv("data/2020_senate_AZ_candidates.csv").then((data) => {
 });
 
 
+// EXAMPLE from here: https://d3-graph-gallery.com/graph/treemap_basic.html
 // Read data
 d3.csv('https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/data_hierarchy_1level.csv').then((data) => {
 
-  console.log(data);
+  console.log("example data", data);
 
   // set the dimensions and margins of the graph
   var margin = {top: 10, right: 10, bottom: 10, left: 10},
@@ -124,7 +125,10 @@ d3.csv('https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/da
       .data(root.leaves())
       .enter()
       .append("rect")
-      .attr('x', function (d) { return d.x0; })
+      .attr('x', function (d) {
+        console.log(d.x0)
+        return d.x0
+      })
       .attr('y', function (d) { return d.y0; })
       .attr('width', function (d) { return d.x1 - d.x0; })
       .attr('height', function (d) { return d.y1 - d.y0; })
