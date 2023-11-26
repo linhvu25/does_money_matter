@@ -31,6 +31,13 @@ class TreeMap {
             .append("g")
             .attr("transform", "translate(" + vis.margin.left + "," + vis.margin.top + ")");
 
+        // append tooltip
+        vis.tooltip = d3
+            .select("body")
+            .append("div")
+            .attr("class", "tooltip")
+            .attr("id", "pieTooltip");
+
         vis.wrangleData();
     }
 
@@ -118,7 +125,36 @@ class TreeMap {
             .attr('width', function (d) { return d.x1 - d.x0; })
             .attr('height', function (d) { return d.y1 - d.y0; })
             .style("stroke", "black")
-            .style("fill", "#69b3a2");
+            .style("fill", "#69b3a2")
+            .on("mouseover", function (event, d, i) {
+
+                // change the segment of tree map
+                d3.select(this)
+                    .attr("stroke-width", "2px")
+                    .attr("stroke", "black")
+                    .attr("fill", "rgba(173,222,255,0.62)");
+
+                // update tooltip
+                vis.tooltip
+                    .style("opacity", 1)
+                    .style("left", event.pageX + 20 + "px")
+                    .style("top", event.pageY + "px").html(`
+                        <div style="border: thin solid grey; border-radius: 5px; background: lightgrey; padding: 20px">
+                             <p> Broad Sector: ${d.data.name}</p>
+                             <p> Total donation: ${d.data.value}</p>
+                        </div>`);
+            })
+            .on("mouseout", function (event, d) {
+                d3.select(this)
+                    .attr("stroke-width", "0px")
+                    .attr("fill", "#69b3a2");
+
+                vis.tooltip
+                    .style("opacity", 0)
+                    .style("left", 0)
+                    .style("top", 0)
+                    .html(``);
+            });;
 
         // and to add the text labels
         vis.svg
