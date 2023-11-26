@@ -57,8 +57,6 @@ class PieChart {
 
     // colors
     vis.colorScale = d3.scaleOrdinal(d3.schemeCategory10);
-    // .domain([1, 5])
-    // .range(["#eeff00", "#ff0022", "#2200ff","#eeff00", "#ff0022"]);
 
     // TODO
     // pie chart setup
