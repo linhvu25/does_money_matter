@@ -19,7 +19,8 @@ class TreeMap {
         // margin conventions
         vis.margin = { top: 10, right: 50, bottom: 10, left: 50 };
         vis.width = document.getElementById(vis.parentElement).getBoundingClientRect().width - vis.margin.left - vis.margin.right;
-        vis.height = document.getElementById(vis.parentElement).getBoundingClientRect().height - vis.margin.top - vis.margin.bottom;
+        vis.height = 800 - vis.margin.top - vis.margin.bottom;
+        // vis.height = document.getElementById(vis.parentElement).getBoundingClientRect().height - vis.margin.top - vis.margin.bottom;
 
         // init drawing area
         vis.svg = d3
@@ -96,14 +97,14 @@ class TreeMap {
         vis.root.sum(d => +d.value)   // Compute the numeric value for each entity
         // AND HERE because vis.root looks weird
 
-        console.log("my root", vis.root)
-
         // Then d3.treemap computes the position of each element of the hierarchy
         // The coordinates are added to the root object above
         d3.treemap()
-            .size([vis.width, vis.height])
+            .size([vis.width, vis.width])
             .padding(4)
             (vis.root)
+
+        console.log("my root", vis.root)
 
         console.log("my leaves", vis.root.leaves())
         // use this information to add rectangles:
@@ -119,16 +120,16 @@ class TreeMap {
             .style("stroke", "black")
             .style("fill", "#69b3a2");
 
-        // // and to add the text labels
-        // vis.svg
-        //     .selectAll("text")
-        //     .data(root.leaves())
-        //     .enter()
-        //     .append("text")
-        //     .attr("x", function(d){ return d.x0+10})    // +10 to adjust position (more right)
-        //     .attr("y", function(d){ return d.y0+20})    // +20 to adjust position (lower)
-        //     .text(function(d){ return d.data.name})
-        //     .attr("font-size", "15px")
-        //     .attr("fill", "white")
+        // and to add the text labels
+        vis.svg
+            .selectAll("text")
+            .data(vis.root.leaves())
+            .enter()
+            .append("text")
+            .attr("x", function(d){ return d.x0+10})    // +10 to adjust position (more right)
+            .attr("y", function(d){ return d.y0+20})    // +20 to adjust position (lower)
+            .text(function(d){ return d.data.name})
+            .attr("font-size", "15px")
+            .attr("fill", "white")
     }
 }

@@ -79,47 +79,6 @@ function initVis(states, senateSpending) {
 
 d3.csv("data/2020_senate_AZ_candidates.csv").then((data) => {
   myPieChart = new PieChart("pieDivRight", data);
-  myTreeMap = new TreeMap('treeMap', data)
-  myBarChart = new DivergingBarChart('barChart', data)
+  myTreeMap = new TreeMap("treeMap", data);
+  myBarChart = new DivergingBarChart("barChart", data);
 });
-
-
-// EXAMPLE from here: https://d3-graph-gallery.com/graph/treemap_basic.html
-// Read data
-d3.csv('https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/data_hierarchy_1level.csv').then((data) => {
-
-  console.log("example data", data);
-
-  // set the dimensions and margins of the graph
-  var margin = {top: 10, right: 10, bottom: 10, left: 10},
-      width = 445 - margin.left - margin.right,
-      height = 445 - margin.top - margin.bottom;
-
-// append the svg object to the body of the page
-  var svg = d3.select("#treeMap")
-      .append("svg")
-      .attr("width", width + margin.left + margin.right)
-      .attr("height", height + margin.top + margin.bottom)
-      .append("g")
-      .attr("transform",
-          "translate(" + margin.left + "," + margin.top + ")");
-
-  // stratify the data: reformatting for d3.js
-  var root = d3.stratify()
-      .id(function(d) { return d.name; })   // Name of the entity (column name is name in csv)
-      .parentId(function(d) { return d.parent; })   // Name of the parent (column name is parent in csv)
-      (data);
-
-  root.sum(function(d) { return +d.value })   // Compute the numeric value for each entity
-
-  console.log("example root", root)
-
-  // Then d3.treemap computes the position of each element of the hierarchy
-  // The coordinates are added to the root object above
-  d3.treemap()
-      .size([width, height])
-      .padding(4)
-      (root)
-
-  console.log("example leaves", root.leaves())
-})
