@@ -38,7 +38,7 @@ class MapVis {
     vis.svg
       .append("g")
       .attr("class", "states")
-      .attr("transform", `scale(${vis.zoom} ${vis.zoom})`)
+      .attr("transform", `translate(0,20), scale(${vis.zoom} ${vis.zoom})`)
       .selectAll("path")
       .data(vis.states)
       .enter()
@@ -81,6 +81,16 @@ class MapVis {
         ? "#aa4aaa"
         : "#aaaaaa40"
     );
+
+    vis.height =
+      document.getElementsByClassName("states")[0].getBoundingClientRect()
+        .height -
+      vis.margin.top -
+      vis.margin.bottom +
+      90;
+
+    console.log(vis.height);
+    vis.svg.attr("height", vis.height);
 
     vis.states.on("mouseover", function (event, d) {
       //   d3.select(this).attr("fill", "red");
