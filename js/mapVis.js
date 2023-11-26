@@ -29,6 +29,11 @@ class MapVis {
       .attr("height", vis.height)
       .attr("transform", `translate (${vis.margin.left}, ${vis.margin.top})`);
 
+    vis.color = d3.scaleSequentialSqrt(
+      d3.extent(Object.values(vis.senateSpending).map((d) => d.total_$)),
+      d3.interpolateBlues
+    );
+
     vis.path = d3.geoPath();
     vis.states = topojson.feature(vis.us, vis.us.objects.states).features;
 
@@ -66,6 +71,8 @@ class MapVis {
       .attr("class", "tooltip")
       .attr("opacity", 1);
 
+    d3.select("#map-fill-select").on("change", () => vis.updateVis());
+
     vis.wrangleData();
   }
 
@@ -76,11 +83,21 @@ class MapVis {
 
   updateVis() {
     let vis = this;
-    vis.states.attr("fill", (d) =>
-      vis.senateSpending[d.properties.name].total_$ > 100000000
-        ? "#aa4aaa"
-        : "#aaaaaa40"
-    );
+
+    var map_fill_select = document.getElementById("map-fill-select");
+    var map_fill = map_fill_select.options[map_fill_select.selectedIndex].value;
+
+    if (map_fill == "all") {
+      vis.states.attr("fill", (d) =>
+        vis.color(vis.senateSpending[d.properties.name].total_$)
+      );
+    } else {
+      vis.states.attr("fill", (d) =>
+        vis.senateSpending[d.properties.name].total_$ > 100000000
+          ? "rgb(56, 136, 193)"
+          : "rgb(223, 235, 247)"
+      );
+    }
 
     vis.height =
       document.getElementsByClassName("states")[0].getBoundingClientRect()
@@ -89,21 +106,20 @@ class MapVis {
       vis.margin.bottom +
       90;
 
-    console.log(vis.height);
     vis.svg.attr("height", vis.height);
 
     vis.states.on("mouseover", function (event, d) {
-      //   d3.select(this).attr("fill", "red");
-      //   var stateInfo = vis.stateInfoObject[d.properties.name];
       vis.tooltip
         .style("opacity", 1)
         .style("left", event.pageX + 20 + "px")
         .style("top", event.pageY + "px").html(`
          <div style="border: thin solid grey; border-radius: 5px; background: lightgrey; padding: 5px; padding-bottom: 0px;">
-             <h6>${d.properties.name}</h6>         
+             <h6>${d.properties.name}</h6>
              <p>Year: ${
                vis.senateSpending[d.properties.name].election_year
-             }<br/>Total contributions: ${d3.format("$,")(vis.senateSpending[d.properties.name].total_$)}</p>          
+             }<br/>Total contributions: ${d3.format("$,")(vis.senateSpending[d.properties.name].total_$)}
+             ${d.properties.name == "Georgia" ? "<br />(2 races)" : ""}
+             </p>          
          </div>`);
     });
     vis.states.on("mouseout", function (event, d) {

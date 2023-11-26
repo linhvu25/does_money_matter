@@ -24,11 +24,18 @@
               <h1>CS171 Final Project: Linh, Eric, Micah</h1>
             </div>
           </div>
-          <div class="row justify-content-center">
-            <div class="col-10" id="map-svg"></div>
-          </div>
-          <div class="row justify-content-center py-4">
-            <pdiv class="col-auto">placeholder for select box</pdiv>
+          <div class="row justify-content-center align-items-center py-4">
+            <div class="col-9" id="map-svg"></div>
+            <div class="col-2">
+              <div class="row">
+                <label for="map-fill-select">Map Fill:</label>
+                <select class="form-control" id="map-fill-select">
+                  <option value="all" selected>All states</option>
+                  <option value="100m">>$100M states</option>
+                </select>
+              </div>
+              <div class="row my-3"><table></table></div>
+            </div>
           </div>
           <div class="row justify-content-center">
             <div class="col-10" id="pieDivRight"></div>
