@@ -167,9 +167,22 @@ class MapVis {
               .duration(250)
               .attr("opacity", 0);
 
+            d3.select("#circle-legend")
+              .transition()
+              .duration(250)
+              .attr("opacity", 0);
+
+            d3.select("#circle-legend").transition().delay(500).remove();
+
             setFill();
+            d3.select("#map-title").text(
+              "Senate races in 8 States cost more than $100M in 2018 or 2020"
+            );
           }
 
+          d3.select("#race-info").html(
+            "States with more than $100 million in total contributions are clickable."
+          );
           d3.select("#candidate-circles").transition().delay(500).remove();
         }
       });
