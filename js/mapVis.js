@@ -39,6 +39,7 @@ class MapVis {
 
     vis.viewpoint = { width: 975, height: 410 };
     vis.zoom = vis.width / vis.viewpoint.width;
+    vis.scaled = false;
 
     vis.svg
       .append("g")
@@ -55,20 +56,15 @@ class MapVis {
 
     vis.states = vis.svg.selectAll(".state");
 
-    vis.svg
-      .append("g")
-      .attr("class", "map-title")
-      .append("text")
-      .attr("font-size", "20")
-      .attr("x", vis.width / 2)
-      .attr("text-anchor", "middle")
-      .attr("y", vis.margin.top)
-      .text("Senate races in 8 States cost more than $100M in 2018 or 2020");
+    d3.select("#map-title").text(
+      "Senate races in 8 States cost more than $100M in 2018 or 2020"
+    );
 
     vis.tooltip = d3
       .select("body")
       .append("div")
       .attr("class", "tooltip")
+      .attr("id", "map-tooltip")
       .attr("opacity", 1);
 
     d3.select("#map-fill-select").on("change", () => vis.updateVis());
@@ -84,20 +80,29 @@ class MapVis {
   updateVis() {
     let vis = this;
 
-    var map_fill_select = document.getElementById("map-fill-select");
-    var map_fill = map_fill_select.options[map_fill_select.selectedIndex].value;
-
-    if (map_fill == "all") {
-      vis.states.attr("fill", (d) =>
-        vis.color(vis.senateSpending[d.properties.name].total_$)
-      );
-    } else {
-      vis.states.attr("fill", (d) =>
-        vis.senateSpending[d.properties.name].total_$ > 100000000
-          ? "rgb(56, 136, 193)"
-          : "rgb(223, 235, 247)"
-      );
+    function setFill() {
+      var map_fill_select = document.getElementById("map-fill-select");
+      var map_fill =
+        map_fill_select.options[map_fill_select.selectedIndex].value;
+      if (map_fill == "all") {
+        vis.states
+          .transition()
+          .duration(500)
+          .attr("fill", (d) =>
+            vis.color(vis.senateSpending[d.properties.name].total_$)
+          );
+      } else {
+        vis.states
+          .transition()
+          .duration(500)
+          .attr("fill", (d) =>
+            vis.senateSpending[d.properties.name].total_$ > 100000000
+              ? "rgb(56, 136, 193)"
+              : "rgb(223, 235, 247)"
+          );
+      }
     }
+    setFill();
 
     vis.height =
       document.getElementsByClassName("states")[0].getBoundingClientRect()
@@ -106,26 +111,69 @@ class MapVis {
       vis.margin.bottom +
       90;
 
-    vis.svg.attr("height", vis.height);
+    if (!vis.scaled) vis.svg.attr("height", vis.height);
 
-    vis.states.on("mouseover", function (event, d) {
-      vis.tooltip
-        .style("opacity", 1)
-        .style("left", event.pageX + 20 + "px")
-        .style("top", event.pageY + "px").html(`
+    vis.states
+      .on("mouseover", function (event, d) {
+        if (vis.scaled) return;
+        vis.tooltip
+          .style("opacity", 1)
+          .style("left", event.pageX + 20 + "px")
+          .style("top", event.pageY + "px").html(`
          <div style="border: thin solid grey; border-radius: 5px; background: lightgrey; padding: 5px; padding-bottom: 0px;">
              <h6>${d.properties.name}</h6>
              <p>Year: ${
                vis.senateSpending[d.properties.name].election_year
              }<br/>Total contributions: ${d3.format("$,")(vis.senateSpending[d.properties.name].total_$)}
              ${d.properties.name == "Georgia" ? "<br />(2 races)" : ""}
+             ${
+               vis.senateSpending[d.properties.name].total_$ > 100000000
+                 ? "<br />(click for details)"
+                 : ""
+             }
              </p>          
          </div>`);
-    });
+      })
+      .on("click", function (event, d) {
+        if (
+          vis.scaled ||
+          vis.senateSpending[d.properties.name].total_$ > 100000000
+        ) {
+          vis.svg
+            .select(".states")
+            .transition()
+            .duration(500)
+            .attr(
+              "transform",
+              vis.scaled
+                ? `translate(0,20), scale(${vis.zoom} ${vis.zoom})`
+                : `translate(0,20), scale(${vis.zoom / 3} ${vis.zoom / 3})`
+            );
+
+          vis.scaled = !vis.scaled;
+          if (vis.scaled) {
+            new CircleVis(vis.parentElement, d.properties.name);
+            vis.states
+              .transition()
+              .duration(500)
+              .attr("fill", "rgb(223, 235, 247)");
+            d3.select(this)
+              .transition()
+              .duration(500)
+              .attr("fill", "rgb(56, 136, 193)");
+          } else {
+            d3.select("#candidate-circles")
+              .transition()
+              .duration(250)
+              .attr("opacity", 0);
+
+            setFill();
+          }
+
+          d3.select("#candidate-circles").transition().delay(500).remove();
+        }
+      });
     vis.states.on("mouseout", function (event, d) {
-      //   d3.select(this).attr("fill", (d) =>
-      //     vis.color(vis.stateInfoObject[d.properties.name][selectedCategory])
-      //   );
       vis.tooltip.style("opacity", 0).style("left", 0).style("top", 0).html(``);
     });
   }
