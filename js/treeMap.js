@@ -99,7 +99,7 @@ class TreeMap {
 
     vis.treeData.columns = ["name", "parent", "value"];
 
-    console.log("my data", vis.treeData);
+    // console.log("my data", vis.treeData);
 
     vis.updateVis();
   }
@@ -123,9 +123,9 @@ class TreeMap {
     // The coordinates are added to the root object above
     d3.treemap().size([vis.width, vis.width]).padding(4)(vis.root);
 
-    console.log("my root", vis.root);
+    // console.log("my root", vis.root);
 
-    console.log("my leaves", vis.root.leaves());
+    // console.log("my leaves", vis.root.leaves());
     // use this information to add rectangles:
     vis.svg
       .selectAll("rect")

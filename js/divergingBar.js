@@ -18,8 +18,9 @@ class DivergingBarChart {
 
         // margin conventions
         vis.margin = { top: 10, right: 50, bottom: 10, left: 50 };
-        vis.width = document.getElementById(vis.parentElement).getBoundingClientRect().width - vis.margin.left - vis.margin.right;
-        vis.height = document.getElementById(vis.parentElement).getBoundingClientRect().height - vis.margin.top - vis.margin.bottom;
+        // vis.width = document.getElementById(vis.parentElement).getBoundingClientRect().width - vis.margin.left - vis.margin.right;
+        vis.width = 600 - vis.margin.left - vis.margin.right;
+        vis.height = 600 - vis.margin.top - vis.margin.bottom;
 
         // init drawing area
         vis.svg = d3
@@ -47,7 +48,7 @@ class DivergingBarChart {
             let money = row["total_$"]
             row["total_$"] = Number(money.replace(/[^0-9\.-]+/g, ""))
         });
-        console.log("bar data", vis.barData)
+        //console.log("bar data", vis.barData)
         this.updateVis();
     }
 
@@ -68,8 +69,9 @@ class DivergingBarChart {
 
         // Add Y axis
         vis.y = d3.scaleLinear()
-            .domain([0, 13000])
-            .range([ vis.height, 0]);
+            .domain([d3.min(vis.barData, d=> d["total_$"]),
+                d3.max(vis.barData, d=> d["total_$"])])
+            .range([vis.height, 0]);
         vis.svg.append("g")
             .call(d3.axisLeft(vis.y));
 
@@ -81,7 +83,7 @@ class DivergingBarChart {
             .attr("x", d => vis.x(d["specific_business"]))
             .attr("y", d => vis.y(d["total_$"]))
             .attr("width", vis.x.bandwidth())
-            .attr("height", d => 800 - vis.y(d["total_$"]))
+            .attr("height", d => 600 - 20 - vis.y(d["total_$"]))
             .attr("fill", "#69b3a2")
     }
 
