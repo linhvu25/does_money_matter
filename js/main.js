@@ -7,6 +7,17 @@ function toTitleCase(str) {
   return str.toLowerCase().replace(/^\(*(\w)/, (x) => x.toUpperCase());
 }
 
+function getName(candidate) {
+  const [last_name, first_name] = candidate.split(", ");
+  var name = first_name + " " + last_name;
+  name = name
+    .split(" ")
+    .map((x) => toTitleCase(x))
+    .join(" ");
+
+  return name;
+}
+
 const state_abbrev = {
   AL: "Alabama",
   AK: "Alaska",
