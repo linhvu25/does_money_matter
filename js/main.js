@@ -3,6 +3,10 @@ let promises = [
   d3.csv("data/max_senate_spending_2018_2020.csv"),
 ];
 
+function toTitleCase(str) {
+  return str.toLowerCase().replace(/^\(*(\w)/, (x) => x.toUpperCase());
+}
+
 const state_abbrev = {
   AL: "Alabama",
   AK: "Alaska",
@@ -81,5 +85,5 @@ d3.csv("data/candidate_totals/2020_senate_AZ_candidates.csv").then((data) => {
   myPieChart = new PieChart("pieDivRight", data);
   myTreeMap = new TreeMap("treeMap", data);
   myBarChart = new DivergingBarChart("barChart", data);
-  mySankeyPlot = new SankeyPlot('sankeyPlot', data);
+  mySankeyPlot = new SankeyPlot("sankeyPlot", data);
 });
