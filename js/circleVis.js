@@ -5,7 +5,30 @@ class CircleVis {
     this.stateName = stateName;
     this.parentElement = parentElement;
     this.data = [];
+    this.raceSummary = "";
     this.initVis();
+  }
+
+  getRaceSummary(data) {
+    console.log(data);
+
+    const general_candidates = data.filter(
+      (x) => x.election_status.search("GENERAL") != -1
+    );
+    const winner = general_candidates
+      .filter((x) => x.election_status.search("WON") != -1)
+      .map((x) => getName(x.candidate))
+      .join(" and ");
+
+    var summary = "";
+    summary += `<p>${data.length} candidates ran for the Senate in ${this.stateName} in ${data[0].election_year}, `;
+    summary += `raising a total of $${(
+      data.map((d) => d.total_$).reduce((pS, a) => pS + a, 0) /
+      10 ** 6
+    ).toFixed(1)} million.</p>`;
+    summary += `<p>${winner} won the election.</p>`;
+
+    d3.select("#race-info").html(summary);
   }
 
   initVis() {
@@ -33,10 +56,45 @@ class CircleVis {
         return row;
       });
       vis.data = data;
+      this.raceSummary = this.getRaceSummary(data);
 
       d3.select("#map-title").text(
         `Candidate totals for ${vis.stateName}'s ${data[0].election_year} Senate Race`
       );
+
+      const legend_colors = [...vis.color.range(), "#0f0"];
+      const legend_labels = [
+        "Republican",
+        "Democrat",
+        "Third Party",
+        "Won election",
+      ];
+
+      vis.legend = vis.svg
+        .append("g")
+        .attr("id", "circle-legend")
+        .attr("transform", `translate(750,300)`)
+        .attr("opacity", 0);
+
+      vis.legend
+        .selectAll("rect")
+        .data(legend_colors)
+        .enter()
+        .append("rect")
+        .attr("width", 10)
+        .attr("height", 10)
+        .attr("x", 5)
+        .attr("y", (d, i) => i * 20)
+        .attr("fill", (d) => d);
+
+      vis.legend
+        .selectAll("text")
+        .data(legend_labels)
+        .enter()
+        .append("text")
+        .attr("x", 20)
+        .attr("y", (d, i) => 10 + i * 20)
+        .text((d) => d);
 
       vis.nodes = vis.svg
         .append("g")
@@ -63,7 +121,7 @@ class CircleVis {
           d3
             .forceCollide()
             .strength(0.2)
-            .radius((d) => vis.radius(d.total_$) + 2)
+            .radius((d) => vis.radius(d.total_$) + 5)
             .iterations(1)
         ); // Force that avoids circle overlapping
 
@@ -75,6 +133,8 @@ class CircleVis {
     let vis = this;
 
     vis.radius.domain(d3.extent(vis.data.map((d) => d.total_$)));
+
+    vis.legend.transition().duration(500).delay(500).attr("opacity", 1);
 
     vis.nodes
       .attr("r", (d) => vis.radius(d.total_$))
@@ -103,12 +163,7 @@ class CircleVis {
         .split("-")
         .map((x) => x.toLowerCase());
 
-      const [last_name, first_name] = d.candidate.split(", ");
-      var name = first_name + " " + last_name;
-      name = name
-        .split(" ")
-        .map((x) => toTitleCase(x))
-        .join(" ");
+      var name = getName(d.candidate);
 
       vis.tooltip
         .style("opacity", 1)
