@@ -73,7 +73,6 @@ class CircleVis {
 
   updateVis() {
     let vis = this;
-    console.log(vis.data[0]);
 
     vis.radius.domain(d3.extent(vis.data.map((d) => d.total_$)));
 
