@@ -8,6 +8,7 @@ class TreeMap {
     this.parentElement = _parentElement;
     this.data = _data;
     this.displayData = [];
+    this.wrangledData = [];
     this.treeData = [];
 
     // call initVis method
@@ -45,6 +46,8 @@ class TreeMap {
       .attr("id", "pieTooltip");
 
     vis.wrangleData();
+
+    d3.select("#map-tree-select").on("change", () => vis.updateVis());
   }
 
   wrangleData() {
@@ -62,7 +65,7 @@ class TreeMap {
 
     // extract contribution amount
     vis.displayData.forEach((row) => {
-      let money = row.value;
+      var money = row.value;
       row.value = Number(money.replace(/[^0-9\.-]+/g, ""));
     });
 
@@ -87,7 +90,7 @@ class TreeMap {
     }));
 
     // create data for treeMap
-    vis.treeData = myArray.map((item) => ({
+    vis.wrangledData = myArray.map((item) => ({
       name: item.key,
       parent: "Origin",
       value: String(item.value),
@@ -95,17 +98,30 @@ class TreeMap {
 
     // add parent node
     const origin = { name: "Origin", parent: "", value: "" };
-    vis.treeData.push(origin);
+    vis.wrangledData.push(origin);
 
-    vis.treeData.columns = ["name", "parent", "value"];
-
-    // console.log("my data", vis.treeData);
+    vis.wrangledData.columns = ["name", "parent", "value"];
+    console.log("my data", vis.wrangledData);
 
     vis.updateVis();
   }
 
   updateVis() {
     let vis = this;
+
+    // filter data according to user selection
+    var map_select = document.getElementById("map-tree-select")
+        var map = map_select.options[map_select.selectedIndex].value;
+
+    if(map === "none") {
+      vis.treeData = vis.wrangledData.filter(d => (d.name !== "UNITEMIZED CONTRIBUTIONS" && d.name !== "UNCODED"))
+    } else if(map === "unitemized"){
+      vis.treeData = vis.wrangledData.filter(d => d.name !== "UNCODED")
+    } else if(map === "uncoded"){
+      vis.treeData = vis.wrangledData.filter(d => d.name !== "UNITEMIZED CONTRIBUTIONS")
+    } else vis.treeData = vis.wrangledData
+
+    console.log("my tree data", vis.treeData);
 
     // stratify the data: reformatting for d3.js
     // BUG SOMEWHERE BETWEEN HERE
