@@ -17,7 +17,7 @@ class DivergingBarChart {
         let vis = this;
 
         // margin conventions
-        vis.margin = { top: 10, right: 50, bottom: 10, left: 50 };
+        vis.margin = { top: 10, right: 50, bottom: 220, left: 100 };
         // vis.width = document.getElementById(vis.parentElement).getBoundingClientRect().width - vis.margin.left - vis.margin.right;
         vis.width = 600 - vis.margin.left - vis.margin.right;
         vis.height = 600 - vis.margin.top - vis.margin.bottom;
@@ -83,7 +83,7 @@ class DivergingBarChart {
             .attr("x", d => vis.x(d["specific_business"]))
             .attr("y", d => vis.y(d["total_$"]))
             .attr("width", vis.x.bandwidth())
-            .attr("height", d => 600 - 20 - vis.y(d["total_$"]))
+            .attr("height", d => vis.height - vis.y(d["total_$"]))
             .attr("fill", "#69b3a2")
     }
 
