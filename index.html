@@ -41,19 +41,20 @@
           <div class="row justify-content-center">
             <div class="col-10" id="pieDivRight"></div>
           </div>
-          <div class="row justify-content-center">
-            <div class="col-10" id="treeMap"></div>
-            <div class="col-2">
-              <div class="row">
-                <label for="map-fill-select">Select sectors:</label>
-                <select class="form-control" id="map-tree-select">
-                  <option value="none" selected>Include Coded and itemized</option>
-                  <option value="unitemized">Include unitemized</option>
-                  <option value="uncoded">Include uncoded</option>
-                  <option value="all">Include all</option>
-                </select>
-              </div>
-          </div>
+          <div class="col justify-content-center">
+            <div class="row">
+              <h4 id="tree-map-title"></h4>
+            </div>
+            <div class="row-5">
+              <label for="map-fill-select">Select sectors:</label>
+              <select class="form-control" id="map-tree-select">
+                <option value="none" selected>Include Coded and Itemized Contributions</option>
+                <option value="unitemized">Include Unitemized</option>
+                <option value="uncoded">Include Uncoded</option>
+                <option value="all">Include All Sectors</option>
+              </select>
+            </div>
+            <div class="row" id="treeMap"></div>
           <div class="row justify-content-center">
             <div id="barChart"></div>
           </div>

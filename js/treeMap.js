@@ -18,12 +18,12 @@ class TreeMap {
     let vis = this;
 
     // margin conventions
-    vis.margin = { top: 10, right: 50, bottom: 10, left: 50 };
+    vis.margin = { top: 10, right: 50, bottom: 10, left: 50};
     vis.width =
-      document.getElementById(vis.parentElement).getBoundingClientRect().width -
+      1000 -
       vis.margin.left -
       vis.margin.right;
-    vis.height = 800 - vis.margin.top - vis.margin.bottom;
+    vis.height = 600 - vis.margin.top - vis.margin.bottom;
     // vis.height = document.getElementById(vis.parentElement).getBoundingClientRect().height - vis.margin.top - vis.margin.bottom;
 
     // init drawing area
@@ -44,6 +44,11 @@ class TreeMap {
       .append("div")
       .attr("class", "tooltip")
       .attr("id", "pieTooltip");
+
+    // append title
+    d3.select("#tree-map-title").text(
+        "Finance, Government Agencies, and Lawyers Contribute the most"
+    );
 
     vis.wrangleData();
 
