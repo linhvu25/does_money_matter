@@ -94,7 +94,5 @@ function initVis(states, senateSpending) {
 
 d3.csv("data/candidate_totals/az.csv").then((data) => {
   myPieChart = new PieChart("pieDivRight", data);
-  // myTreeMap = new TreeMap("treeMap", data);
-  // myBarChart = new DivergingBarChart("barChart", data);
   mySankeyPlot = new SankeyPlot("sankeyPlot", data);
 });
