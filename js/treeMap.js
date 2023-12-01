@@ -189,7 +189,9 @@ class TreeMap {
           .style("top", event.pageY + "px").html(`
                         <div style="border: thin solid grey; border-radius: 5px; background: lightgrey; padding: 20px">
                              <p> Broad Sector: ${d.data.name}</p>
-                             <p> Total donation: ${d.data.value}</p>
+                             <p> Total contributions: ${d3.format("$,")(
+                               d.data.value
+                             )}</p>
                         </div>`);
       })
       .on("mouseout", function (event, d) {

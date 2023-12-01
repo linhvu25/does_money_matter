@@ -92,7 +92,7 @@ function initVis(states, senateSpending) {
   myMapVis = new MapVis("map-svg", states, senateSpending);
 }
 
-d3.csv("data/candidate_totals/2020_senate_AZ_candidates.csv").then((data) => {
+d3.csv("data/candidate_totals/az.csv").then((data) => {
   myPieChart = new PieChart("pieDivRight", data);
   // myTreeMap = new TreeMap("treeMap", data);
   // myBarChart = new DivergingBarChart("barChart", data);
