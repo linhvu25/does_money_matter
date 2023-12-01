@@ -21,7 +21,8 @@
           <!-- HEADING -->
           <div class="row" style="height: 10vh; padding: 0">
             <div class="align-self-center px-4">
-              <h1>CS171 Final Project: Linh, Eric, Micah</h1>
+              <h1>Does Money Matter?</h1>
+              <h3>All about recent senate campaign donations</h3>
             </div>
           </div>
           <div class="row justify-content-center align-items-center py-4">
@@ -40,15 +41,30 @@
                 clickable.
               </div>
             </div>
+            <div>
+              <p>The cost displayed is the total money raised by all candidates in the race.<br>
+                Click on senate races that cost more than $100M to learn more.</p>
+            </div>
           </div>
           <div class="row justify-content-center">
             <div class="col-10" id="pieDivRight"></div>
           </div>
+          <div class="col justify-content-center">
+            <div class="row">
+              <h4 id="tree-map-title"></h4>
+            </div>
+            <div class="row-5">
+              <label for="map-fill-select">Select sectors:</label>
+              <select class="form-control" id="map-tree-select">
+                <option value="none" selected>Include Coded and Itemized Contributions</option>
+                <option value="unitemized">Include Unitemized</option>
+                <option value="uncoded">Include Uncoded</option>
+                <option value="all">Include All Sectors</option>
+              </select>
+            </div>
+            <div class="row" id="treeMap"></div>
           <div class="row justify-content-center">
-            <div class="col-10" id="treeMap"></div>
-          </div>
-          <div class="row justify-content-center">
-            <div class="col-10" id="barChart"></div>
+            <div id="barChart"></div>
           </div>
           <div class="row justify-content-center">
             <div class="col-10" id="sankeyPlot"></div>
@@ -76,9 +92,11 @@
     <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
     <script src="https://d3js.org/topojson.v2.min.js"></script>
     <script src="https://d3js.org/d3-geo.v1.min.js"></script>
-    <script src="https://d3js.org/d3-sankey.v0.12.min.js"></script>
+<!--    <script src="https://d3js.org/d3-sankey.v0.12.min.js"></script>-->
+      <script src="https://cdn.jsdelivr.net/gh/holtzy/D3-graph-gallery@master/LIB/sankey.js"></script>
 
-    <!-- OWN JS -->
+
+      <!-- OWN JS -->
     <script src="js/mapVis.js"></script>
     <script src="js/circleVis.js"></script>
     <script src="js/pieChart.js"></script>

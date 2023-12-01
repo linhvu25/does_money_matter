@@ -40,12 +40,16 @@ class SankeyPlot {
 
         // Extract necessary fields from data
         vis.data.forEach(function(d) {
+            // deal with $ in total_$
+            var money = String(d.total_$);
+            d.total_$ = Number(money.replace(/[^0-9\.-]+/g, ""))
+
             sankeyNodes.push({ "name": d.general_industry });
             sankeyNodes.push({ "name": d.candidate });
             sankeyLinks.push({
                 "source": d.general_industry,
                 "target": d.candidate,
-                "value": +d.total_$.replace(/[$,]/g, "").trim()
+                "value": +d.total_$
             });
         });
 

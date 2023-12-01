@@ -97,7 +97,7 @@ class MapVis {
           .duration(500)
           .attr("fill", (d) =>
             vis.senateSpending[d.properties.name].total_$ > 100000000
-              ? "rgb(56, 136, 193)"
+              ? vis.color(vis.senateSpending[d.properties.name].total_$)
               : "rgb(223, 235, 247)"
           );
       }
