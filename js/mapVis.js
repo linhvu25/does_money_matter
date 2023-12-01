@@ -154,6 +154,7 @@ class MapVis {
           vis.scaled = !vis.scaled;
           if (vis.scaled) {
             new CircleVis(vis.parentElement, d.properties.name);
+
             vis.states
               .transition()
               .duration(500)
