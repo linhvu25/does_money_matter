@@ -18,20 +18,26 @@ class TreeMap {
     let vis = this;
 
     // margin conventions
-    vis.margin = { top: 10, right: 50, bottom: 10, left: 50};
+    vis.margin = { top: 10, right: 10, bottom: 10, left: 10 };
+
     vis.width =
-      1000 -
+      document.getElementById(vis.parentElement).getBoundingClientRect().width -
       vis.margin.left -
       vis.margin.right;
-    vis.height = 600 - vis.margin.top - vis.margin.bottom;
-    // vis.height = document.getElementById(vis.parentElement).getBoundingClientRect().height - vis.margin.top - vis.margin.bottom;
+    vis.height =
+      document.getElementById(vis.parentElement).getBoundingClientRect()
+        .height -
+      vis.margin.top -
+      vis.margin.bottom;
+
+    if (vis.height < 600) vis.height = 600;
 
     // init drawing area
     vis.svg = d3
       .select("#" + vis.parentElement)
       .append("svg")
-      .attr("width", vis.width + vis.margin.left + vis.margin.right)
-      .attr("height", vis.height + vis.margin.top + vis.margin.bottom)
+      .attr("width", vis.width)
+      .attr("height", vis.height)
       .append("g")
       .attr(
         "transform",
@@ -47,7 +53,7 @@ class TreeMap {
 
     // append title
     d3.select("#tree-map-title").text(
-        "Finance, Government Agencies, and Lawyers Contribute the most"
+      "Finance, Government Agencies, and Lawyers Contribute the most"
     );
 
     vis.wrangleData();
@@ -115,16 +121,20 @@ class TreeMap {
     let vis = this;
 
     // filter data according to user selection
-    var map_select = document.getElementById("map-tree-select")
-        var map = map_select.options[map_select.selectedIndex].value;
+    var map_select = document.getElementById("map-tree-select");
+    var map = map_select.options[map_select.selectedIndex].value;
 
-    if(map === "none") {
-      vis.treeData = vis.wrangledData.filter(d => (d.name !== "UNITEMIZED CONTRIBUTIONS" && d.name !== "UNCODED"))
-    } else if(map === "unitemized"){
-      vis.treeData = vis.wrangledData.filter(d => d.name !== "UNCODED")
-    } else if(map === "uncoded"){
-      vis.treeData = vis.wrangledData.filter(d => d.name !== "UNITEMIZED CONTRIBUTIONS")
-    } else vis.treeData = vis.wrangledData
+    if (map === "none") {
+      vis.treeData = vis.wrangledData.filter(
+        (d) => d.name !== "UNITEMIZED CONTRIBUTIONS" && d.name !== "UNCODED"
+      );
+    } else if (map === "unitemized") {
+      vis.treeData = vis.wrangledData.filter((d) => d.name !== "UNCODED");
+    } else if (map === "uncoded") {
+      vis.treeData = vis.wrangledData.filter(
+        (d) => d.name !== "UNITEMIZED CONTRIBUTIONS"
+      );
+    } else vis.treeData = vis.wrangledData;
 
     console.log("my tree data", vis.treeData);
 
@@ -141,17 +151,16 @@ class TreeMap {
 
     // Then d3.treemap computes the position of each element of the hierarchy
     // The coordinates are added to the root object above
-    d3.treemap().size([vis.width, vis.width]).padding(4)(vis.root);
+    d3.treemap().size([vis.width, vis.height]).padding(4)(vis.root);
 
     // console.log("my root", vis.root);
 
-    // console.log("my leaves", vis.root.leaves());
+    console.log("my leaves", vis.root.leaves());
     // use this information to add rectangles:
-    vis.svg
+    vis.leaves = vis.svg
       .selectAll("rect")
       .data(vis.root.leaves())
-      .enter()
-      .append("rect")
+      .join("rect")
       .attr("x", function (d) {
         return d.x0;
       })
@@ -197,8 +206,7 @@ class TreeMap {
     vis.svg
       .selectAll("text")
       .data(vis.root.leaves())
-      .enter()
-      .append("text")
+      .join("text")
       .attr("x", function (d) {
         return d.x0 + 10;
       }) // +10 to adjust position (more right)

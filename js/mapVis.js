@@ -21,6 +21,7 @@ class MapVis {
         .height -
       vis.margin.top -
       vis.margin.bottom;
+    if (vis.height < 400) vis.height = 400;
 
     vis.svg = d3
       .select("#" + this.parentElement)

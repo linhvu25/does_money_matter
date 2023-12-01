@@ -62,7 +62,7 @@ class CircleVis {
         `Candidate totals for ${vis.stateName}'s ${data[0].election_year} Senate Race`
       );
 
-      const legend_colors = [...vis.color.range(), "#0f0"];
+      const legend_colors = [...vis.color.range(), "#4a4"];
       const legend_labels = [
         "Republican",
         "Democrat",
@@ -73,7 +73,7 @@ class CircleVis {
       vis.legend = vis.svg
         .append("g")
         .attr("id", "circle-legend")
-        .attr("transform", `translate(750,300)`)
+        .attr("transform", `translate(${vis.width - 220},${vis.height - 120})`)
         .attr("opacity", 0);
 
       vis.legend
@@ -140,7 +140,7 @@ class CircleVis {
       .attr("r", (d) => vis.radius(d.total_$))
       .attr("opacity", 0)
       .attr("fill", (d) => vis.color(d.general_party))
-      .attr("stroke", (d) => (d.status_of_candidate == "WON" ? "#0f0" : "#aaa"))
+      .attr("stroke", (d) => (d.status_of_candidate == "WON" ? "#4a4" : "#aaa"))
       .attr("stroke-width", (d) => (d.status_of_candidate == "WON" ? 4 : 0))
       .transition()
       .duration(500)
@@ -157,18 +157,19 @@ class CircleVis {
         });
     });
 
-    vis.nodes.on("mouseover", function (event, d) {
-      //   console.log(d);
-      const [outcome, race] = d.election_status
-        .split("-")
-        .map((x) => x.toLowerCase());
+    vis.nodes
+      .on("mouseover", function (event, d) {
+        //   console.log(d);
+        const [outcome, race] = d.election_status
+          .split("-")
+          .map((x) => x.toLowerCase());
 
-      var name = getName(d.candidate);
+        var name = getName(d.candidate);
 
-      vis.tooltip
-        .style("opacity", 1)
-        .style("left", event.pageX + 20 + "px")
-        .style("top", event.pageY + "px").html(`
+        vis.tooltip
+          .style("opacity", 1)
+          .style("left", event.pageX + 20 + "px")
+          .style("top", event.pageY + "px").html(`
          <div style="border: thin solid grey; border-radius: 5px; background: lightgrey; padding: 5px; padding-bottom: 0px;">
              <h6>${name}</h6>
              <p>
@@ -179,10 +180,16 @@ class CircleVis {
              )} in the ${race} election.
              </p>          
          </div>`);
-    });
-
-    vis.nodes.on("mouseout", function (event, d) {
-      vis.tooltip.style("opacity", 0).style("left", 0).style("top", 0).html(``);
-    });
+      })
+      .on("mouseout", function (event, d) {
+        vis.tooltip
+          .style("opacity", 0)
+          .style("left", 0)
+          .style("top", 0)
+          .html(``);
+      })
+      .on("click", function (event, d) {
+        console.log(event.target);
+      });
   }
 }
