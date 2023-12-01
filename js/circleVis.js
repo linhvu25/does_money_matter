@@ -193,7 +193,7 @@ class CircleVis {
         let state = d.election_jurisdiction;
 
         new TreeMap("treeMap", state);
-        //new DivergingBarChart("barChart", state);
+        new DivergingBarChart("barChart", state);
 
       });
   }

@@ -125,7 +125,7 @@ class TreeMap {
     vis.wrangledData.push(origin);
 
     vis.wrangledData.columns = ["name", "parent", "value"];
-    console.log("my data", vis.wrangledData);
+    //console.log("my data", vis.wrangledData);
 
     vis.updateVis();
   }
@@ -149,7 +149,7 @@ class TreeMap {
       );
     } else vis.treeData = vis.wrangledData;
 
-    console.log("my tree data", vis.treeData);
+    //console.log("my tree data", vis.treeData);
 
     // stratify the data: reformatting for d3.js
     // BUG SOMEWHERE BETWEEN HERE
@@ -168,7 +168,7 @@ class TreeMap {
 
     // console.log("my root", vis.root);
 
-    console.log("my leaves", vis.root.leaves());
+    //console.log("my leaves", vis.root.leaves());
     // use this information to add rectangles:
     vis.leaves = vis.svg
       .selectAll("rect")
