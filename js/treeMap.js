@@ -4,15 +4,24 @@
 
 class TreeMap {
   // constructor method to initialize Timeline object
-  constructor(_parentElement, _data) {
+  constructor(_parentElement, _state) {
     this.parentElement = _parentElement;
-    this.data = _data;
+    this.state = _state
+    this.data = [];
     this.displayData = [];
     this.wrangledData = [];
     this.treeData = [];
 
     // call initVis method
-    this.initVis();
+    this.getData();
+  }
+  getData(){
+    let vis= this;
+
+    d3.csv(`data/candidate_totals/${vis.state}.csv`).then((data) => {
+      vis.data = data;
+      vis.initVis();
+    })
   }
   initVis() {
     let vis = this;
