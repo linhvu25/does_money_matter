@@ -138,7 +138,6 @@ class TreeMap {
       vis.treeData
     );
     vis.root.sum((d) => +d.value); // Compute the numeric value for each entity
-    // AND HERE because vis.root looks weird
 
     // Then d3.treemap computes the position of each element of the hierarchy
     // The coordinates are added to the root object above
