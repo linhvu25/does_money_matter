@@ -41,6 +41,10 @@ class TreeMap {
 
     if (vis.height < 600) vis.height = 600;
 
+    d3.select("#" + vis.parentElement)
+        .select("svg")
+        .remove();
+
     // init drawing area
     vis.svg = d3
       .select("#" + vis.parentElement)

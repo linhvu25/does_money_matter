@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e10fbf76-4bc2-4266-a013-4532991a2ebe" name="Changes" comment="PRG: work on sankey" />
+    <list default="true" id="e10fbf76-4bc2-4266-a013-4532991a2ebe" name="Changes" comment="PRG: changes in treemap">
+      <change beforePath="$PROJECT_DIR$/js/treeMap.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/treeMap.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -90,7 +92,7 @@
       <workItem from="1700963916086" duration="5684000" />
       <workItem from="1701052357121" duration="137000" />
       <workItem from="1701053712483" duration="7224000" />
-      <workItem from="1701369510718" duration="10728000" />
+      <workItem from="1701369510718" duration="11048000" />
     </task>
     <task id="LOCAL-00001" summary="PRG: made pie chart">
       <option name="closed" value="true" />
@@ -268,7 +270,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701397665899</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="PRG: changes in treemap">
+      <option name="closed" value="true" />
+      <created>1701401500816</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1701401500816</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -300,6 +310,7 @@
     <MESSAGE value="PRG: fix tree map" />
     <MESSAGE value="CLN" />
     <MESSAGE value="PRG: work on sankey" />
-    <option name="LAST_COMMIT_MESSAGE" value="PRG: work on sankey" />
+    <MESSAGE value="PRG: changes in treemap" />
+    <option name="LAST_COMMIT_MESSAGE" value="PRG: changes in treemap" />
   </component>
 </project>
