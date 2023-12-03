@@ -4,12 +4,13 @@
 
 class TreeMap {
   // constructor method to initialize Timeline object
-  constructor(_parentElement, _state) {
+  constructor(_parentElement, _state, selectedCandidate = 0) {
     this.parentElement = _parentElement;
     var clean_state = _state.replace(/\s/, "_").toLowerCase();
     this.state = clean_state;
     this.year = "";
     this.candidates = [];
+    this.selectedCandidate = selectedCandidate;
     this.data = [];
     this.displayData = [];
     this.wrangledData = [];
@@ -77,6 +78,9 @@ class TreeMap {
       .append("option")
       .attr("value", (d) => (d == "All Candidates" ? "all" : d))
       .text((d) => (d == "All Candidates" ? d : getName(d)));
+
+    document.getElementById("map-tree-candidate-select").selectedIndex =
+      vis.selectedCandidate;
 
     vis.wrangleData();
 
