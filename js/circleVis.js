@@ -189,7 +189,6 @@ class CircleVis {
           .html(``);
       })
       .on("click", function (event, d) {
-        console.log(d.candidate);
         const selectBox = document.getElementById("map-tree-candidate-select");
         const candidates = Array.from(selectBox.options).map((d) => d.value);
         const selectedIndex = candidates.indexOf(d.candidate);
