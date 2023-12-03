@@ -94,7 +94,7 @@ Promise.all(promises).then((data) => {
 
 function initVis(states, senateSpending) {
   myMapVis = new MapVis("map-svg", states, senateSpending);
-  new TreeMap("treeMap", "GA");
+  new TreeMap("treeMap", "georgia");
 }
 
 d3.csv("data/candidate_totals/az.csv").then((data) => {
