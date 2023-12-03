@@ -32,7 +32,7 @@ class MapVis {
 
     vis.color = d3.scaleSequentialSqrt(
       d3.extent(Object.values(vis.senateSpending).map((d) => d.total_$)),
-      d3.interpolateBlues
+      d3.interpolateGreens
     );
 
     vis.path = d3.geoPath();
@@ -99,7 +99,7 @@ class MapVis {
           .attr("fill", (d) =>
             vis.senateSpending[d.properties.name].total_$ > 100000000
               ? vis.color(vis.senateSpending[d.properties.name].total_$)
-              : "rgb(223, 235, 247)"
+              : backgroundColor
           );
       }
     }
@@ -159,11 +159,11 @@ class MapVis {
             vis.states
               .transition()
               .duration(500)
-              .attr("fill", "rgb(223, 235, 247)");
+              .attr("fill", backgroundColor);
             d3.select(this)
               .transition()
               .duration(500)
-              .attr("fill", "rgb(56, 136, 193)");
+              .attr("fill", highlightColor);
           } else {
             d3.select("#candidate-circles")
               .transition()

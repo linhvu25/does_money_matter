@@ -1,3 +1,7 @@
+let backgroundColor = "rgb(221,255,221)"
+    plotColor = "rgb(89,182,105)"
+    highlightColor = "#4a7c47"
+
 let promises = [
   d3.json("https://cdn.jsdelivr.net/npm/us-atlas@3/states-albers-10m.json"),
   d3.csv("data/max_senate_spending_2018_2020.csv"),
@@ -94,5 +98,5 @@ Promise.all(promises).then((data) => {
 
 function initVis(states, senateSpending) {
   myMapVis = new MapVis("map-svg", states, senateSpending);
-  new TreeMap("treeMap", "georgia");
+  //new TreeMap("treeMap", "georgia");
 }
