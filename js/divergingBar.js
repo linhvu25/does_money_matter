@@ -149,6 +149,6 @@ class DivergingBarChart {
       .attr("x", 0)
       .attr("height", vis.y.bandwidth())
       .attr("width", (d) => vis.x(d["total_$"]))
-      .attr("fill", "#69b3a2");
+      .attr("fill", plotColor);
   }
 }
