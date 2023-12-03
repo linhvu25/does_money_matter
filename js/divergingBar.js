@@ -51,7 +51,17 @@ class DivergingBarChart {
     wrangleData(){
         let vis = this;
 
-        console.log("bar data", vis.data)
+        // console.log("bar data", vis.data)
+        // add candidate selection
+        var candidate_list = [...new Set(vis.data.map(obj => obj.candidate))];
+        //console.log(candidate_list)
+        candidate_list.forEach((candidate) => {
+            var dropdown = document.getElementById("candidate-bar-select");
+            var opt = document.createElement("option");
+            opt.text = candidate;
+            opt.value = candidate;
+            dropdown.options.add(opt);
+        })
 
         vis.barData = vis.data.filter(item => {
             let business = item.specific_business

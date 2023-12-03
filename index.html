@@ -64,13 +64,20 @@
             </div>
             <div class="row-5">
               <label for="map-fill-select">Select candidates:</label>
-              <select class="form-control" id="candidate-tree-select">
+              <select class="form-control" id="candidate-tree-select" onchange="filterTreeData()">
                 <option value="all" selected>All</option>
               </select>
             </div>
             <div class="row" id="treeMap"></div>
             <p>Those that fall below a state's reporting threshold for disclosing identifying information about the donor. For example: a contributor who gives $60 in a state where the disclosure reporting threshold is $100 is not required to be identified by name. The $60 is instead lumped in with other contributions that are below $100, and then classified as “unitemized.”</p>
-            <div class="row justify-content-center">
+
+          <div class="row justify-content-center">
+            <div class="row-5">
+              <label for="map-fill-select">Select candidates:</label>
+              <select class="form-control" id="candidate-bar-select">
+                <option value="all" selected>All</option>
+              </select>
+            </div>
             <div id="barChart"></div>
           </div>
           <div class="row justify-content-center">

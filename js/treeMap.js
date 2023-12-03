@@ -69,16 +69,42 @@ class TreeMap {
       "Finance, Government Agencies, and Lawyers Contribute the most"
     );
 
-    vis.wrangleData();
+    // add candidate selection
+    var candidate_list = [...new Set(vis.data.map(obj => obj.candidate))];
+    //console.log(candidate_list)
+    candidate_list.forEach((candidate) => {
+      var dropdown = document.getElementById("candidate-tree-select");
+      var opt = document.createElement("option");
+      opt.text = candidate;
+      opt.value = candidate;
+      dropdown.options.add(opt);
+    })
+
+    vis.filterTreeData();
 
     d3.select("#map-tree-select").on("change", () => vis.updateVis());
+  }
+
+  filterTreeData() {
+    let vis = this;
+    // filter according to user selection
+    const dropdown = document.getElementById('candidate-tree-select');
+    const selectedCandidate = dropdown.value;
+
+    vis.selectedData = selectedCandidate === 'all'
+        ? vis.data
+        : vis.data.filter(item => item.candidate === selectedCandidate);
+
+    console.log("candidate tree data", vis.selectedData);
+
+    vis.wrangleData();
   }
 
   wrangleData() {
     let vis = this;
 
     // subset data to broad_sector and $, rename columns
-    vis.displayData = vis.data.map((row) => [
+    vis.displayData = vis.selectedData.map((row) => [
       row["broad_sector"],
       row["total_$"],
     ]);

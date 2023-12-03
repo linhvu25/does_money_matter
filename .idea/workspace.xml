@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e10fbf76-4bc2-4266-a013-4532991a2ebe" name="Changes" comment="PRG: update data for barplot">
+    <list default="true" id="e10fbf76-4bc2-4266-a013-4532991a2ebe" name="Changes" comment="PRG: can click map for state">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/circleVis.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/circleVis.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/mapVis.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/mapVis.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/divergingBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/divergingBar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/treeMap.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/treeMap.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,7 +96,7 @@
       <workItem from="1701052357121" duration="137000" />
       <workItem from="1701053712483" duration="7224000" />
       <workItem from="1701369510718" duration="14300000" />
-      <workItem from="1701537528142" duration="1630000" />
+      <workItem from="1701537528142" duration="3690000" />
     </task>
     <task id="LOCAL-00001" summary="PRG: made pie chart">
       <option name="closed" value="true" />
@@ -305,7 +306,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701403825272</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="PRG: can click map for state">
+      <option name="closed" value="true" />
+      <created>1701561684505</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1701561684505</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -339,6 +348,7 @@
     <MESSAGE value="PRG: work on sankey" />
     <MESSAGE value="PRG: changes in treemap" />
     <MESSAGE value="PRG: update data for barplot" />
-    <option name="LAST_COMMIT_MESSAGE" value="PRG: update data for barplot" />
+    <MESSAGE value="PRG: can click map for state" />
+    <option name="LAST_COMMIT_MESSAGE" value="PRG: can click map for state" />
   </component>
 </project>
