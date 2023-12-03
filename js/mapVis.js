@@ -68,7 +68,10 @@ class MapVis {
       .attr("id", "map-tooltip")
       .attr("opacity", 1);
 
-    d3.select("#map-fill-select").on("change", () => vis.updateVis());
+    d3.select("#map-fill-select").on("change", () => {
+      if (vis.scaled) return;
+      vis.updateVis();
+    });
 
     vis.wrangleData();
   }
