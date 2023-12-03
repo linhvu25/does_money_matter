@@ -4,7 +4,7 @@ let promises = [
 ];
 
 function toTitleCase(str) {
-  return str.toLowerCase().replace(/^\(*(\w)/, (x) => x.toUpperCase());
+  return str.toLowerCase().replaceAll(/\(*\b(\w)/g, (x) => x.toUpperCase());
 }
 
 function getName(candidate) {
@@ -16,17 +16,6 @@ function getName(candidate) {
     .join(" ");
 
   return name;
-}
-
-const relevant_state_abbrev = {
-  AZ: "Arizona",
-  ME: "Maine",
-  MI: "Michigan",
-  KY: "Kentucky",
-  GA: "Georgia",
-  SC: "South Carolina",
-  FL: "Florida",
-  TX: "Texas"
 }
 
 const state_abbrev = {
@@ -83,6 +72,10 @@ const state_abbrev = {
   WY: "Wyoming",
 };
 
+function getStateName(abbrev) {
+  return state_abbrev[abbrev];
+}
+
 Promise.all(promises).then((data) => {
   let [states, senate_spending_raw] = data;
   senateSpending = {};
@@ -101,9 +94,5 @@ Promise.all(promises).then((data) => {
 
 function initVis(states, senateSpending) {
   myMapVis = new MapVis("map-svg", states, senateSpending);
+  new TreeMap("treeMap", "georgia");
 }
-
-d3.csv("data/candidate_totals/az.csv").then((data) => {
-  // myPieChart = new PieChart("pieDivRight", data);
-  mySankeyPlot = new SankeyPlot("sankeyPlot", data);
-});
