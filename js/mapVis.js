@@ -141,11 +141,11 @@ class MapVis {
         for (const key in relevant_state_abbrev) {
           if (relevant_state_abbrev.hasOwnProperty(key) && state_abbrev[key] === d.properties.name) {
             state = key;
+
+            new TreeMap("treeMap", state);
+            new DivergingBarChart("barChart", state);
           }
         }
-
-        new TreeMap("treeMap", state);
-        new DivergingBarChart("barChart", state);
 
         if (
           vis.scaled ||
