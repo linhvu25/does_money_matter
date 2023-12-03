@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e10fbf76-4bc2-4266-a013-4532991a2ebe" name="Changes" comment="PRG: changes in treemap">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/divergingBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/divergingBar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/mapVis.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/mapVis.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/treeMap.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/treeMap.js" afterDir="false" />
-    </list>
+    <list default="true" id="e10fbf76-4bc2-4266-a013-4532991a2ebe" name="Changes" comment="CLN: update colors" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -282,7 +276,23 @@
       <option name="project" value="LOCAL" />
       <updated>1701401500816</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="CLN: update colors">
+      <option name="closed" value="true" />
+      <created>1701615663085</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1701615663088</updated>
+    </task>
+    <task id="LOCAL-00025" summary="CLN: update colors">
+      <option name="closed" value="true" />
+      <created>1701620737376</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1701620737377</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -315,6 +325,7 @@
     <MESSAGE value="CLN" />
     <MESSAGE value="PRG: work on sankey" />
     <MESSAGE value="PRG: changes in treemap" />
-    <option name="LAST_COMMIT_MESSAGE" value="PRG: changes in treemap" />
+    <MESSAGE value="CLN: update colors" />
+    <option name="LAST_COMMIT_MESSAGE" value="CLN: update colors" />
   </component>
 </project>
