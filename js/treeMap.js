@@ -6,7 +6,8 @@ class TreeMap {
   // constructor method to initialize Timeline object
   constructor(_parentElement, _state) {
     this.parentElement = _parentElement;
-    this.state = _state;
+    var clean_state = _state.replace(/\s/, "_").toLowerCase();
+    this.state = clean_state;
     this.year = "";
     this.candidates = [];
     this.data = [];
@@ -68,6 +69,7 @@ class TreeMap {
       .attr("class", "tooltip")
       .attr("id", "pieTooltip");
 
+    d3.select("#map-tree-candidate-select").selectAll("option").remove();
     d3.select("#map-tree-candidate-select")
       .selectAll("option")
       .data(vis.candidates)
@@ -98,7 +100,7 @@ class TreeMap {
 
     // append title
     d3.select("#tree-map-title").text(
-      `${getStateName(vis.state)} ${vis.year} Sector Contribution totals, ${
+      `${toTitleCase(vis.state)} ${vis.year} Sector Contribution totals, ${
         candidate == "all" ? "All Candidates" : getName(candidate)
       }`
     );
@@ -151,7 +153,6 @@ class TreeMap {
     vis.wrangledData.push(origin);
 
     vis.wrangledData.columns = ["name", "parent", "value"];
-    // console.log("my data", vis.wrangledData);s
 
     vis.updateVis();
   }
@@ -175,7 +176,7 @@ class TreeMap {
       );
     } else vis.treeData = vis.wrangledData;
 
-    console.log("my tree data", vis.treeData);
+    //console.log("my tree data", vis.treeData);
 
     // stratify the data: reformatting for d3.js
     // BUG SOMEWHERE BETWEEN HERE
@@ -194,7 +195,7 @@ class TreeMap {
 
     // console.log("my root", vis.root);
 
-    console.log("my leaves", vis.root.leaves());
+    //console.log("my leaves", vis.root.leaves());
     // use this information to add rectangles:
     vis.leaves = vis.svg
       .selectAll("rect")
