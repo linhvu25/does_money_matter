@@ -46,14 +46,11 @@
                 Click on senate races that cost more than $100M to learn more.</p>
             </div>
           </div>
-          <div class="row justify-content-center">
-            <div class="col-10" id="pieDivRight"></div>
-          </div>
           <div class="col justify-content-center">
             <div class="row">
               <h4 id="tree-map-title"></h4>
             </div>
-            <div class="row-5">
+            <div class="row my-2">
               <label for="map-fill-select">Select sectors:</label>
               <select class="form-control" id="map-tree-select">
                 <option value="none" selected>Include Coded and Itemized Contributions</option>
@@ -62,8 +59,12 @@
                 <option value="all">Include All Sectors</option>
               </select>
             </div>
+            <div class="row my-2">
+              <label for="map-tree-candidate-select">Select candidate:</label>
+              <select class="form-control" id="map-tree-candidate-select"></select>
+            </div>
             <div class="row" id="treeMap"></div>
-            <p>Those that fall below a state's reporting threshold for disclosing identifying information about the donor. For example: a contributor who gives $60 in a state where the disclosure reporting threshold is $100 is not required to be identified by name. The $60 is instead lumped in with other contributions that are below $100, and then classified as “unitemized.”</p>
+            <p class="my-2">Those that fall below a state's reporting threshold for disclosing identifying information about the donor. For example: a contributor who gives $60 in a state where the disclosure reporting threshold is $100 is not required to be identified by name. The $60 is instead lumped in with other contributions that are below $100, and then classified as “unitemized.”</p>
             <div class="row justify-content-center">
             <div id="barChart"></div>
           </div>
