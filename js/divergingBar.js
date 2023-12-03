@@ -3,88 +3,154 @@
  * * * * * * * * * * * * * */
 
 class DivergingBarChart {
-    // constructor method to initialize Timeline object
-    constructor(_parentElement, _data) {
-        this.parentElement = _parentElement;
-        this.data = _data;
-        this.barData = [];
+  // constructor method to initialize Timeline object
+  constructor(_parentElement, _state, sector) {
+    this.parentElement = _parentElement;
+    var clean_state = _state.replace(/\s/, "_").toLowerCase();
+    this.state = clean_state;
+    this.sector = sector;
+    this.data = [];
+    this.barData = [];
 
-        // call initVis method
-        this.initVis();
-    }
+    // call initVis method
+    this.getData();
+  }
 
-    initVis(){
-        let vis = this;
+  getData() {
+    let vis = this;
 
-        // margin conventions
-        vis.margin = { top: 10, right: 50, bottom: 220, left: 100 };
-        // vis.width = document.getElementById(vis.parentElement).getBoundingClientRect().width - vis.margin.left - vis.margin.right;
-        vis.width = 600 - vis.margin.left - vis.margin.right;
-        vis.height = 600 - vis.margin.top - vis.margin.bottom;
+    d3.csv(`data/candidate_totals/${vis.state}.csv`).then((data) => {
+      vis.data = data;
+      vis.initVis();
+    });
+  }
 
-        // init drawing area
-        vis.svg = d3
-            .select("#" + vis.parentElement)
-            .append("svg")
-            .attr("width", vis.width + vis.margin.left + vis.margin.right)
-            .attr("height", vis.height + vis.margin.top + vis.margin.bottom)
-            .append("g")
-            .attr("transform", "translate(" + vis.margin.left + "," + vis.margin.top + ")");
+  initVis() {
+    let vis = this;
 
-        this.wrangleData();
-    }
+    // margin conventions
+    vis.margin = { top: 10, right: 50, bottom: 20, left: 300 };
+    vis.width =
+      document.getElementById(vis.parentElement).getBoundingClientRect().width -
+      vis.margin.left -
+      vis.margin.right;
+    if (vis.width < 0) vis.width = 800;
+    // vis.width = 600 - vis.margin.left - vis.margin.right;
+    vis.height = 600 - vis.margin.top - vis.margin.bottom;
 
-    wrangleData(){
-        let vis = this;
+    // init drawing area
+    vis.svg = d3
+      .select("#" + vis.parentElement)
+      .append("svg")
+      .attr("width", vis.width + vis.margin.left + vis.margin.right)
+      .attr("height", vis.height + vis.margin.top + vis.margin.bottom)
+      .append("g")
+      .attr(
+        "transform",
+        "translate(" + vis.margin.left + "," + vis.margin.top + ")"
+      );
 
-        console.log("data", vis.data)
+    this.wrangleData();
+  }
 
-        vis.barData = vis.data.filter(item => {
-            let business = item.specific_business
-            return business.includes("UNION")
-        })
+  wrangleData() {
+    let vis = this;
 
-        vis.barData.forEach((row) => {
-            let money = row["total_$"]
-            row["total_$"] = Number(money.replace(/[^0-9\.-]+/g, ""))
-        });
-        //console.log("bar data", vis.barData)
-        this.updateVis();
-    }
+    var candidate_select = document.getElementById("map-tree-candidate-select");
+    vis.candidate =
+      candidate_select.options[candidate_select.selectedIndex].value;
 
-    updateVis(){
-        let vis = this;
+    vis.filteredData = vis.data.filter((d) => {
+      if (vis.sector == d.broad_sector) {
+        if (vis.candidate == "all") return true;
+        else if (d.candidate == vis.candidate) {
+          return true;
+        }
+      }
+      return false;
+    });
 
-        // X axis
-        vis.x = d3.scaleBand()
-            .range([ 0, vis.width ])
-            .domain(vis.barData.map(d => d["specific_business"]))
-            .padding(0.2);
-        vis.svg.append("g")
-            .attr("transform", "translate(0," + vis.height + ")")
-            .call(d3.axisBottom(vis.x))
-            .selectAll("text")
-            .attr("transform", "translate(-10,0)rotate(-45)")
-            .style("text-anchor", "end");
+    // subset data to broad_sector and $, rename columns
+    vis.displayData = vis.filteredData.map((row) => [
+      row["specific_business"],
+      row["total_$"],
+    ]);
+    vis.displayData = vis.displayData.map((item) => ({
+      group: item["0"],
+      value: item["1"],
+    }));
 
-        // Add Y axis
-        vis.y = d3.scaleLinear()
-            .domain([d3.min(vis.barData, d=> d["total_$"]),
-                d3.max(vis.barData, d=> d["total_$"])])
-            .range([vis.height, 0]);
-        vis.svg.append("g")
-            .call(d3.axisLeft(vis.y));
+    // extract contribution amount
+    vis.displayData.forEach((row) => {
+      var money = row.value;
+      row.value = Number(money.replace(/[^0-9\.-]+/g, ""));
+    });
 
-        // Bars
-        vis.svg.selectAll("mybar")
-            .data(vis.barData)
-            .enter()
-            .append("rect")
-            .attr("x", d => vis.x(d["specific_business"]))
-            .attr("y", d => vis.y(d["total_$"]))
-            .attr("width", vis.x.bandwidth())
-            .attr("height", d => vis.height - vis.y(d["total_$"]))
-            .attr("fill", "#69b3a2")
-    }
+    // aggregate $ by broad_sector
+    const groupedSum = vis.displayData.reduce((accumulator, currentValue) => {
+      const { group, value } = currentValue;
 
+      // Check if the group is already in the accumulator
+      // Initialize the sum for the group if not present
+      if (!accumulator[group]) accumulator[group] = 0;
+
+      // Add the value to the sum for the current group
+      accumulator[group] += value;
+
+      return accumulator;
+    }, {});
+
+    // convert to array
+    const myArray = Object.keys(groupedSum).map((key) => ({
+      specific_business: key,
+      total_$: groupedSum[key],
+    }));
+
+    vis.barData = myArray
+      .sort((a, b) => b.total_$ - a.total_$)
+      .filter((_, i) => i < 10);
+    console.log("bar data", vis.barData);
+    this.updateVis();
+  }
+
+  updateVis() {
+    let vis = this;
+
+    d3.select("#bar-chart-title").text(
+      `Top ${vis.barData.length} ${toTitleCase(vis.sector)} Contributors to ${
+        vis.candidate == "all" ? "All Candidates" : getName(vis.candidate)
+      }`
+    );
+    // X axis
+    vis.x = d3
+      .scaleLinear()
+      .domain([0, d3.max(vis.barData, (d) => d["total_$"])])
+      .range([0, vis.width]);
+    vis.svg
+      .append("g")
+      .attr("transform", "translate(0," + vis.height + ")")
+      .call(d3.axisBottom(vis.x))
+      .selectAll("text")
+      .attr("transform", "translate(-10,0)rotate(-45)")
+      .style("text-anchor", "end");
+
+    // Add Y axis
+    vis.y = d3
+      .scaleBand()
+      .range([0, vis.height])
+      .domain(vis.barData.map((d) => d["specific_business"]))
+      .padding(0.2);
+    vis.svg.append("g").call(d3.axisLeft(vis.y));
+
+    // Bars
+    vis.svg
+      .selectAll("mybar")
+      .data(vis.barData)
+      .join("rect")
+      .attr("y", (d) => vis.y(d["specific_business"]))
+      .attr("x", 0)
+      .attr("height", vis.y.bandwidth())
+      .attr("width", (d) => vis.x(d["total_$"]))
+      .attr("fill", "#69b3a2");
+  }
 }
