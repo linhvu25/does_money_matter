@@ -190,11 +190,10 @@ class CircleVis {
       })
       .on("click", function (event, d) {
         //console.log(event.target);
-        let state = d.election_jurisdiction;
+        let state = state_abbrev[d.election_jurisdiction];
 
         new TreeMap("treeMap", state);
         //new DivergingBarChart("barChart", state);
-
       });
   }
 }
