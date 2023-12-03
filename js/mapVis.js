@@ -156,10 +156,7 @@ class MapVis {
             new CircleVis(vis.parentElement, d.properties.name);
             new TreeMap("treeMap", d.properties.name);
 
-            vis.states
-              .transition()
-              .duration(500)
-              .attr("fill", backgroundColor);
+            vis.states.transition().duration(500).attr("fill", backgroundColor);
             d3.select(this)
               .transition()
               .duration(500)

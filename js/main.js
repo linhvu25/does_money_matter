@@ -1,6 +1,6 @@
-let backgroundColor = "rgb(221,255,221)"
-    plotColor = "#3e9c35"
-    highlightColor = "darkgreen"
+let backgroundColor = "#aaaaaa40"; //"rgb(221,255,221)"
+plotColor = "rgb(89,182,105)";
+highlightColor = "#4a7c47";
 
 let promises = [
   d3.json("https://cdn.jsdelivr.net/npm/us-atlas@3/states-albers-10m.json"),

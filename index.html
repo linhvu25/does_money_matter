@@ -29,7 +29,9 @@
         </div>
       </div>
       <div class="row justify-content-center align-items-center py-4">
-        <h6 id="map-title"></h6>
+        <div class="col-12">
+          <h4 id="map-title"></h4>
+        </div>
         <div class="col-9" id="map-svg"></div>
         <div class="col-2">
           <div class="row">
@@ -46,7 +48,7 @@
         </div>
         <div>
           <p>The cost displayed is the total money raised by all candidates in the race.<br>
-            Click on senate races that cost more than $100M to learn more.</p>
+            <b>Click</b> on senate races that cost more than $100M to learn more.</p>
         </div>
       </div>
       <div class="col justify-content-center">
@@ -54,7 +56,7 @@
           <h4 id="tree-map-title"></h4>
         </div>
         <div class="row my-2">
-          <label for="map-fill-select">Select sectors:</label>
+          <label for="map-fill-select"><b>Select</b> sectors:</label>
           <select class="form-control" id="map-tree-select">
             <option value="none" selected>Include Coded and Itemized Contributions</option>
             <option value="unitemized">Include Unitemized</option>
@@ -63,7 +65,7 @@
           </select>
         </div>
         <div class="row my-2">
-          <label for="map-tree-candidate-select">Select candidate:</label>
+          <label for="map-tree-candidate-select"><b>Select</b> candidate:</label>
           <select class="form-control" id="map-tree-candidate-select"></select>
         </div>
         <div class="row" id="treeMap"></div>
