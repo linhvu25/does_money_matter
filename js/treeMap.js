@@ -217,13 +217,13 @@ class TreeMap {
       .attr("height", function (d) {
         return d.y1 - d.y0;
       })
-      .style("fill", "#69b3a2")
+      .style("fill", plotColor)
       .on("mouseover", function (event, d, i) {
         // change the segment of tree map
         d3.select(this)
           .attr("stroke-width", "2px")
           .attr("stroke", "black")
-          .attr("fill", "rgba(173,222,255,0.62)");
+          .style("fill", highlightColor);
 
         // update tooltip
         vis.tooltip
@@ -238,7 +238,7 @@ class TreeMap {
                         </div>`);
       })
       .on("mouseout", function (event, d) {
-        d3.select(this).attr("stroke-width", "0px").attr("fill", "#69b3a2");
+        d3.select(this).attr("stroke-width", "0px").style("fill", plotColor);
 
         vis.tooltip
           .style("opacity", 0)
