@@ -155,7 +155,6 @@ class MapVis {
           if (vis.scaled) {
             new CircleVis(vis.parentElement, d.properties.name);
             new TreeMap("treeMap", d.properties.name);
-            // new DivergingBarChart("barChart", d.properties.name);
 
             vis.states
               .transition()
