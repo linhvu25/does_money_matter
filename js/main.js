@@ -72,6 +72,10 @@ const state_abbrev = {
   WY: "Wyoming",
 };
 
+function getStateName(abbrev) {
+  return state_abbrev[abbrev];
+}
+
 Promise.all(promises).then((data) => {
   let [states, senate_spending_raw] = data;
   senateSpending = {};
@@ -90,10 +94,10 @@ Promise.all(promises).then((data) => {
 
 function initVis(states, senateSpending) {
   myMapVis = new MapVis("map-svg", states, senateSpending);
+  new TreeMap("treeMap", "GA");
 }
 
 d3.csv("data/candidate_totals/az.csv").then((data) => {
-  myPieChart = new PieChart("pieDivRight", data);
   // myTreeMap = new TreeMap("treeMap", data);
   // myBarChart = new DivergingBarChart("barChart", data);
   mySankeyPlot = new SankeyPlot("sankeyPlot", data);
