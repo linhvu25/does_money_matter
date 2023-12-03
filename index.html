@@ -19,14 +19,17 @@
   <div class="row">
     <div class="col-10 offset-1">
       <!-- HEADING -->
-      <div class="row" style="height: 10vh; padding: 0">
-        <div class="align-self-center px-4">
-          <h1>Does Money Matter?</h1>
-          <h3>All about recent senate campaign donations</h3>
+      <div class="row" style="height: 50vh; padding: 0">
+        <div class="align-self-center px-4" id="heading">
+          <h1 class="title">Does Money Matter?</h1>
+          <h3 class="subtitle">All about recent senate campaign donations</h3>
+          <p class="heading">Campaign funding has a profound impact on the political landscape and scrutinizing where these funds come from can tell us a lot about who a candidate is and the type of leader they will be. Insights about where money is sourced from when it comes to political campaigns give the ordinary constituent important information that can aid decisions about who to support, who to campaign for, and ultimately where their vote should go. Money holds power, and when it comes to campaign donations, that money holds power over policy decisions and public trust. Understanding where these funds come from is key to having transparent, fair, informed, and accountable political races.</p>
+          <i>So then we ask, who funds some of our most high-profile political candidates? What industries do they come from? How much are these donors willing to shell out to have some sway in a given race?</i>
+
         </div>
       </div>
       <div class="row justify-content-center align-items-center py-4">
-        <h4 id="map-title"></h4>
+        <h6 id="map-title"></h6>
         <div class="col-9" id="map-svg"></div>
         <div class="col-2">
           <div class="row">
@@ -72,6 +75,9 @@
 
             <div class="container-fluid" id="barChart"></div>
           </div>
+          <div>
+            <p>Within each broad sector, donors come from a multitude of different careers and employment fields. Here we are looking at the greatest contributing fields within a sector. </p>
+          </div>
         </div>
         <div class="row justify-content-center">
           <div class="col-10" id="sankeyPlot"></div>
@@ -104,10 +110,10 @@
 <!--    <script src="https://d3js.org/d3-sankey.v0.12.min.js"></script>-->
 <script src="https://cdn.jsdelivr.net/gh/holtzy/D3-graph-gallery@master/LIB/sankey.js"></script>
 <script src="https://unpkg.com/d3-sankey@0.12.3/dist/d3-sankey.min.js"></script>
-<script>
+
 
 <!-- OWN JS -->
-//<script src="js/mapVis.js"></script>
+<script src="js/mapVis.js"></script>
 <script src="js/circleVis.js"></script>
 <!--    <script src="js/pieChart.js"></script>-->
 <script src="js/treeMap.js"></script>
@@ -116,6 +122,13 @@
 <script src="js/main.js"></script>
 </html>
 
+
+
+
+<!--
+///-&#45;&#45;Sankey Work in progress-&#45;&#45;///
+
+&#45;&#45;just need to remove hard-coded values and fix the position vlaues&#45;&#45;
 
 <div>
   <script>
@@ -289,3 +302,4 @@
   </script>
 </div>
 
+-->

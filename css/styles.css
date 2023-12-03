@@ -1,3 +1,16 @@
+.title {
+  color:darkgreen;
+}
+
+.subtitle {
+  color:grey;
+}
+
+.heading: {
+padding-botheighttom:300px;
+  color:green;
+}
+
 #pieDivRight {
   min-height: 300px;
 }
