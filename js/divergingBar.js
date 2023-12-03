@@ -130,9 +130,7 @@ class DivergingBarChart {
       .append("g")
       .attr("transform", "translate(0," + vis.height + ")")
       .call(d3.axisBottom(vis.x))
-      .selectAll("text")
-      .attr("transform", "translate(-10,0)rotate(-45)")
-      .style("text-anchor", "end");
+      .selectAll("text");
 
     // Add Y axis
     vis.y = d3
