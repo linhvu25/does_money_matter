@@ -100,7 +100,9 @@ class TreeMap {
 
     // append title
     d3.select("#tree-map-title").text(
-      `${toTitleCase(vis.state)} ${vis.year} Sector Contribution totals, ${
+      `${toTitleCase(vis.state.replace("_", " "))} ${
+        vis.year
+      } Sector Contribution totals, ${
         candidate == "all" ? "All Candidates" : getName(candidate)
       }`
     );

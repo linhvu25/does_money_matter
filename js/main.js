@@ -4,7 +4,7 @@ let promises = [
 ];
 
 function toTitleCase(str) {
-  return str.toLowerCase().replace(/^\(*(\w)/, (x) => x.toUpperCase());
+  return str.toLowerCase().replaceAll(/\(*\b(\w)/g, (x) => x.toUpperCase());
 }
 
 function getName(candidate) {
