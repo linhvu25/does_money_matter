@@ -136,17 +136,6 @@ class MapVis {
          </div>`);
       })
       .on("click", function (event, d) {
-
-        var state;
-        for (const key in relevant_state_abbrev) {
-          if (relevant_state_abbrev.hasOwnProperty(key) && state_abbrev[key] === d.properties.name) {
-            state = key;
-
-            new TreeMap("treeMap", state);
-            new DivergingBarChart("barChart", state);
-          }
-        }
-
         if (
           vis.scaled ||
           vis.senateSpending[d.properties.name].total_$ > 100000000
@@ -165,6 +154,8 @@ class MapVis {
           vis.scaled = !vis.scaled;
           if (vis.scaled) {
             new CircleVis(vis.parentElement, d.properties.name);
+            new TreeMap("treeMap", d.properties.name);
+            // new DivergingBarChart("barChart", d.properties.name);
 
             vis.states
               .transition()
@@ -199,7 +190,6 @@ class MapVis {
           d3.select("#candidate-circles").transition().delay(500).remove();
         }
       });
-
     vis.states.on("mouseout", function (event, d) {
       vis.tooltip.style("opacity", 0).style("left", 0).style("top", 0).html(``);
     });

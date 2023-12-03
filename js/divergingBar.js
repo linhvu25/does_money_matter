@@ -4,23 +4,13 @@
 
 class DivergingBarChart {
     // constructor method to initialize Timeline object
-    constructor(_parentElement, _state) {
+    constructor(_parentElement, _data) {
         this.parentElement = _parentElement;
-        this.state = _state;
-        this.data = [];
+        this.data = _data;
         this.barData = [];
 
         // call initVis method
-        this.getData();
-    }
-
-    getData(){
-        let vis= this;
-
-        d3.csv(`data/candidate_totals/${vis.state}.csv`).then((data) => {
-            vis.data = data;
-            vis.initVis();
-        })
+        this.initVis();
     }
 
     initVis(){
@@ -31,10 +21,6 @@ class DivergingBarChart {
         // vis.width = document.getElementById(vis.parentElement).getBoundingClientRect().width - vis.margin.left - vis.margin.right;
         vis.width = 600 - vis.margin.left - vis.margin.right;
         vis.height = 600 - vis.margin.top - vis.margin.bottom;
-
-        d3.select("#" + vis.parentElement)
-            .select("svg")
-            .remove();
 
         // init drawing area
         vis.svg = d3
@@ -51,17 +37,7 @@ class DivergingBarChart {
     wrangleData(){
         let vis = this;
 
-        // console.log("bar data", vis.data)
-        // add candidate selection
-        var candidate_list = [...new Set(vis.data.map(obj => obj.candidate))];
-        //console.log(candidate_list)
-        candidate_list.forEach((candidate) => {
-            var dropdown = document.getElementById("candidate-bar-select");
-            var opt = document.createElement("option");
-            opt.text = candidate;
-            opt.value = candidate;
-            dropdown.options.add(opt);
-        })
+        console.log("data", vis.data)
 
         vis.barData = vis.data.filter(item => {
             let business = item.specific_business
@@ -102,7 +78,8 @@ class DivergingBarChart {
         // Bars
         vis.svg.selectAll("mybar")
             .data(vis.barData)
-            .join("rect")
+            .enter()
+            .append("rect")
             .attr("x", d => vis.x(d["specific_business"]))
             .attr("y", d => vis.y(d["total_$"]))
             .attr("width", vis.x.bandwidth())
