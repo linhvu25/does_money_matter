@@ -6,7 +6,9 @@ class TreeMap {
   // constructor method to initialize Timeline object
   constructor(_parentElement, _state) {
     this.parentElement = _parentElement;
-    this.state = _state
+    this.state = _state;
+    this.year = "";
+    this.candidates = [];
     this.data = [];
     this.displayData = [];
     this.wrangledData = [];
@@ -15,19 +17,24 @@ class TreeMap {
     // call initVis method
     this.getData();
   }
-  getData(){
-    let vis= this;
+  getData() {
+    let vis = this;
 
     d3.csv(`data/candidate_totals/${vis.state}.csv`).then((data) => {
       vis.data = data;
+      vis.year = vis.data[0].election_year;
+      vis.candidates = [
+        "All Candidates",
+        ...new Set(vis.data.map((d) => d.candidate)),
+      ];
       vis.initVis();
-    })
+    });
   }
   initVis() {
     let vis = this;
 
     // margin conventions
-    vis.margin = { top: 10, right: 10, bottom: 10, left: 10 };
+    vis.margin = { top: 10, right: 10, bottom: 0, left: 10 };
 
     vis.width =
       document.getElementById(vis.parentElement).getBoundingClientRect().width -
@@ -42,8 +49,8 @@ class TreeMap {
     if (vis.height < 600) vis.height = 600;
 
     d3.select("#" + vis.parentElement)
-        .select("svg")
-        .remove();
+      .select("svg")
+      .remove();
 
     // init drawing area
     vis.svg = d3
@@ -51,11 +58,8 @@ class TreeMap {
       .append("svg")
       .attr("width", vis.width)
       .attr("height", vis.height)
-      .append("g")
-      .attr(
-        "transform",
-        "translate(" + vis.margin.left + "," + vis.margin.top + ")"
-      );
+      .attr("transform", `translate (${vis.margin.left}, ${vis.margin.top})`)
+      .append("g");
 
     // append tooltip
     vis.tooltip = d3
@@ -64,21 +68,43 @@ class TreeMap {
       .attr("class", "tooltip")
       .attr("id", "pieTooltip");
 
-    // append title
-    d3.select("#tree-map-title").text(
-      "Finance, Government Agencies, and Lawyers Contribute the most"
-    );
+    d3.select("#map-tree-candidate-select")
+      .selectAll("option")
+      .data(vis.candidates)
+      .enter()
+      .append("option")
+      .attr("value", (d) => (d == "All Candidates" ? "all" : d))
+      .text((d) => (d == "All Candidates" ? d : getName(d)));
 
     vis.wrangleData();
 
     d3.select("#map-tree-select").on("change", () => vis.updateVis());
+    d3.select("#map-tree-candidate-select").on("change", () =>
+      vis.wrangleData()
+    );
   }
 
   wrangleData() {
     let vis = this;
 
+    var candidate_select = document.getElementById("map-tree-candidate-select");
+    var candidate =
+      candidate_select.options[candidate_select.selectedIndex].value;
+    if (candidate !== "all") {
+      vis.filteredData = vis.data.filter((d) => d.candidate == candidate);
+    } else {
+      vis.filteredData = vis.data;
+    }
+
+    // append title
+    d3.select("#tree-map-title").text(
+      `${getStateName(vis.state)} ${vis.year} Sector Contribution totals, ${
+        candidate == "all" ? "All Candidates" : getName(candidate)
+      }`
+    );
+
     // subset data to broad_sector and $, rename columns
-    vis.displayData = vis.data.map((row) => [
+    vis.displayData = vis.filteredData.map((row) => [
       row["broad_sector"],
       row["total_$"],
     ]);
@@ -125,7 +151,7 @@ class TreeMap {
     vis.wrangledData.push(origin);
 
     vis.wrangledData.columns = ["name", "parent", "value"];
-    console.log("my data", vis.wrangledData);
+    // console.log("my data", vis.wrangledData);s
 
     vis.updateVis();
   }
@@ -186,7 +212,6 @@ class TreeMap {
       .attr("height", function (d) {
         return d.y1 - d.y0;
       })
-      .style("stroke", "black")
       .style("fill", "#69b3a2")
       .on("mouseover", function (event, d, i) {
         // change the segment of tree map
@@ -218,7 +243,7 @@ class TreeMap {
       });
 
     // and to add the text labels
-    vis.svg
+    vis.labels = vis.svg
       .selectAll("text")
       .data(vis.root.leaves())
       .join("text")
@@ -232,6 +257,14 @@ class TreeMap {
         return d.data.name;
       })
       .attr("font-size", "15px")
-      .attr("fill", "white");
+      .attr("fill", "white")
+      .attr("opacity", 1);
+
+    vis.labels.attr("opacity", function (d, i) {
+      var text_width = this.getBoundingClientRect().width;
+      var box_width = d.x1 - d.x0;
+      if (text_width > box_width) return 0;
+      return 1;
+    });
   }
 }
