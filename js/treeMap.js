@@ -81,9 +81,11 @@ class TreeMap {
     vis.wrangleData();
 
     d3.select("#map-tree-select").on("change", () => vis.updateVis());
-    d3.select("#map-tree-candidate-select").on("change", () =>
-      vis.wrangleData()
-    );
+    d3.select("#map-tree-candidate-select").on("change", () => {
+      vis.wrangleData();
+      d3.select("#bar-chart-title").text("");
+      d3.select("#barChart").select("svg").remove();
+    });
   }
 
   wrangleData() {
