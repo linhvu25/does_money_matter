@@ -109,7 +109,6 @@ class DivergingBarChart {
     vis.barData = myArray
       .sort((a, b) => b.total_$ - a.total_$)
       .filter((_, i) => i < 10);
-    console.log("bar data", vis.barData);
     this.updateVis();
   }
 
