@@ -18,6 +18,17 @@ function getName(candidate) {
   return name;
 }
 
+const relevant_state_abbrev = {
+  AZ: "Arizona",
+  ME: "Maine",
+  MI: "Michigan",
+  KY: "Kentucky",
+  GA: "Georgia",
+  SC: "South Carolina",
+  FL: "Florida",
+  TX: "Texas"
+}
+
 const state_abbrev = {
   AL: "Alabama",
   AK: "Alaska",
