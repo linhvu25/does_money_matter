@@ -96,9 +96,3 @@ function initVis(states, senateSpending) {
   myMapVis = new MapVis("map-svg", states, senateSpending);
   new TreeMap("treeMap", "georgia");
 }
-
-d3.csv("data/candidate_totals/az.csv").then((data) => {
-  // myTreeMap = new TreeMap("treeMap", data);
-  // myBarChart = new DivergingBarChart("barChart", data);
-  mySankeyPlot = new SankeyPlot("sankeyPlot", data);
-});
