@@ -10,7 +10,7 @@ class CircleVis {
   }
 
   getRaceSummary(data) {
-    console.log(data);
+    //console.log(data);
 
     const general_candidates = data.filter(
       (x) => x.election_status.search("GENERAL") != -1
@@ -38,7 +38,7 @@ class CircleVis {
     vis.radius = d3.scaleLinear().range([5, 120]);
     vis.color = d3
       .scaleOrdinal()
-      .range(["#d30b0d", "rgb(56, 136, 193)", "#f1aa32"])
+      .range(["#E81B23", "rgb(0, 21, 188)", "#f1aa32"])
       .domain(["REPUBLICAN", "DEMOCRATIC", "THIRD-PARTY"]);
 
     vis.width = vis.svg._groups[0][0].width.baseVal.value;
