@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="e10fbf76-4bc2-4266-a013-4532991a2ebe" name="Changes" comment="BUG: filter tree data">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;history&quot;: [
+    {
+      &quot;state&quot;: &quot;OPEN&quot;,
+      &quot;author&quot;: &quot;linhvu25&quot;
+    }
+  ],
+  &quot;lastFilter&quot;: {
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="5b00b344-0551-413a-ab37-426e5c0fc5c1" />
+        <option name="url" value="https://github.com/linhvu25/does_money_matter.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="2YQINu9IVUWeumc7P3ubRNjQ6kr" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/lpvu/Desktop/cs171-final-project&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e10fbf76-4bc2-4266-a013-4532991a2ebe" name="Changes" comment="" />
+      <created>1700451340474</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1700451340474</updated>
+      <workItem from="1700451341481" duration="4144000" />
+      <workItem from="1700496818156" duration="128000" />
+      <workItem from="1700497206937" duration="137000" />
+      <workItem from="1700497346515" duration="38000" />
+      <workItem from="1700507159242" duration="31000" />
+      <workItem from="1700508314809" duration="6000" />
+      <workItem from="1700586238501" duration="810000" />
+      <workItem from="1700856853366" duration="14201000" />
+      <workItem from="1700941566511" duration="3920000" />
+      <workItem from="1700963916086" duration="5684000" />
+      <workItem from="1701052357121" duration="137000" />
+      <workItem from="1701053712483" duration="7224000" />
+      <workItem from="1701369510718" duration="14300000" />
+      <workItem from="1701537528142" duration="4836000" />
+    </task>
+    <task id="LOCAL-00001" summary="PRG: made pie chart">
+      <option name="closed" value="true" />
+      <created>1700458579674</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1700458579674</updated>
+    </task>
+    <task id="LOCAL-00002" summary="PRG: made pie chart">
+      <option name="closed" value="true" />
+      <created>1700458627941</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1700458627941</updated>
+    </task>
+    <task id="LOCAL-00003" summary="PRG: made pie chart">
+      <option name="closed" value="true" />
+      <created>1700458714654</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1700458714654</updated>
+    </task>
+    <task id="LOCAL-00004" summary="PRG: made pie chart">
+      <option name="closed" value="true" />
+      <created>1700458922861</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1700458922862</updated>
+    </task>
+    <task id="LOCAL-00005" summary="add group members">
+      <option name="closed" value="true" />
+      <created>1700867912354</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1700867912354</updated>
+    </task>
+    <task id="LOCAL-00006" summary="PRG: work on tree maps">
+      <option name="closed" value="true" />
+      <created>1700876795030</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1700876795031</updated>
+    </task>
+    <task id="LOCAL-00007" summary="PRG: work on tree maps">
+      <option name="closed" value="true" />
+      <created>1700887932521</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1700887932521</updated>
+    </task>
+    <task id="LOCAL-00008" summary="PRG: work on tree maps">
+      <option name="closed" value="true" />
+      <created>1700892801835</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1700892801835</updated>
+    </task>
+    <task id="LOCAL-00009" summary="PRG: work on tree maps">
+      <option name="closed" value="true" />
+      <created>1700933451552</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1700933451552</updated>
+    </task>
+    <task id="LOCAL-00010" summary="BUG: can't get treemap to work (if I remove the example then code doesn't run)">
+      <option name="closed" value="true" />
+      <created>1700936473991</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1700936473991</updated>
+    </task>
+    <task id="LOCAL-00011" summary="still bug">
+      <option name="closed" value="true" />
+      <created>1700943245024</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1700943245024</updated>
+    </task>
+    <task id="LOCAL-00012" summary="note where bug is">
+      <option name="closed" value="true" />
+      <created>1700944559482</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1700944559482</updated>
+    </task>
+    <task id="LOCAL-00013" summary="PRG: add bar charts">
+      <option name="closed" value="true" />
+      <created>1700946435757</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1700946435757</updated>
+    </task>
+    <task id="LOCAL-00014" summary="PRG: fixed tree map bug(ish)">
+      <option name="closed" value="true" />
+      <created>1700970353548</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1700970353548</updated>
+    </task>
+    <task id="LOCAL-00015" summary="PRG: add hover for tree map">
+      <option name="closed" value="true" />
+      <created>1700973621451</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1700973621451</updated>
+    </task>
+    <task id="LOCAL-00016" summary="PRG: fix bar plots">
+      <option name="closed" value="true" />
+      <created>1701108332753</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1701108332753</updated>
+    </task>
+    <task id="LOCAL-00017" summary="PRG: fix bar plots">
+      <option name="closed" value="true" />
+      <created>1701369529305</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1701369529305</updated>
+    </task>
+    <task id="LOCAL-00018" summary="PRG: fix tree map">
+      <option name="closed" value="true" />
+      <created>1701371250932</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1701371250932</updated>
+    </task>
+    <task id="LOCAL-00019" summary="PRG: fix tree map">
+      <option name="closed" value="true" />
+      <created>1701372595310</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1701372595310</updated>
+    </task>
+    <task id="LOCAL-00020" summary="CLN">
+      <option name="closed" value="true" />
+      <created>1701374409223</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1701374409224</updated>
+    </task>
+    <task id="LOCAL-00021" summary="PRG: work on sankey">
+      <option name="closed" value="true" />
+      <created>1701378327420</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1701378327420</updated>
+    </task>
+    <task id="LOCAL-00022" summary="PRG: work on sankey">
+      <option name="closed" value="true" />
+      <created>1701397665899</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1701397665899</updated>
+    </task>
+    <task id="LOCAL-00023" summary="PRG: changes in treemap">
+      <option name="closed" value="true" />
+      <created>1701401500816</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1701401500816</updated>
+    </task>
+    <task id="LOCAL-00024" summary="PRG: changes in treemap">
+      <option name="closed" value="true" />
+      <created>1701401819974</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1701401819974</updated>
+    </task>
+    <task id="LOCAL-00025" summary="PRG: update data for barplot">
+      <option name="closed" value="true" />
+      <created>1701402541958</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1701402541958</updated>
+    </task>
+    <task id="LOCAL-00026" summary="PRG: update data for barplot">
+      <option name="closed" value="true" />
+      <created>1701403825272</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1701403825272</updated>
+    </task>
+    <task id="LOCAL-00027" summary="PRG: can click map for state">
+      <option name="closed" value="true" />
+      <created>1701561684505</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1701561684505</updated>
+    </task>
+    <task id="LOCAL-00028" summary="BUG: filter tree data">
+      <option name="closed" value="true" />
+      <created>1701563147545</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1701563147545</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="update gitignore" />
+    <MESSAGE value="PRG: made pie chart" />
+    <MESSAGE value="add group members" />
+    <MESSAGE value="PRG: work on tree maps" />
+    <MESSAGE value="BUG: can't get treemap to work (if I remove the example then code doesn't run)" />
+    <MESSAGE value="still bug" />
+    <MESSAGE value="note where bug is" />
+    <MESSAGE value="PRG: add bar charts" />
+    <MESSAGE value="PRG: fixed tree map bug(ish)" />
+    <MESSAGE value="PRG: add hover for tree map" />
+    <MESSAGE value="PRG: fix bar plots" />
+    <MESSAGE value="PRG: fix tree map" />
+    <MESSAGE value="CLN" />
+    <MESSAGE value="PRG: work on sankey" />
+    <MESSAGE value="PRG: changes in treemap" />
+    <MESSAGE value="PRG: update data for barplot" />
+    <MESSAGE value="PRG: can click map for state" />
+    <MESSAGE value="BUG: filter tree data" />
+    <option name="LAST_COMMIT_MESSAGE" value="BUG: filter tree data" />
+  </component>
+</project>

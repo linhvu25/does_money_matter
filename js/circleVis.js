@@ -73,7 +73,7 @@ class CircleVis {
       vis.legend = vis.svg
         .append("g")
         .attr("id", "circle-legend")
-        .attr("transform", `translate(${vis.width - 220},${vis.height - 120})`)
+        .attr("transform", `translate(${10},${vis.height - 120})`)
         .attr("opacity", 0);
 
       vis.legend
@@ -187,9 +187,6 @@ class CircleVis {
           .style("left", 0)
           .style("top", 0)
           .html(``);
-      })
-      .on("click", function (event, d) {
-        console.log(event.target);
       });
   }
 }

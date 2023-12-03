@@ -18,6 +18,17 @@ function getName(candidate) {
   return name;
 }
 
+const relevant_state_abbrev = {
+  AZ: "Arizona",
+  ME: "Maine",
+  MI: "Michigan",
+  KY: "Kentucky",
+  GA: "Georgia",
+  SC: "South Carolina",
+  FL: "Florida",
+  TX: "Texas"
+}
+
 const state_abbrev = {
   AL: "Alabama",
   AK: "Alaska",
@@ -93,8 +104,6 @@ function initVis(states, senateSpending) {
 }
 
 d3.csv("data/candidate_totals/az.csv").then((data) => {
-  myPieChart = new PieChart("pieDivRight", data);
-  myTreeMap = new TreeMap("treeMap", data);
-  myBarChart = new DivergingBarChart("barChart", data);
+  // myPieChart = new PieChart("pieDivRight", data);
   mySankeyPlot = new SankeyPlot("sankeyPlot", data);
 });

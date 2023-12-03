@@ -4,15 +4,24 @@
 
 class TreeMap {
   // constructor method to initialize Timeline object
-  constructor(_parentElement, _data) {
+  constructor(_parentElement, _state) {
     this.parentElement = _parentElement;
-    this.data = _data;
+    this.state = _state
+    this.data = [];
     this.displayData = [];
     this.wrangledData = [];
     this.treeData = [];
 
     // call initVis method
-    this.initVis();
+    this.getData();
+  }
+  getData(){
+    let vis= this;
+
+    d3.csv(`data/candidate_totals/${vis.state}.csv`).then((data) => {
+      vis.data = data;
+      vis.initVis();
+    })
   }
   initVis() {
     let vis = this;
@@ -31,6 +40,10 @@ class TreeMap {
       vis.margin.bottom;
 
     if (vis.height < 600) vis.height = 600;
+
+    d3.select("#" + vis.parentElement)
+        .select("svg")
+        .remove();
 
     // init drawing area
     vis.svg = d3
@@ -56,16 +69,42 @@ class TreeMap {
       "Finance, Government Agencies, and Lawyers Contribute the most"
     );
 
-    vis.wrangleData();
+    // add candidate selection
+    var candidate_list = [...new Set(vis.data.map(obj => obj.candidate))];
+    //console.log(candidate_list)
+    candidate_list.forEach((candidate) => {
+      var dropdown = document.getElementById("candidate-tree-select");
+      var opt = document.createElement("option");
+      opt.text = candidate;
+      opt.value = candidate;
+      dropdown.options.add(opt);
+    })
+
+    vis.filterTreeData();
 
     d3.select("#map-tree-select").on("change", () => vis.updateVis());
+  }
+
+  filterTreeData() {
+    let vis = this;
+    // filter according to user selection
+    const dropdown = document.getElementById('candidate-tree-select');
+    const selectedCandidate = dropdown.value;
+
+    vis.selectedData = selectedCandidate === 'all'
+        ? vis.data
+        : vis.data.filter(item => item.candidate === selectedCandidate);
+
+    console.log("candidate tree data", vis.selectedData);
+
+    vis.wrangleData();
   }
 
   wrangleData() {
     let vis = this;
 
     // subset data to broad_sector and $, rename columns
-    vis.displayData = vis.data.map((row) => [
+    vis.displayData = vis.selectedData.map((row) => [
       row["broad_sector"],
       row["total_$"],
     ]);
@@ -112,7 +151,7 @@ class TreeMap {
     vis.wrangledData.push(origin);
 
     vis.wrangledData.columns = ["name", "parent", "value"];
-    console.log("my data", vis.wrangledData);
+    //console.log("my data", vis.wrangledData);
 
     vis.updateVis();
   }
@@ -136,7 +175,7 @@ class TreeMap {
       );
     } else vis.treeData = vis.wrangledData;
 
-    console.log("my tree data", vis.treeData);
+    //console.log("my tree data", vis.treeData);
 
     // stratify the data: reformatting for d3.js
     // BUG SOMEWHERE BETWEEN HERE
@@ -155,7 +194,7 @@ class TreeMap {
 
     // console.log("my root", vis.root);
 
-    console.log("my leaves", vis.root.leaves());
+    //console.log("my leaves", vis.root.leaves());
     // use this information to add rectangles:
     vis.leaves = vis.svg
       .selectAll("rect")
