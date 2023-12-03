@@ -243,6 +243,10 @@ class TreeMap {
           .style("left", 0)
           .style("top", 0)
           .html(``);
+      })
+      .on("click", function (event, d) {
+        d3.select("#barChart").select("svg").remove();
+        new DivergingBarChart("barChart", vis.state, d.id);
       });
 
     // and to add the text labels
