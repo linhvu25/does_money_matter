@@ -92,6 +92,7 @@ class CircleVis {
         .data(legend_labels)
         .enter()
         .append("text")
+        .attr("class", "support-text")
         .attr("x", 20)
         .attr("y", (d, i) => 10 + i * 20)
         .text((d) => d);

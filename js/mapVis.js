@@ -59,7 +59,7 @@ class MapVis {
 
     d3.select("#map-title").text(
       "Senate races in 8 States cost more than $100M in 2018 or 2020"
-    );
+    ).attr("class", "plot-title");
 
     vis.tooltip = d3
       .select("body")

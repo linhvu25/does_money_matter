@@ -84,22 +84,39 @@ html:active, body:active,
 }
 
 .docSlider p {
-  font-size: 12px;
+  font-size: 14px;
   font-family: sans-serif;
   font-weight: normal;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+}
+
+#context {
+  margin-left: 270px;
+  margin-right: 270px;
 }
 
 .title {
   color:darkgreen;
+  font-size: 55px;
+  padding-left: 300px;
+  padding-right: 300px;
+  padding-top: 15px;
 }
 
 .subtitle {
   color:grey;
+  padding-left: 300px;
+  padding-right: 300px;
+  padding-top: 5px;
+  padding-bottom: 10px;
 }
 
-.heading: {
-  padding-botheighttom:300px;
-  color:green;
+.docSlider .heading h1 h2 h3 {
+  /*padding-botheighttom:300px;*/
+  color: green;
 }
 
 #pieDivRight {
@@ -127,5 +144,13 @@ html:active, body:active,
   font-size: 12px;
   font-family: sans-serif;
   font-weight: normal;
+}
+
+.plot-title {
+  color:darkgreen;
+  text-align: center;
+  margin-top: 50px;
+  font-weight: bold;
+  font-size: 25px;
 }
 

@@ -7,19 +7,15 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <!--  <link rel="stylesheet" href="docSlider.css">-->
 
-  <title>CS171 Final Project: Does Money Matter?</title>
   <link
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
           integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
           crossorigin="anonymous"
   />
-  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/styles.css"/>
 
   <style>
-    section:nth-child(odd){
-      background-color: #eee;
-    }
     .inner{
       height: 100%;
       display: flex;
@@ -28,7 +24,6 @@
       font-weight: bold;
       font-size: 2em;
     }
-
   </style>
   <title>Does Money Matter?</title>
 </head>
@@ -41,7 +36,7 @@
         <div class="align-self-center px-4" id="heading">
           <h1 class="title">Does Money Matter?</h1>
           <h3 class="subtitle">All about recent senate campaign donations</h3>
-          <p>Campaign funding has a profound impact on the political landscape and
+          <p id="context">Campaign funding has a profound impact on the political landscape and
             scrutinizing where these funds come from can tell us a lot about
             who a candidate is and the type of leader they will be.
             Insights about where money is sourced from when it comes to political campaigns
@@ -50,8 +45,8 @@
             Money holds power, and when it comes to campaign donations, that money holds
             power over policy decisions and public trust. Understanding where these funds come from
             is key to having transparent, fair, informed, and accountable political races.
-            <br>
-            <br>
+          </p>
+          <p>
             <i>So then we ask, who funds some of our most high-profile political candidates?
               What industries do they come from? How much are these donors willing to shell out
               to have some sway in a given race?</i>
@@ -63,27 +58,29 @@
 
   <section>
     <div class="inner">
-      <div class="row justify-content-center align-items-center py-4">
-        <div class="col-12">
+      <div class="col justify-content-center align-items-center py-4">
+        <div class="row">
           <h4 id="map-title"></h4>
         </div>
-        <div class="col-9" id="map-svg"></div>
-        <div class="col-2">
-          <div class="row">
-            <label for="map-fill-select">Map Fill:</label>
+        <div class="row">
+          <div class="col-7">
+            <div class="row" id="map-svg"></div>
+            <div class="row">
+              <div>
+                <p>The cost displayed is the total money raised by all candidates in the race.<br>
+                  <b>Click</b> on senate races that cost more than $100M to learn more.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-3">
+            <label for="map-fill-select" style="font-weight: normal; font-size: 20px">Map Fill:</label>
             <select class="form-control" id="map-fill-select">
               <option value="all" selected>All states</option>
               <option value="100m">>$100M states</option>
             </select>
+            <p class="text-legend">States with more than $100 million in total contributions are
+              <b style="color:darkgreen">clickable</b></p>
           </div>
-          <div class="row my-3" id="race-info">
-            States with more than $100 million in total contributions are
-            clickable.
-          </div>
-        </div>
-        <div>
-          <p>The cost displayed is the total money raised by all candidates in the race.<br>
-            <b>Click</b> on senate races that cost more than $100M to learn more.</p>
         </div>
       </div>
     </div>
@@ -91,6 +88,7 @@
 
   <section>
     <div class="inner">
+      <div class="col">
         <div class="row">
           <h4 id="tree-map-title"></h4>
         </div>
@@ -108,13 +106,20 @@
           <select class="form-control" id="map-tree-candidate-select"></select>
         </div>
         <div class="row" id="treeMap"></div>
+      </div>
     </div>
   </section>
 
   <section>
     <div class="inner">
-      <h4 id="bar-chart-title"></h4>
-      <div class="container-fluid" id="barChart"></div>
+      <div class="col">
+        <div class="row">
+          <h4 id="bar-chart-title"></h4>
+        </div>
+        <div class="row">
+          <div class="container-fluid" id="barChart"></div>
+        </div>
+      </div>
     </div>
   </section>
 </div>
