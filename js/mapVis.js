@@ -183,7 +183,9 @@ class MapVis {
             );
           }
 
-          d3.select("#race-info").html(
+          d3.select("#race-info")
+              .attr("class", "support-text")
+              .text(
             "States with more than $100 million in total contributions are clickable."
           );
           d3.select("#candidate-circles").transition().delay(500).remove();

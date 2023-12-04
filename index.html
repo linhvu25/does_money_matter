@@ -1,33 +1,68 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE HTML>
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <title>CS171 Final Project: Does Money Matter?</title>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+<!--  <link rel="stylesheet" href="docSlider.css">-->
 
+  <title>CS171 Final Project: Does Money Matter?</title>
   <link
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
           integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
           crossorigin="anonymous"
   />
-
   <link rel="stylesheet" href="css/styles.css" />
+
+  <style>
+    section:nth-child(odd){
+      background-color: #eee;
+    }
+    .inner{
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+      font-size: 2em;
+    }
+
+  </style>
+  <title>Does Money Matter?</title>
 </head>
 <body>
-<!-- WRAPPER -->
-<div class="container-fluid" style="height: 100vh; padding-top: 1vh">
-  <div class="row">
-    <div class="col-10 offset-1">
-      <!-- HEADING -->
+
+<div class="docSlider">
+  <section>
+    <div class="inner">
       <div class="row" style="height: 50vh; padding: 0">
         <div class="align-self-center px-4" id="heading">
           <h1 class="title">Does Money Matter?</h1>
           <h3 class="subtitle">All about recent senate campaign donations</h3>
-          <p class="heading">Campaign funding has a profound impact on the political landscape and scrutinizing where these funds come from can tell us a lot about who a candidate is and the type of leader they will be. Insights about where money is sourced from when it comes to political campaigns give the ordinary constituent important information that can aid decisions about who to support, who to campaign for, and ultimately where their vote should go. Money holds power, and when it comes to campaign donations, that money holds power over policy decisions and public trust. Understanding where these funds come from is key to having transparent, fair, informed, and accountable political races.</p>
-          <i>So then we ask, who funds some of our most high-profile political candidates? What industries do they come from? How much are these donors willing to shell out to have some sway in a given race?</i>
-
+          <p>Campaign funding has a profound impact on the political landscape and
+            scrutinizing where these funds come from can tell us a lot about
+            who a candidate is and the type of leader they will be.
+            Insights about where money is sourced from when it comes to political campaigns
+            give the ordinary constituent important information that can aid decisions
+            about who to support, who to campaign for, and ultimately where their vote should go.
+            Money holds power, and when it comes to campaign donations, that money holds
+            power over policy decisions and public trust. Understanding where these funds come from
+            is key to having transparent, fair, informed, and accountable political races.
+            <br>
+            <br>
+            <i>So then we ask, who funds some of our most high-profile political candidates?
+              What industries do they come from? How much are these donors willing to shell out
+              to have some sway in a given race?</i>
+          </p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="inner">
       <div class="row justify-content-center align-items-center py-4">
         <div class="col-12">
           <h4 id="map-title"></h4>
@@ -51,7 +86,11 @@
             <b>Click</b> on senate races that cost more than $100M to learn more.</p>
         </div>
       </div>
-      <div class="col justify-content-center">
+    </div>
+  </section>
+
+  <section>
+    <div class="inner">
         <div class="row">
           <h4 id="tree-map-title"></h4>
         </div>
@@ -69,60 +108,176 @@
           <select class="form-control" id="map-tree-candidate-select"></select>
         </div>
         <div class="row" id="treeMap"></div>
-        <div class="row justify-content-center">
-          <div class="col-12">
-            <p class="my-2">Those that fall below a state's reporting threshold for disclosing identifying information about the donor. For example: a contributor who gives $60 in a state where the disclosure reporting threshold is $100 is not required to be identified by name. The $60 is instead lumped in with other contributions that are below $100, and then classified as “unitemized.”</p>
-            <p>Within each broad sector, donors come from a multitude of different careers and employment fields. Here we are looking at the greatest contributing fields within a sector. </p>
-          </div>
-          <div class="col-10">
-            
-            <h4 id="bar-chart-title"></h4>
-            
-            <div class="container-fluid" id="barChart"></div>
-          </div>
-        </div>
-        <div class="row justify-content-center">
-          <div class="col-10" id="sankeyPlot"></div>
-        </div>
-      </div>
-      <div class="my-5 py-5"></div>
     </div>
-  </div>
-</body>
+  </section>
 
-<!-- - - - - - - - - - - - >
-<    Load JS libraries     >
-<- - - - - - - - - - - - -->
+  <section>
+    <div class="inner">
+      <h4 id="bar-chart-title"></h4>
+      <div class="container-fluid" id="barChart"></div>
+    </div>
+  </section>
+</div>
 
 <!-- BOOTSTRAP -->
-<script
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-        crossorigin="anonymous"
-></script>
+  <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+          crossorigin="anonymous"
+  ></script>
 
-<!-- d3 -->
-<script src="https://d3js.org/d3.v7.min.js"></script>
-<script src="https://d3js.org/d3-array.v2.min.js"></script>
-<script src="https://d3js.org/d3-geo.v2.min.js"></script>
+  <!-- d3 -->
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://d3js.org/d3-array.v2.min.js"></script>
+  <script src="https://d3js.org/d3-geo.v2.min.js"></script>
 
-<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
-<script src="https://d3js.org/topojson.v2.min.js"></script>
-<script src="https://d3js.org/d3-geo.v1.min.js"></script>
-<!--    <script src="https://d3js.org/d3-sankey.v0.12.min.js"></script>-->
-<script src="https://cdn.jsdelivr.net/gh/holtzy/D3-graph-gallery@master/LIB/sankey.js"></script>
-<script src="https://unpkg.com/d3-sankey@0.12.3/dist/d3-sankey.min.js"></script>
+  <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+  <script src="https://d3js.org/topojson.v2.min.js"></script>
+  <script src="https://d3js.org/d3-geo.v1.min.js"></script>
+  <!--    <script src="https://d3js.org/d3-sankey.v0.12.min.js"></script>-->
+  <script src="https://cdn.jsdelivr.net/gh/holtzy/D3-graph-gallery@master/LIB/sankey.js"></script>
+  <script src="https://unpkg.com/d3-sankey@0.12.3/dist/d3-sankey.min.js"></script>
 
-
-<!-- OWN JS -->
-<script src="js/mapVis.js"></script>
-<script src="js/circleVis.js"></script>
-<!--    <script src="js/pieChart.js"></script>-->
-<script src="js/treeMap.js"></script>
-<script src="js/sankeyPlot.js"></script>
-<script src="js/divergingBar.js"></script>
-<script src="js/main.js"></script>
+  <!-- OWN JS -->
+  <script src="js/mapVis.js"></script>
+  <script src="js/circleVis.js"></script>
+  <!--    <script src="js/pieChart.js"></script>-->
+  <script src="js/treeMap.js"></script>
+  <script src="js/sankeyPlot.js"></script>
+  <script src="js/divergingBar.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/docSlider.js"></script>
+  <script>docSlider.init();</script>
+</body>
 </html>
+
+
+<!--<!DOCTYPE html>-->
+<!--<html>-->
+<!--<head>-->
+<!--  <meta charset="utf-8" />-->
+<!--  <title>CS171 Final Project: Does Money Matter?</title>-->
+
+<!--  <link-->
+<!--          rel="stylesheet"-->
+<!--          href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"-->
+<!--          integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"-->
+<!--          crossorigin="anonymous"-->
+<!--  />-->
+
+<!--  <link rel="stylesheet" href="css/styles.css" />-->
+<!--</head>-->
+<!--<body>-->
+
+<!--    &lt;!&ndash; WRAPPER &ndash;&gt;-->
+<!--<div class="container-fluid" style="height: 100vh; padding-top: 1vh">-->
+<!--  <div class="row">-->
+<!--    <div class="col-10 offset-1">-->
+<!--      &lt;!&ndash; HEADING &ndash;&gt;-->
+<!--      <div class="row" style="height: 50vh; padding: 0">-->
+<!--        <div class="align-self-center px-4" id="heading">-->
+<!--          <h1 class="title">Does Money Matter?</h1>-->
+<!--          <h3 class="subtitle">All about recent senate campaign donations</h3>-->
+<!--          <p class="heading">Campaign funding has a profound impact on the political landscape and scrutinizing where these funds come from can tell us a lot about who a candidate is and the type of leader they will be. Insights about where money is sourced from when it comes to political campaigns give the ordinary constituent important information that can aid decisions about who to support, who to campaign for, and ultimately where their vote should go. Money holds power, and when it comes to campaign donations, that money holds power over policy decisions and public trust. Understanding where these funds come from is key to having transparent, fair, informed, and accountable political races.</p>-->
+<!--          <i>So then we ask, who funds some of our most high-profile political candidates? What industries do they come from? How much are these donors willing to shell out to have some sway in a given race?</i>-->
+
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="row justify-content-center align-items-center py-4">-->
+<!--        <div class="col-12">-->
+<!--          <h4 id="map-title"></h4>-->
+<!--        </div>-->
+<!--        <div class="col-9" id="map-svg"></div>-->
+<!--        <div class="col-2">-->
+<!--          <div class="row">-->
+<!--            <label for="map-fill-select">Map Fill:</label>-->
+<!--            <select class="form-control" id="map-fill-select">-->
+<!--              <option value="all" selected>All states</option>-->
+<!--              <option value="100m">>$100M states</option>-->
+<!--            </select>-->
+<!--          </div>-->
+<!--          <div class="row my-3" id="race-info">-->
+<!--            States with more than $100 million in total contributions are-->
+<!--            clickable.-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--          <p>The cost displayed is the total money raised by all candidates in the race.<br>-->
+<!--            <b>Click</b> on senate races that cost more than $100M to learn more.</p>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="col justify-content-center">-->
+<!--        <div class="row">-->
+<!--          <h4 id="tree-map-title"></h4>-->
+<!--        </div>-->
+<!--        <div class="row my-2">-->
+<!--          <label for="map-fill-select"><b>Select</b> sectors:</label>-->
+<!--          <select class="form-control" id="map-tree-select">-->
+<!--            <option value="none" selected>Include Coded and Itemized Contributions</option>-->
+<!--            <option value="unitemized">Include Unitemized</option>-->
+<!--            <option value="uncoded">Include Uncoded</option>-->
+<!--            <option value="all">Include All Sectors</option>-->
+<!--          </select>-->
+<!--        </div>-->
+<!--        <div class="row my-2">-->
+<!--          <label for="map-tree-candidate-select"><b>Select</b> candidate:</label>-->
+<!--          <select class="form-control" id="map-tree-candidate-select"></select>-->
+<!--        </div>-->
+<!--        <div class="row" id="treeMap"></div>-->
+<!--        <div class="row justify-content-center">-->
+<!--          <div class="col-12">-->
+<!--            <p class="my-2">Those that fall below a state's reporting threshold for disclosing identifying information about the donor. For example: a contributor who gives $60 in a state where the disclosure reporting threshold is $100 is not required to be identified by name. The $60 is instead lumped in with other contributions that are below $100, and then classified as “unitemized.”</p>-->
+<!--            <p>Within each broad sector, donors come from a multitude of different careers and employment fields. Here we are looking at the greatest contributing fields within a sector. </p>-->
+<!--          </div>-->
+<!--          <div class="col-10">-->
+<!--            -->
+<!--            <h4 id="bar-chart-title"></h4>-->
+<!--            -->
+<!--            <div class="container-fluid" id="barChart"></div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="row justify-content-center">-->
+<!--          <div class="col-10" id="sankeyPlot"></div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="my-5 py-5"></div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</body>-->
+
+<!--&lt;!&ndash; - - - - - - - - - - - >-->
+<!--<    Load JS libraries     >-->
+<!--<- - - - - - - - - - - - &ndash;&gt;-->
+
+<!--&lt;!&ndash; BOOTSTRAP &ndash;&gt;-->
+<!--<script-->
+<!--        src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"-->
+<!--        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"-->
+<!--        crossorigin="anonymous"-->
+<!--&gt;</script>-->
+
+<!--&lt;!&ndash; d3 &ndash;&gt;-->
+<!--<script src="https://d3js.org/d3.v7.min.js"></script>-->
+<!--<script src="https://d3js.org/d3-array.v2.min.js"></script>-->
+<!--<script src="https://d3js.org/d3-geo.v2.min.js"></script>-->
+
+<!--<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>-->
+<!--<script src="https://d3js.org/topojson.v2.min.js"></script>-->
+<!--<script src="https://d3js.org/d3-geo.v1.min.js"></script>-->
+<!--&lt;!&ndash;    <script src="https://d3js.org/d3-sankey.v0.12.min.js"></script>&ndash;&gt;-->
+<!--<script src="https://cdn.jsdelivr.net/gh/holtzy/D3-graph-gallery@master/LIB/sankey.js"></script>-->
+<!--<script src="https://unpkg.com/d3-sankey@0.12.3/dist/d3-sankey.min.js"></script>-->
+
+
+<!--&lt;!&ndash; OWN JS &ndash;&gt;-->
+<!--<script src="js/mapVis.js"></script>-->
+<!--<script src="js/circleVis.js"></script>-->
+<!--&lt;!&ndash;    <script src="js/pieChart.js"></script>&ndash;&gt;-->
+<!--<script src="js/treeMap.js"></script>-->
+<!--<script src="js/sankeyPlot.js"></script>-->
+<!--<script src="js/divergingBar.js"></script>-->
+<!--<script src="js/main.js"></script>-->
+<!--</html>-->
 
 
 

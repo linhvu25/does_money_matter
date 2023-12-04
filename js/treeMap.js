@@ -48,7 +48,8 @@ class TreeMap {
       vis.margin.top -
       vis.margin.bottom;
 
-    if (vis.height < 600) vis.height = 600;
+    if (vis.height < 400) vis.height = 400;
+    if (vis.width < 400) vis.width = 400;
 
     d3.select("#" + vis.parentElement)
       .select("svg")
