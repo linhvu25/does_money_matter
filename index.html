@@ -75,14 +75,17 @@
             <p>Within each broad sector, donors come from a multitude of different careers and employment fields. Here we are looking at the greatest contributing fields within a sector. </p>
           </div>
           <div class="col-10">
-            
+
             <h4 id="bar-chart-title"></h4>
-            
+
             <div class="container-fluid" id="barChart"></div>
           </div>
         </div>
         <div class="row justify-content-center">
           <div class="col-10" id="sankeyPlot"></div>
+        </div>
+        <div class="row justify-content-center">
+          <div id="divBar"></div>
         </div>
       </div>
       <div class="my-5 py-5"></div>
@@ -121,22 +124,22 @@
 <script src="js/treeMap.js"></script>
 <script src="js/sankeyPlot.js"></script>
 <script src="js/divergingBar.js"></script>
+<script src="js/divBar.js"></script>
 <script src="js/main.js"></script>
 </html>
 
 
 
 
-<!--
-///-&#45;&#45;Sankey Work in progress-&#45;&#45;///
+<!--///-&#45;&#45;Sankey Work in progress-&#45;&#45;///
 
-&#45;&#45;just need to remove hard-coded values and fix the position vlaues&#45;&#45;
+&#45;&#45;just need to remove hard-coded values and fix the position vlaues&#45;&#45;-->
 
-<div>
+<!--<div>
   <script>
     var margin = {top: 10, right: 10, bottom: 10, left: 10},
-            width =900 - margin.left - margin.right,
-            height = 300 - margin.top - margin.bottom;
+            width =1300 - margin.left - margin.right,
+            height = 500 - margin.top - margin.bottom;
 
     var formatNumber = d3.format(",.0f"),
             format = function(d) { return formatNumber(d); },
@@ -151,8 +154,9 @@
     var sankey = d3.sankey()
             .nodeWidth(36)
             .nodePadding(40)
-            .size([width, height]);
-    //.extent([[1, 1], [width - 1, height - 5]]);
+            .extent([[1, 1], [width - 1, height - 5]]);
+            //.size([width, height]);
+
 
     var path = d3.sankeyLinkHorizontal();
 
@@ -212,6 +216,36 @@
         links: links.map(d => Object.assign({}, d)) // copy of each link
       });
 
+/*      // Now draw the links
+      svg.append("g")
+              .selectAll("path")
+              .data(links)
+              .enter().append("path")
+              .attr("class", "link")
+              .attr("d", path)
+              .style("stroke-width", function(d) { return Math.max(1, d.width); });
+
+      // Now draw the nodes
+      var node = svg.append("g")
+              .selectAll(".node")
+              .data(nodes)
+              .enter().append("g")
+              .attr("class", "node");
+
+      node.append("rect")
+              .attr("x", function(d) { return d.x0; })
+              .attr("y", function(d) { return d.y0; })
+              .attr("height", function(d) { return d.y1 - d.y0; })
+              .attr("width", sankey.nodeWidth())
+              .style("fill", function(d) { return color(d.name); });
+
+      node.append("text")
+              .attr("x", function(d) { return (d.x0 + d.x1) / 2; })
+              .attr("y", function(d) { return (d.y1 + d.y0) / 2; })
+              .attr("dy", "0.35em")
+              .attr("text-anchor", "middle")
+              .text(function(d) { return d.name; });*/
+
       nodes.forEach(function(node, i) {
         // Just an example, would calculate these based on your actual layout
         node.x0 = i * (width / nodes.length);
@@ -242,7 +276,7 @@
       });
 
 
-      /*        svg.append("g")
+/*              svg.append("g")
                   .selectAll(".link")
                   .data(links)
                   .enter().append("path")
@@ -302,6 +336,231 @@
     });
 
   </script>
-</div>
+</div>-->
 
--->
+<!--<div>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script>
+    var margin = { top: 10, right: 10, bottom: 10, left: 10 },
+            width = 1300 - margin.left - margin.right,
+            height = 500 - margin.top - margin.bottom;
+
+    var formatNumber = d3.format(",.0f"),
+            format = function(d) { return formatNumber(d); },
+            color = d3.scaleOrdinal(d3.schemeCategory10);
+
+    var svg = d3.select("body").append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    var sankey = d3.sankey()
+            .nodeWidth(36)
+            .nodePadding(60)
+            .extent([[1, 1], [width - 1, height - 5]]);
+
+    var path = d3.sankeyLinkHorizontal();
+
+    function parseMoney(currencyString) {
+      return parseFloat(currencyString.replace(/[^0-9.-]+/g, ""));
+    }
+
+    d3.csv("data/candidate_totals/arizona.csv").then(function(rawData) {
+      var nodesByName = new Map();
+      var links = [];
+
+      rawData.forEach(function(d) {
+        var source = nodesByName.get(d.broad_sector);
+        var target = nodesByName.get(d.candidate);
+        var value = parseMoney(d.total_$);
+
+        if (isNaN(value)) {
+          console.error("Invalid value for total_$", d);
+          return; // Skip this iteration.
+        }
+
+        if (!source) {
+          source = { name: d.broad_sector, category: 'broad_sector' };
+          nodesByName.set(d.broad_sector, source);
+        }
+        if (!target) {
+          target = { name: d.candidate, category: 'candidate' };
+          nodesByName.set(d.candidate, target);
+        }
+
+        // Create a link for the sankey diagram
+        var linkKey = source.name + "-" + target.name;
+        var link = links.find(l => l.source.name === source.name && l.target.name === target.name);
+        if (link) {
+          link.value += value;
+        } else {
+          links.push({ source: source, target: target, value: value });
+        }
+      });
+
+      links.forEach(link => {
+        link.value *= 100; // Adjust this scale factor as needed
+      });
+
+      var nodes = Array.from(nodesByName.values());
+      // This will initialize the sankey diagram with nodes and links, computing their positions
+      sankey({
+        nodes: nodes.map(d => Object.assign({}, d)), // create a copy of each node
+        links: links.map(d => Object.assign({}, d))
+      });
+
+      // Draw the links
+      svg.append("g")
+              .selectAll("path")
+              .data(links)
+              .enter().append("path")
+              .attr("class", "link")
+              .attr("d", path)
+              .style("stroke-width", function(d) { return Math.max(1, d.width); });
+
+      // Draw the nodes
+      var node = svg.append("g")
+              .selectAll(".node")
+              .data(nodes)
+              .enter().append("g")
+              .attr("class", "node");
+
+      node.append("rect")
+              .attr("x", function(d) { return d.x0; })
+              .attr("y", function(d) { return d.y0; })
+              .attr("height", function(d) { return d.y1 - d.y0; })
+              .attr("width", sankey.nodeWidth())
+              .style("fill", function(d) { return color(d.name); });
+
+      node.append("text")
+              .attr("x", function(d) { return (d.x0 + d.x1) / 2; })
+              .attr("y", function(d) { return (d.y1 + d.y0) / 2; })
+              .attr("dy", "0.35em")
+              .attr("text-anchor", "middle")
+              .text(function(d) { return d.name; });
+
+      console.log("Processed nodes with layout:", nodes.map(d => ({ x0: d.x0, x1: d.x1, y0: d.y0, y1: d.y1 })));
+      console.log("Processed links with layout:", links.map(d => ({ width: d.width })));
+    });
+
+  </script>
+</div>-->
+
+<!--
+<div>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script>
+    var margin = { top: 10, right: 10, bottom: 10, left: 10 },
+            width = 1300 - margin.left - margin.right,
+            height = 500 - margin.top - margin.bottom;
+
+    var formatNumber = d3.format(",.0f"),
+            format = function(d) { return formatNumber(d); },
+            color = d3.scaleOrdinal(d3.schemeCategory10);
+
+    var svg = d3.select("body").append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    var sankey = d3.sankey()
+            .nodeWidth(36)
+            .nodePadding(60) // Increased padding if necessary
+            .extent([[1, 1], [width - 1, height - 5]]);
+
+    var path = d3.sankeyLinkHorizontal();
+
+    function parseMoney(currencyString) {
+      return parseFloat(currencyString.replace(/[^0-9.-]+/g, ""));
+    }
+
+    d3.csv("data/candidate_totals/arizona.csv").then(function(rawData) {
+      var nodesByName = new Map();
+      var links = [];
+
+      rawData.forEach(function(d) {
+        var sourceName = d.broad_sector;
+        var targetName = d.candidate;
+        var value = parseMoney(d.total_$);
+
+        if (isNaN(value)) {
+          console.error("Invalid value for total_$", d);
+          return; // Skip this iteration.
+        }
+
+        if (!nodesByName.has(sourceName)) {
+          nodesByName.set(sourceName, { name: sourceName });
+        }
+        if (!nodesByName.has(targetName)) {
+          nodesByName.set(targetName, { name: targetName });
+        }
+
+        var source = nodesByName.get(sourceName);
+        var target = nodesByName.get(targetName);
+
+        var linkKey = sourceName + "-" + targetName;
+        var link = links.find(l => l.source.name === sourceName && l.target.name === targetName);
+        if (link) {
+          link.value += value;
+        } else {
+          links.push({ source: source, target: target, value: value });
+        }
+      });
+
+// Convert nodes map to array
+      var nodes = Array.from(nodesByName.values());
+
+// Convert the node names to indices and reassign the modified links back to the 'links' variable
+      links = links.map(function(link) {
+        return {
+          source: nodes.indexOf(nodesByName.get(link.source.name)),
+          target: nodes.indexOf(nodesByName.get(link.target.name)),
+          value: link.value
+        };
+      });
+
+
+      // Apply the Sankey generator to the nodes and links
+      sankey({
+        nodes: nodes.map(d => Object.assign({}, d)),
+        links: links
+      });
+
+      // Draw the links
+      svg.append("g")
+              .selectAll("path")
+              .data(links)
+              .enter().append("path")
+              .attr("class", "link")
+              .attr("d", path)
+              .style("stroke-width", function(d) { return Math.max(1, d.width); });
+
+      // Draw the nodes
+      var node = svg.append("g")
+              .selectAll(".node")
+              .data(nodes)
+              .enter().append("g")
+              .attr("class", "node");
+
+      node.append("rect")
+              .attr("x", function(d) { return d.x0; })
+              .attr("y", function(d) { return d.y0; })
+              .attr("height", function(d) { return d.y1 - d.y0; })
+              .attr("width", sankey.nodeWidth())
+              .style("fill", function(d) { return color(d.name); });
+
+      node.append("text")
+              .attr("x", function(d) { return (d.x0 + d.x1) / 2; })
+              .attr("y", function(d) { return (d.y1 + d.y0) / 2; })
+              .attr("dy", "0.35em")
+              .attr("text-anchor", "middle")
+              .text(function(d) { return d.name; });
+
+      console.log("Processed nodes with layout:", nodes.map(d => ({ x0: d.x0, x1: d.x1, y0: d.y0, y1: d.y1 })));
+      console.log("Processed links with layout:", links.map(d => ({ width: d.width })));
+    });
+
+  </script>
+</div>-->
