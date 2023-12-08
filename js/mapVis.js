@@ -176,7 +176,12 @@ class MapVis {
               .attr("opacity", 0);
 
             d3.select("#circle-legend").transition().delay(500).remove();
-            d3.select("#circle-scale").select("svg").remove();
+            d3.select("#circle-scale")
+              .select("svg")
+              .transition()
+              .duration(250)
+              .attr("opacity", 0)
+              .remove();
 
             setFill();
             d3.select("#map-title").text(

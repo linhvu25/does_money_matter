@@ -78,9 +78,16 @@ class CircleVis {
         .append("svg")
         .attr("height", 280)
         .attr("width", 260)
+        .attr("opacity", 0)
         .append("g")
         .attr("id", "circle-legend")
         .attr("transform", `translate(${20},${40})`)
+        .attr("opacity", 1);
+
+      d3.select("#circle-scale")
+        .select("svg")
+        .transition()
+        .duration(500)
         .attr("opacity", 1);
 
       vis.legend = vis.svg
