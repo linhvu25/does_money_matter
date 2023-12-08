@@ -15,7 +15,7 @@ class DivBarChart {
 
     initVis() {
         // Dimensions & margins
-        const margin = { top: 20, right: 50, bottom: 30, left: 400 };
+        const margin = { top: 50, right: 50, bottom: 30, left: 400 };
         const width = 1060 - margin.left - margin.right;
         const height = 600 - margin.top - margin.bottom;
 
@@ -142,6 +142,33 @@ class DivBarChart {
             .attr("width", d => Math.abs(vis.x(d.totalCandidate2) - vis.x(0))) // width = distance from zero
             .attr("height", vis.y.bandwidth())
             .attr("fill", "#ff7f0e"); // chage color for candidate2 to match color scheme
+
+        // Remove previous labels to update
+        vis.svg.selectAll(".candidate-label").remove();
+
+        // Calculate the center position for the left side label
+        const leftLabelX = vis.x(0) - (vis.width / 7);
+
+        // Calculate the center position for the right side label
+        const rightLabelX = vis.x(0) + (vis.width / 7);
+
+        // Add candidate label for candidate1 above the left side bars
+        vis.svg.append("text")
+            .attr("class", "candidate-label") // CSS class for styling after
+            .attr("x", leftLabelX) // Centered above the left bars
+            .attr("y", 0) // Positioned just at top of the x-axis
+            .attr("dy", "-0.5em") // Slightly above the x-axis line
+            .style("text-anchor", "middle") // center the text above the bar?
+            .text(vis.candidate1); // Candidate1 name from constructor
+
+        // Add candidate label for candidate2 above the right bars
+        vis.svg.append("text")
+            .attr("class", "candidate-label")
+            .attr("x", rightLabelX)
+            .attr("y", 0)
+            .attr("dy", "-0.5em")
+            .style("text-anchor", "middle")
+            .text(vis.candidate2);
     }
 
 }
