@@ -69,24 +69,17 @@
       <section>
         <div class="inner">
           <div class="col justify-content-center align-items-center py-4">
-            <div class="row">
-              <h4 id="map-title"></h4> <br>
-              <p class="support-text">
-                The cost displayed is the total money raised by all candidates in the race.<br />
-                <b>Click</b> on senate races that cost more than $100M to learn more.
-              </p>
-            </div>
+            <div class="row" id="map-title"></div>
             <div class="row justify-content-center">
               <div class="col-7" id="map-svg">
               </div>
-              <div class="col-3">
+              <div class="col-2">
                 <label for="map-fill-select" class="select-text-legend"><b style="color: darkgreen">Select</b> map fill:</label>
                 <select class="form-control" id="map-fill-select">
                   <option value="all" selected>All states</option>
                   <option value="100m">>$100M states</option>
                 </select>
-                <p class="text-legend">
-                  States with more than $100 million in total contributions are
+                <p class="text-legend" style="padding:0px; padding-top: 10px">States with more than $100M in total contributions are
                   <b style="color: darkgreen">clickable</b>
                 </p>
                 <div class="row justify-content-center">
@@ -101,9 +94,7 @@
       <section>
         <div class="inner">
           <div class="col">
-            <div class="row" id="tree-map-title">
-<!--              <span id="tree-map-title"></span>-->
-            </div>
+            <div class="row" id="tree-map-title"></div>
             <div class="row justify-content-center">
               <div class="col-3">
                 <label for="map-fill-select" class="select-text-legend"><b style="color: darkgreen">Select</b> sectors:</label>
@@ -129,15 +120,13 @@
       <section>
         <div class="inner">
           <div class="col">
-            <div class="row">
-              <span id="bar-chart-title"></span>
-            </div>
-            <div class="row">
-              <div class="container-fluid" id="barChart"></div>
-            </div>
+            <div class="row" id="bar-chart-title"></div>
+            <div class="row" id="checkboxContainer"></div>
+            <div class="row" id="barChart"></div>
           </div>
         </div>
       </section>
+
       <section>
         <div class="inner">
           <div class="row justify-content-center">

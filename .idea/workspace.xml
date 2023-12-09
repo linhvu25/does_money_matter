@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e10fbf76-4bc2-4266-a013-4532991a2ebe" name="Changes" comment="PRG: make tooltip pretty!">
+    <list default="true" id="e10fbf76-4bc2-4266-a013-4532991a2ebe" name="Changes" comment="PRG: style plot titles!">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/styles.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/treeMap.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/treeMap.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/divergingBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/divergingBar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/mapVis.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/mapVis.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -313,7 +314,15 @@
       <option name="project" value="LOCAL" />
       <updated>1702137887561</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="PRG: style plot titles!">
+      <option name="closed" value="true" />
+      <created>1702140245485</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1702140245486</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -349,6 +358,7 @@
     <MESSAGE value="CLN: update colors" />
     <MESSAGE value="PRG: circular bar" />
     <MESSAGE value="PRG: make tooltip pretty!" />
-    <option name="LAST_COMMIT_MESSAGE" value="PRG: make tooltip pretty!" />
+    <MESSAGE value="PRG: style plot titles!" />
+    <option name="LAST_COMMIT_MESSAGE" value="PRG: style plot titles!" />
   </component>
 </project>

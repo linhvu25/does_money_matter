@@ -30,8 +30,7 @@ class DivergingBarChart {
 
     // margin conventions
     vis.margin = { top: 10, right: 50, bottom: 20, left: 300 };
-    vis.width =
-      document.getElementById(vis.parentElement).getBoundingClientRect().width -
+    vis.width = document.getElementById(vis.parentElement).getBoundingClientRect().width -
       vis.margin.left -
       vis.margin.right;
     if (vis.width < 0) vis.width = 800;
@@ -56,14 +55,66 @@ class DivergingBarChart {
   wrangleData() {
     let vis = this;
 
+    console.log("original data", vis.data)
+
+    // Use reduce to create an array with distinct candidate names
+    var uniqueCandidates = vis.data.reduce(function (accumulator, row) {
+      if (!accumulator.includes(row.candidate)) accumulator.push(row.candidate)
+      return accumulator
+    }, [])
+
+    var candidateNames = uniqueCandidates.map(function(candidate, index) {
+      return {
+        id: index + 1,
+        name: candidate
+      };
+    });
+            function createCandidateCheckbox(candidate) {
+              // Create checkbox input element
+              var checkbox = document.createElement("input");
+              checkbox.type = "checkbox";
+              checkbox.id = "checkbox" + candidate.id;
+              checkbox.className = "custom-checkbox";
+
+              // Create label for the checkbox
+              var checkboxLabel = document.createElement("label");
+              checkboxLabel.htmlFor = "checkbox" + candidate.id;
+              checkboxLabel.className = "checkbox-label";
+              checkboxLabel.appendChild(document.createTextNode(candidate.name));
+
+              // Create a container div for each checkbox
+              var checkboxContainer = document.createElement("div");
+              checkboxContainer.appendChild(checkbox);
+              checkboxContainer.appendChild(checkboxLabel);
+
+              // Append the container to the checkboxContainer div
+              document.getElementById("checkboxContainer").appendChild(checkboxContainer);
+            }
+
+            // Function to update dynamic checkboxes based on the array
+            function updateCheckboxes() {
+              // Clear existing checkboxes
+              var checkboxContainer = document.getElementById("checkboxContainer");
+              checkboxContainer.innerHTML = "";
+
+              // Loop through the array and create checkboxes
+              candidateNames.forEach(function(candidate) {
+                createCandidateCheckbox(candidate);
+              });
+            }
+
+            // Initial creation of checkboxes
+            updateCheckboxes();
+
     var candidate_select = document.getElementById("map-tree-candidate-select");
     vis.candidate =
       candidate_select.options[candidate_select.selectedIndex].value;
 
+    console.log("original data", vis.data)
     vis.filteredData = vis.data.filter((d) => {
-      if (vis.sector == d.broad_sector) {
-        if (vis.candidate == "all") return true;
-        else if (d.candidate == vis.candidate) {
+      if (vis.sector === d.broad_sector) {
+        if (vis.candidate === "all") return true;
+        else if (d.candidate === vis.candidate) {
           return true;
         }
       }
@@ -119,7 +170,7 @@ class DivergingBarChart {
       `Top ${vis.barData.length} ${toTitleCase(vis.sector)} Contributors to ${
         vis.candidate == "all" ? "All Candidates" : getName(vis.candidate)
       }`
-    );
+    ).attr("class", "plot-title");
 
     // X axis
     vis.x = d3.scaleBand()
@@ -152,7 +203,5 @@ class DivergingBarChart {
             .padAngle(0.01)
             .padRadius(innerRadius))
         .attr("transform", "translate(100,400)")
-
-
   }
 }

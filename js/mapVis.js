@@ -187,9 +187,13 @@ class MapVis {
               .remove();
 
             setFill();
-            d3.select("#map-title").text(
-              "Senate races in 8 States cost more than $100M in 2018 or 2020"
-            );
+            d3.select("#map-title").html(`
+                <p class="plot-title">Senate races in 8 States cost more than $100M in 2018 or 2020</p> 
+                <p class="support-text">
+                  The cost displayed is the total money raised by all candidates in the race.<br />
+                  <b>Click</b> on senate races that cost more than $100M to learn more.
+                </p>
+            `);
           }
 
           d3.select("#race-info")
