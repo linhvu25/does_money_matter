@@ -53,12 +53,12 @@
                 to having transparent, fair, informed, and accountable political
                 races.
               </p>
-              <p>
+              <p style="padding-left: 300px; padding-right: 300px; color:darkgreen; font-size: 25px; font-weight: bold"> So then we ask... </p>
+              <p style="padding-left: 300px; padding-right: 300px;">
                 <i>
-                  So then we ask, who funds some of our most high-profile
-                  political candidates? What industries do they come from? How
-                  much are these donors willing to shell out to have some sway
-                  in a given race?
+                  Who funds some of our most high-profile political candidates? <br>
+                  What industries do they come from? <br>
+                  How much are these donors willing to shell out to have some sway in a given race?
                 </i>
               </p>
             </div>
@@ -69,35 +69,17 @@
       <section>
         <div class="inner">
           <div class="col justify-content-center align-items-center py-4">
-            <div class="row">
-              <h4 id="map-title"></h4>
-            </div>
+            <div class="row" id="map-title"></div>
             <div class="row justify-content-center">
-              <div class="col-7">
-                <div class="row" id="map-svg"></div>
-                <div class="row">
-                  <div>
-                    <p>
-                      The cost displayed is the total money raised by all
-                      candidates in the race.<br />
-                      <b>Click</b> on senate races that cost more than $100M to
-                      learn more.
-                    </p>
-                  </div>
-                </div>
+              <div class="col-7" id="map-svg">
               </div>
-              <div class="col-3">
-                <label
-                  for="map-fill-select"
-                  style="font-weight: normal; font-size: 20px"
-                  >Map Fill:</label
-                >
+              <div class="col-2">
+                <label for="map-fill-select" class="select-text-legend"><b style="color: darkgreen">Select</b> map fill:</label>
                 <select class="form-control" id="map-fill-select">
                   <option value="all" selected>All states</option>
                   <option value="100m">>$100M states</option>
                 </select>
-                <p class="text-legend">
-                  States with more than $100 million in total contributions are
+                <p class="text-legend" style="padding:0px; padding-top: 10px">States with more than $100M in total contributions are
                   <b style="color: darkgreen">clickable</b>
                 </p>
                 <div class="row justify-content-center">
@@ -113,28 +95,23 @@
       <section>
         <div class="inner">
           <div class="col">
-            <div class="row">
-              <h4 id="tree-map-title"></h4>
-            </div>
-            <div class="row my-2">
-              <label for="map-fill-select"><b>Select</b> sectors:</label>
-              <select class="form-control" id="map-tree-select">
-                <option value="none" selected>
-                  Include Coded and Itemized Contributions
-                </option>
-                <option value="unitemized">Include Unitemized</option>
-                <option value="uncoded">Include Uncoded</option>
-                <option value="all">Include All Sectors</option>
-              </select>
-            </div>
-            <div class="row my-2">
-              <label for="map-tree-candidate-select"
-                ><b>Select</b> candidate:</label
-              >
-              <select
-                class="form-control"
-                id="map-tree-candidate-select"
-              ></select>
+            <div class="row" id="tree-map-title"></div>
+            <div class="row justify-content-center">
+              <div class="col-3">
+                <label for="map-fill-select" class="select-text-legend"><b style="color: darkgreen">Select</b> sectors:</label>
+                <select class="form-control" id="map-tree-select">
+                  <option value="none" selected> Include Coded and Itemized Contributions </option>
+                  <option value="unitemized">Include Unitemized</option>
+                  <option value="uncoded">Include Uncoded</option>
+                  <option value="all">Include All Sectors</option>
+                </select>
+              </div>
+              <div class="col-3">
+                <label for="map-tree-candidate-select" class="select-text-legend">
+                  <b style="color: darkgreen">Select</b> candidate:
+                </label>
+                <select class="form-control" id="map-tree-candidate-select"></select>
+              </div>
             </div>
             <div class="row" id="treeMap"></div>
           </div>
@@ -144,15 +121,16 @@
       <section>
         <div class="inner">
           <div class="col">
-            <div class="row">
-              <h4 id="bar-chart-title"></h4>
+            <div class="row" id="bar-chart-title"></div>
+            <div class="row justify-content-center" id="checkboxContainer"></div>
+            <div class="row justify-content-center checkbox-label" style="margin-top:30px">
+              <button onclick="getCheckedCandidates()">Get Checked Candidates</button>
             </div>
-            <div class="row">
-              <div class="container-fluid" id="barChart"></div>
-            </div>
+            <div class="row justify-content-center" id="barChart"></div>
           </div>
         </div>
       </section>
+
       <section>
         <div class="inner">
           <div class="row justify-content-center">
@@ -161,12 +139,11 @@
         </div>
       </section>
     </div>
-
     <!-- BOOTSTRAP -->
     <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-      crossorigin="anonymous"
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+            crossorigin="anonymous"
     ></script>
 
     <!-- d3 -->

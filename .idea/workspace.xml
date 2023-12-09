@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e10fbf76-4bc2-4266-a013-4532991a2ebe" name="Changes" comment="CLN: update colors">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_30_23,_9_55_PM_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_30_23__9_55_PM__Changes_.xml" beforeDir="false" />
+    <list default="true" id="e10fbf76-4bc2-4266-a013-4532991a2ebe" name="Changes" comment="PRG: checkbox">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/divBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/divBar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/divergingBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/divergingBar.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -298,7 +296,39 @@
       <option name="project" value="LOCAL" />
       <updated>1701620737377</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="PRG: circular bar">
+      <option name="closed" value="true" />
+      <created>1702085433267</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1702085433267</updated>
+    </task>
+    <task id="LOCAL-00027" summary="PRG: make tooltip pretty!">
+      <option name="closed" value="true" />
+      <created>1702137887561</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1702137887561</updated>
+    </task>
+    <task id="LOCAL-00028" summary="PRG: style plot titles!">
+      <option name="closed" value="true" />
+      <created>1702140245485</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1702140245486</updated>
+    </task>
+    <task id="LOCAL-00029" summary="PRG: checkbox">
+      <option name="closed" value="true" />
+      <created>1702145539895</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1702145539895</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -332,6 +362,10 @@
     <MESSAGE value="PRG: work on sankey" />
     <MESSAGE value="PRG: changes in treemap" />
     <MESSAGE value="CLN: update colors" />
-    <option name="LAST_COMMIT_MESSAGE" value="CLN: update colors" />
+    <MESSAGE value="PRG: circular bar" />
+    <MESSAGE value="PRG: make tooltip pretty!" />
+    <MESSAGE value="PRG: style plot titles!" />
+    <MESSAGE value="PRG: checkbox" />
+    <option name="LAST_COMMIT_MESSAGE" value="PRG: checkbox" />
   </component>
 </project>

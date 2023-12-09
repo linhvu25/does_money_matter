@@ -184,15 +184,18 @@ class MapVis {
           .style("opacity", 1)
           .style("left", event.pageX + 20 + "px")
           .style("top", event.pageY + "px").html(`
-         <div style="border: thin solid grey; border-radius: 5px; background: lightgrey; padding: 5px; padding-bottom: 0px;">
-             <h6>${d.properties.name}</h6>
-             <p>Year: ${
-               vis.senateSpending[d.properties.name].election_year
-             }<br/>Total contributions: ${d3.format("$,")(vis.senateSpending[d.properties.name].total_$)}
+          <div class="tooltip-text">
+             <b style="color: #4a7c47; font-size:18px">${d.properties.name}</b>
+             <p> 
+             <span style="color: grey;">Year: </span> 
+             <b style="color: #4a7c47">${vis.senateSpending[d.properties.name].election_year}</b> 
+             <br/>
+             <span style="color: grey;">Total contributions: </span> 
+             <b style="color: #4a7c47">${d3.format("$,")(vis.senateSpending[d.properties.name].total_$)}</b>
              ${d.properties.name == "Georgia" ? "<br />(2 races)" : ""}
              ${
                vis.senateSpending[d.properties.name].total_$ > 100000000
-                 ? "<br />(click for details)"
+                 ? "<br /><b style=\"color: #4a7c47;\">click for details</b>"
                  : ""
              }
              </p>          
@@ -244,9 +247,13 @@ class MapVis {
               .remove();
 
             setFill();
-            d3.select("#map-title").text(
-              "Senate races in 8 States cost more than $100M in 2018 or 2020"
-            );
+            d3.select("#map-title").html(`
+                <p class="plot-title">Senate races in 8 States cost more than $100M in 2018 or 2020</p> 
+                <p class="support-text">
+                  The cost displayed is the total money raised by all candidates in the race.<br />
+                  <b>Click</b> on senate races that cost more than $100M to learn more.
+                </p>
+            `);
           }
 
           d3.select("#race-info")

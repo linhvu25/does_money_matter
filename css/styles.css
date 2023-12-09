@@ -111,7 +111,7 @@ body:active,
   font-size: 55px;
   padding-left: 300px;
   padding-right: 300px;
-  padding-top: 15px;
+  /*padding-top: 15px;*/
 }
 
 .subtitle {
@@ -159,5 +159,35 @@ body:active,
   text-align: center;
   margin-top: 50px;
   font-weight: bold;
-  font-size: 25px;
+  font-size: 30px;
+  padding-bottom: 30px;
+}
+
+.tooltip-text {
+  border: thin solid grey;
+  border-radius: 5px;
+  background: rgb(251, 251, 251);
+  padding: 10px;
+  font-family: sans-serif;
+}
+
+.select-text-legend {
+  font-size:20px;
+  font-family: sans-serif;
+  font-weight: normal;
+}
+
+/* Style for the container */
+.checkbox-container {
+  margin-left: 15px;
+  height: 30px;
+}
+
+/* Style for the text label */
+.checkbox-label {
+  margin-left: 7px; /* Add some left margin for separation */
+  font-family: sans-serif; /* Example font family */
+  font-size: 17px; /* Example font size */
+  font-weight: normal;
+  margin-right: 30px;
 }

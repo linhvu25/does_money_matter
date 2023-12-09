@@ -36,7 +36,7 @@ class TreeMap {
     let vis = this;
 
     // margin conventions
-    vis.margin = { top: 10, right: 10, bottom: 0, left: 10 };
+    vis.margin = { top: 30, right: 100, bottom: 0, left: 100 };
 
     vis.width =
       document.getElementById(vis.parentElement).getBoundingClientRect().width -
@@ -62,6 +62,7 @@ class TreeMap {
       .attr("width", vis.width)
       .attr("height", vis.height)
       .attr("transform", `translate (${vis.margin.left}, ${vis.margin.top})`)
+        .style("fill", "#E6E3D3")
       .append("g");
 
     // append tooltip
@@ -112,7 +113,7 @@ class TreeMap {
       } Sector Contribution totals, ${
         candidate == "all" ? "All Candidates" : getName(candidate)
       }`
-    );
+    ).attr("class", "plot-title");
 
     // subset data to broad_sector and $, rename columns
     vis.displayData = vis.filteredData.map((row) => [
@@ -210,20 +211,12 @@ class TreeMap {
       .selectAll("rect")
       .data(vis.root.leaves())
       .join("rect")
-      .attr("x", function (d) {
-        return d.x0;
-      })
-      .attr("y", function (d) {
-        return d.y0;
-      })
-      .attr("width", function (d) {
-        return d.x1 - d.x0;
-      })
-      .attr("height", function (d) {
-        return d.y1 - d.y0;
-      })
+      .attr("x", d=>d.x0)
+      .attr("y", d=>d.y0)
+      .attr("width", d=>d.x1 - d.x0)
+      .attr("height", d=>d.y1 - d.y0)
       .style("fill", plotColor)
-      .on("mouseover", function (event, d, i) {
+      .on("mouseover", function (event, d) {
         // change the segment of tree map
         d3.select(this)
           .attr("stroke-width", "2px")
@@ -235,11 +228,13 @@ class TreeMap {
           .style("opacity", 1)
           .style("left", event.pageX + 20 + "px")
           .style("top", event.pageY + "px").html(`
-                        <div style="border: thin solid grey; border-radius: 5px; background: lightgrey; padding: 20px">
-                             <p> Broad Sector: ${d.data.name}</p>
-                             <p> Total contributions: ${d3.format("$,")(
-                               d.data.value
-                             )}</p>
+                        <div class="tooltip-text">
+                             <p> <span style="color: grey;">Broad Sector:</span> 
+                             <b style="color: #4a7c47">${d.data.name}</b> 
+                             <br>
+                             <span style="color: grey;">Total contributions:</span> 
+                             <b style="color: #4a7c47">${d3.format("$,")(d.data.value)}</b> 
+                             </p>
                         </div>`);
       })
       .on("mouseout", function (event, d) {
@@ -271,7 +266,7 @@ class TreeMap {
         return d.data.name;
       })
       .attr("font-size", "15px")
-      .attr("fill", "white")
+      .attr("fill", "rgb(251, 251, 251)")
       .attr("opacity", 1);
 
     vis.labels.attr("opacity", function (d, i) {
