@@ -42,6 +42,27 @@ class MapVis {
     vis.zoom = vis.width / vis.viewpoint.width;
     vis.scaled = false;
 
+    var lg = vis.svg
+      .append("defs")
+      .append("linearGradient")
+      .attr("id", "map-gradient") //id of the gradient
+      .attr("x1", "0%")
+      .attr("x2", "0%")
+      .attr("y1", "0%")
+      .attr("y2", "100%");
+    lg.append("stop")
+      .attr("offset", "0%")
+      .style(
+        "stop-color",
+        vis.color(Object.values(vis.senateSpending).map((d) => d.total_$)[0])
+      )
+      .style("stop-opacity", 1);
+
+    lg.append("stop")
+      .attr("offset", "100%")
+      .style("stop-color", vis.color(0))
+      .style("stop-opacity", 1);
+
     vis.svg
       .append("g")
       .attr("class", "states")
@@ -56,6 +77,45 @@ class MapVis {
       .attr("fill", "#aaaaaa40");
 
     vis.states = vis.svg.selectAll(".state");
+
+    vis.mapScale = d3
+      .select("#map-scale")
+      .append("svg")
+      .attr("height", 190)
+      .attr("width", 80)
+      .append("g")
+      .attr("id", "map-legend");
+
+    var mapScaleTicks = [0, 25, 100, 200, 529];
+    vis.mapScale
+      .selectAll("line")
+      .data(mapScaleTicks)
+      .enter()
+      .append("line")
+      .attr("y1", (d) => 181 - 170 * Math.sqrt(d / 529))
+      .attr("y2", (d) => 181 - 170 * Math.sqrt(d / 529))
+      .attr("x1", 0)
+      .attr("x2", 28)
+      .attr("stroke-width", "2")
+      .attr("stroke", (d) => vis.color(d * 10 ** 6));
+
+    vis.mapScale
+      .selectAll("text")
+      .data(mapScaleTicks)
+      .enter()
+      .append("text")
+      .attr("y", (d) => 185 - 170 * Math.sqrt(d / 529))
+      .attr("x", 30)
+      .attr("font-size", 12)
+      .text((d) => (d == 0 ? "$0" : `$${d}M`));
+
+    vis.mapScale
+      .append("rect")
+      .attr("x", 0)
+      .attr("y", 10)
+      .attr("height", 170)
+      .attr("width", 20)
+      .attr("fill", "url(#map-gradient)");
 
     d3.select("#map-title")
       .text("Senate races in 8 States cost more than $100M in 2018 or 2020")
