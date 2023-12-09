@@ -36,7 +36,7 @@ class TreeMap {
     let vis = this;
 
     // margin conventions
-    vis.margin = { top: 10, right: 100, bottom: 0, left: 100 };
+    vis.margin = { top: 30, right: 100, bottom: 0, left: 100 };
 
     vis.width =
       document.getElementById(vis.parentElement).getBoundingClientRect().width -
@@ -113,7 +113,7 @@ class TreeMap {
       } Sector Contribution totals, ${
         candidate == "all" ? "All Candidates" : getName(candidate)
       }`
-    );
+    ).attr("class", "plot-title");
 
     // subset data to broad_sector and $, rename columns
     vis.displayData = vis.filteredData.map((row) => [

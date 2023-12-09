@@ -70,28 +70,17 @@
         <div class="inner">
           <div class="col justify-content-center align-items-center py-4">
             <div class="row">
-              <h4 id="map-title"></h4>
+              <h4 id="map-title"></h4> <br>
+              <p class="support-text">
+                The cost displayed is the total money raised by all candidates in the race.<br />
+                <b>Click</b> on senate races that cost more than $100M to learn more.
+              </p>
             </div>
             <div class="row justify-content-center">
-              <div class="col-7">
-                <div class="row" id="map-svg"></div>
-                <div class="row">
-                  <div>
-                    <p>
-                      The cost displayed is the total money raised by all
-                      candidates in the race.<br />
-                      <b>Click</b> on senate races that cost more than $100M to
-                      learn more.
-                    </p>
-                  </div>
-                </div>
+              <div class="col-7" id="map-svg">
               </div>
               <div class="col-3">
-                <label
-                  for="map-fill-select"
-                  style="font-weight: normal; font-size: 20px"
-                  >Map Fill:</label
-                >
+                <label for="map-fill-select" class="select-text-legend"><b style="color: darkgreen">Select</b> map fill:</label>
                 <select class="form-control" id="map-fill-select">
                   <option value="all" selected>All states</option>
                   <option value="100m">>$100M states</option>
@@ -112,28 +101,25 @@
       <section>
         <div class="inner">
           <div class="col">
-            <div class="row">
-              <h4 id="tree-map-title"></h4>
+            <div class="row" id="tree-map-title">
+<!--              <span id="tree-map-title"></span>-->
             </div>
-            <div class="row my-2">
-              <label for="map-fill-select"><b>Select</b> sectors:</label>
-              <select class="form-control" id="map-tree-select">
-                <option value="none" selected>
-                  Include Coded and Itemized Contributions
-                </option>
-                <option value="unitemized">Include Unitemized</option>
-                <option value="uncoded">Include Uncoded</option>
-                <option value="all">Include All Sectors</option>
-              </select>
-            </div>
-            <div class="row my-2">
-              <label for="map-tree-candidate-select"
-                ><b>Select</b> candidate:</label
-              >
-              <select
-                class="form-control"
-                id="map-tree-candidate-select"
-              ></select>
+            <div class="row justify-content-center">
+              <div class="col-3">
+                <label for="map-fill-select" class="select-text-legend"><b style="color: darkgreen">Select</b> sectors:</label>
+                <select class="form-control" id="map-tree-select">
+                  <option value="none" selected> Include Coded and Itemized Contributions </option>
+                  <option value="unitemized">Include Unitemized</option>
+                  <option value="uncoded">Include Uncoded</option>
+                  <option value="all">Include All Sectors</option>
+                </select>
+              </div>
+              <div class="col-3">
+                <label for="map-tree-candidate-select" class="select-text-legend">
+                  <b style="color: darkgreen">Select</b> candidate:
+                </label>
+                <select class="form-control" id="map-tree-candidate-select"></select>
+              </div>
             </div>
             <div class="row" id="treeMap"></div>
           </div>
@@ -144,7 +130,7 @@
         <div class="inner">
           <div class="col">
             <div class="row">
-              <h4 id="bar-chart-title"></h4>
+              <span id="bar-chart-title"></span>
             </div>
             <div class="row">
               <div class="container-fluid" id="barChart"></div>
