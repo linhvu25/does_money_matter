@@ -160,7 +160,6 @@ body:active,
   margin-top: 50px;
   font-weight: bold;
   font-size: 30px;
-  padding-bottom: 30px;
 }
 
 .tooltip-text {
@@ -172,7 +171,7 @@ body:active,
 }
 
 .select-text-legend {
-  font-size:20px;
+  font-size: 20px;
   font-family: sans-serif;
   font-weight: normal;
 }

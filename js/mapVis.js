@@ -188,14 +188,18 @@ class MapVis {
              <b style="color: #4a7c47; font-size:18px">${d.properties.name}</b>
              <p> 
              <span style="color: grey;">Year: </span> 
-             <b style="color: #4a7c47">${vis.senateSpending[d.properties.name].election_year}</b> 
+             <b style="color: #4a7c47">${
+               vis.senateSpending[d.properties.name].election_year
+             }</b> 
              <br/>
              <span style="color: grey;">Total contributions: </span> 
-             <b style="color: #4a7c47">${d3.format("$,")(vis.senateSpending[d.properties.name].total_$)}</b>
+             <b style="color: #4a7c47">${d3.format("$,")(
+               vis.senateSpending[d.properties.name].total_$
+             )}</b>
              ${d.properties.name == "Georgia" ? "<br />(2 races)" : ""}
              ${
                vis.senateSpending[d.properties.name].total_$ > 100000000
-                 ? "<br /><b style=\"color: #4a7c47;\">click for details</b>"
+                 ? '<br /><b style="color: #4a7c47;">click for details</b>'
                  : ""
              }
              </p>          
@@ -227,6 +231,7 @@ class MapVis {
               .transition()
               .duration(500)
               .attr("fill", highlightColor);
+            d3.select("#map-desc").html(``);
           } else {
             d3.select("#candidate-circles")
               .transition()
@@ -247,13 +252,18 @@ class MapVis {
               .remove();
 
             setFill();
-            d3.select("#map-title").html(`
-                <p class="plot-title">Senate races in 8 States cost more than $100M in 2018 or 2020</p> 
-                <p class="support-text">
-                  The cost displayed is the total money raised by all candidates in the race.<br />
-                  <b>Click</b> on senate races that cost more than $100M to learn more.
-                </p>
-            `);
+            d3.select("#map-title")
+              .text(
+                "Senate races in 8 States cost more than $100M in 2018 or 2020"
+              )
+              .attr("class", "plot-title");
+
+            d3.select("#map-desc").html(`<h6>
+            The cost displayed is the total money raised by all candidates
+            in the race.<br />
+            <b>Click</b> on senate races that cost more than $100M to
+            learn more.
+          </h6>`);
           }
 
           d3.select("#race-info")
