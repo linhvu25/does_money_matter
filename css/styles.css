@@ -1,24 +1,132 @@
+/* CHANGE THE PAGER STYLE */
+.docSlider-pager {
+  position: fixed;
+  z-index: 100;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+}
+
+/* CHANGE THE BUTTON STYLE */
+.docSlider-button {
+  height: 18px;
+  width: 18px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: block;
+  margin: 5px 0;
+  background-color: #333;
+  opacity: .25;
+  appearance: none;
+  border: none;
+  box-sizing: border-box;
+}
+
+.docSlider-button.selected {
+  opacity: 1;
+}
+
+.docSlider-button:active {
+  outline: none;
+}
+
+/**------------------------------
+  REWRITING IS NOT RECOMMENDED
+ -----------------------------**/
+html, body {
+  overflow: hidden;
+  touch-action: none;
+  height: 100%;
+}
+
+html, body,
+.docSlider,
+.docSlider-inner,
+.docSlider-page {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  appearance: none;
+  border: none;
+  outline: none;
+}
+
+html:active, body:active,
+.docSlider:active,
+.docSlider-inner:active,
+.docSlider-page:active {
+  outline: none;
+}
+
+.docSlider {
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.docSlider-inner {
+  width: inherit;
+  height: inherit;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.docSlider-page {
+  height: inherit;
+  width: inherit;
+  overflow: auto;
+  position: absolute;
+  overflow-scrolling: touch;
+}
+
+.docSlider p {
+  font-size: 14px;
+  font-family: sans-serif;
+  font-weight: normal;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+}
+
+#context {
+  margin-left: 270px;
+  margin-right: 270px;
+}
+
 .title {
   color:darkgreen;
+  font-size: 55px;
+  padding-left: 300px;
+  padding-right: 300px;
+  padding-top: 15px;
 }
 
 .subtitle {
   color:grey;
+  padding-left: 300px;
+  padding-right: 300px;
+  padding-top: 5px;
+  padding-bottom: 10px;
 }
 
-.heading: {
-padding-botheighttom:300px;
-  color:green;
+.docSlider .heading h1 h2 h3 {
+  /*padding-botheighttom:300px;*/
+  color: green;
 }
 
 #pieDivRight {
   min-height: 300px;
 }
 
- .node rect {
-   fill-opacity: .9;
-   shape-rendering: crispEdges;
- }
+.node rect {
+  fill-opacity: .9;
+  shape-rendering: crispEdges;
+}
 .node text {
   pointer-events: none;
   text-shadow: 0 1px 0 #fff;
@@ -31,3 +139,18 @@ padding-botheighttom:300px;
 .link:hover {
   stroke-opacity: .5;
 }
+
+.docSlider .support-text {
+  font-size: 12px;
+  font-family: sans-serif;
+  font-weight: normal;
+}
+
+.plot-title {
+  color:darkgreen;
+  text-align: center;
+  margin-top: 50px;
+  font-weight: bold;
+  font-size: 25px;
+}
+

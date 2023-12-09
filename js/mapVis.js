@@ -57,9 +57,9 @@ class MapVis {
 
     vis.states = vis.svg.selectAll(".state");
 
-    d3.select("#map-title").text(
-      "Senate races in 8 States cost more than $100M in 2018 or 2020"
-    );
+    d3.select("#map-title")
+      .text("Senate races in 8 States cost more than $100M in 2018 or 2020")
+      .attr("class", "plot-title");
 
     vis.tooltip = d3
       .select("body")
@@ -176,6 +176,12 @@ class MapVis {
               .attr("opacity", 0);
 
             d3.select("#circle-legend").transition().delay(500).remove();
+            d3.select("#circle-scale")
+              .select("svg")
+              .transition()
+              .duration(250)
+              .attr("opacity", 0)
+              .remove();
 
             setFill();
             d3.select("#map-title").text(
@@ -183,9 +189,11 @@ class MapVis {
             );
           }
 
-          d3.select("#race-info").html(
-            "States with more than $100 million in total contributions are clickable."
-          );
+          d3.select("#race-info")
+            .attr("class", "support-text")
+            .text(
+              "States with more than $100 million in total contributions are clickable."
+            );
           d3.select("#candidate-circles").transition().delay(500).remove();
         }
       });

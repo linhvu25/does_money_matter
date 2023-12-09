@@ -35,7 +35,10 @@ class CircleVis {
     let vis = this;
 
     vis.svg = d3.select("#" + this.parentElement).select("svg");
-    vis.radius = d3.scaleLinear().range([5, 120]);
+    vis.radius = d3
+      .scaleSqrt()
+      .range([5, 100])
+      .domain([0, 162 * 10 ** 6]);
     vis.color = d3
       .scaleOrdinal()
       .range(["#E81B23", "rgb(0, 21, 188)", "#f1aa32"])
@@ -70,6 +73,23 @@ class CircleVis {
         "Won election",
       ];
 
+      vis.scale = d3
+        .select("#circle-scale")
+        .append("svg")
+        .attr("height", 280)
+        .attr("width", 260)
+        .attr("opacity", 0)
+        .append("g")
+        .attr("id", "circle-legend")
+        .attr("transform", `translate(${20},${40})`)
+        .attr("opacity", 1);
+
+      d3.select("#circle-scale")
+        .select("svg")
+        .transition()
+        .duration(500)
+        .attr("opacity", 1);
+
       vis.legend = vis.svg
         .append("g")
         .attr("id", "circle-legend")
@@ -92,6 +112,7 @@ class CircleVis {
         .data(legend_labels)
         .enter()
         .append("text")
+        .attr("class", "support-text")
         .attr("x", 20)
         .attr("y", (d, i) => 10 + i * 20)
         .text((d) => d);
@@ -132,9 +153,34 @@ class CircleVis {
   updateVis() {
     let vis = this;
 
-    vis.radius.domain(d3.extent(vis.data.map((d) => d.total_$)));
+    // vis.radius.domain(d3.extent(vis.data.map((d) => d.total_$)));
 
     vis.legend.transition().duration(500).delay(500).attr("opacity", 1);
+
+    const scale_circles = [10 ** 6, 10 ** 7, 5 * 10 ** 7, 10 ** 8];
+    // console.log(scale_circles);
+    vis.scale
+      .selectAll("circle")
+      .data(scale_circles)
+      .enter()
+      .append("circle")
+      .attr("stroke", "black")
+      .attr("stroke-width", "2")
+      .attr("fill", "none")
+      .attr("r", (d) => vis.radius(d))
+      .attr("cx", 100)
+      .attr("cy", (d) => 100 + vis.radius(10 ** 8) - vis.radius(d));
+
+    vis.scale
+      .selectAll("text")
+      .data(scale_circles)
+      .enter()
+      .append("text")
+      .attr("text-anchor", "middle")
+      .attr("x", 100)
+      .attr("y", (d) => 100 + vis.radius(10 ** 8) - 2 * vis.radius(d) - 6)
+      .attr("font-size", 10)
+      .text((d) => `$${d / 10 ** 6}M`);
 
     vis.nodes
       .attr("r", (d) => vis.radius(d.total_$))
