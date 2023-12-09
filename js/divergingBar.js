@@ -108,7 +108,7 @@ class DivergingBarChart {
 
     vis.barData = myArray
       .sort((a, b) => b.total_$ - a.total_$)
-      .filter((_, i) => i < 10);
+      .filter((_, i) => i < 20);
     this.updateVis();
   }
 
@@ -120,34 +120,36 @@ class DivergingBarChart {
         vis.candidate == "all" ? "All Candidates" : getName(vis.candidate)
       }`
     );
-    // X axis
-    vis.x = d3
-      .scaleLinear()
-      .domain([0, d3.max(vis.barData, (d) => d["total_$"])])
-      .range([0, vis.width]);
-    vis.svg
-      .append("g")
-      .attr("transform", "translate(0," + vis.height + ")")
-      .call(d3.axisBottom(vis.x))
-      .selectAll("text");
 
-    // Add Y axis
-    vis.y = d3
-      .scaleBand()
-      .range([0, vis.height])
-      .domain(vis.barData.map((d) => d["specific_business"]))
-      .padding(0.2);
-    vis.svg.append("g").call(d3.axisLeft(vis.y));
+    // X axis
+    vis.x = d3.scaleBand()
+        .range([0, 2 * Math.PI])    // X axis goes from 0 to 2pi = all around the circle. If I stop at 1Pi, it will be around a half circle
+        .align(0)                  // This does nothing
+        .domain(vis.barData.map((d) => d["specific_business"]))
+    //vis.svg.append("g").call(d3.axisLeft(vis.x));
+
+    // Y axis
+    let innerRadius = 90,
+        outerRadius = Math.min(vis.width, vis.height) / 2;
+
+    vis.y = d3.scaleRadial()
+        .range([innerRadius, outerRadius])   // Domain will be define later.
+        .domain([0, d3.max(vis.barData, (d) => d["total_$"])]);
 
     // Bars
     vis.svg
-      .selectAll("mybar")
-      .data(vis.barData)
-      .join("rect")
-      .attr("y", (d) => vis.y(d["specific_business"]))
-      .attr("x", 0)
-      .attr("height", vis.y.bandwidth())
-      .attr("width", (d) => vis.x(d["total_$"]))
-      .attr("fill", plotColor);
+        .selectAll("path")
+        .data(vis.barData)
+        .enter()
+        .append("path")
+        .attr("fill", plotColor)
+        .attr("d", d3.arc()     // imagine your doing a part of a donut plot
+            .innerRadius(innerRadius)
+            .outerRadius( d=>vis.y(d["total_$"]))
+            .startAngle( d=>vis.x(d["specific_business"]))
+            .endAngle( d=>vis.x(d["specific_business"]) + vis.x.bandwidth())
+            .padAngle(0.01)
+            .padRadius(innerRadius))
+        .attr("transform", "translate(100,400)")
   }
 }
