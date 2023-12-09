@@ -3,7 +3,6 @@
 // change colors of bars
 // decide if we just top 10 or more general industries
 
-
 class DivBarChart {
     constructor(element, data, candidate1, candidate2) {
         this.element = element;

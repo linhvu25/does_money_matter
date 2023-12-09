@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e10fbf76-4bc2-4266-a013-4532991a2ebe" name="Changes" comment="CLN: update colors" />
+    <list default="true" id="e10fbf76-4bc2-4266-a013-4532991a2ebe" name="Changes" comment="CLN: update colors">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_30_23,_9_55_PM_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_30_23__9_55_PM__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/divBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/divBar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/divergingBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/divergingBar.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
