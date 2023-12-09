@@ -76,12 +76,11 @@ class CircleVis {
       vis.scale = d3
         .select("#circle-scale")
         .append("svg")
-        .attr("height", 280)
-        .attr("width", 260)
+        .attr("height", 200)
+        .attr("width", 180)
         .attr("opacity", 0)
         .append("g")
         .attr("id", "circle-legend")
-        .attr("transform", `translate(${20},${40})`)
         .attr("opacity", 1);
 
       d3.select("#circle-scale")
@@ -179,7 +178,7 @@ class CircleVis {
       .attr("text-anchor", "middle")
       .attr("x", 100)
       .attr("y", (d) => 100 + vis.radius(10 ** 8) - 2 * vis.radius(d) - 6)
-      .attr("font-size", 10)
+      .attr("font-size", 12)
       .text((d) => `$${d / 10 ** 6}M`);
 
     vis.nodes
