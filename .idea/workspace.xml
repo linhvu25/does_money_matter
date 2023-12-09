@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e10fbf76-4bc2-4266-a013-4532991a2ebe" name="Changes" comment="PRG: style plot titles!">
+    <list default="true" id="e10fbf76-4bc2-4266-a013-4532991a2ebe" name="Changes" comment="PRG: checkbox">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/styles.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/divergingBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/divergingBar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/mapVis.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/mapVis.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -322,7 +320,15 @@
       <option name="project" value="LOCAL" />
       <updated>1702140245486</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="PRG: checkbox">
+      <option name="closed" value="true" />
+      <created>1702145539895</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1702145539895</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -359,6 +365,7 @@
     <MESSAGE value="PRG: circular bar" />
     <MESSAGE value="PRG: make tooltip pretty!" />
     <MESSAGE value="PRG: style plot titles!" />
-    <option name="LAST_COMMIT_MESSAGE" value="PRG: style plot titles!" />
+    <MESSAGE value="PRG: checkbox" />
+    <option name="LAST_COMMIT_MESSAGE" value="PRG: checkbox" />
   </component>
 </project>
