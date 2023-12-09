@@ -134,7 +134,8 @@ class DivergingBarChart {
 
     vis.y = d3.scaleRadial()
         .range([innerRadius, outerRadius])   // Domain will be define later.
-        .domain([0, d3.max(vis.barData, (d) => d["total_$"])]);
+        .domain([0, d3.max(vis.barData, (d) => d["total_$"])])
+        //.paddingInner(0.2);
 
     // Bars
     vis.svg
@@ -151,5 +152,7 @@ class DivergingBarChart {
             .padAngle(0.01)
             .padRadius(innerRadius))
         .attr("transform", "translate(100,400)")
+
+
   }
 }

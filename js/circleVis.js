@@ -216,14 +216,14 @@ class CircleVis {
           .style("opacity", 1)
           .style("left", event.pageX + 20 + "px")
           .style("top", event.pageY + "px").html(`
-         <div style="border: thin solid grey; border-radius: 5px; background: lightgrey; padding: 5px; padding-bottom: 0px;">
-             <h6>${name}</h6>
+         <div class="tooltip-text">
              <p>
-             ${toTitleCase(d.incumbency_status)}.<br/>
-             Total contributions: ${d3.format("$,")(d.total_$)}<br/>
-             ${outcome.replace(/^(\w)/, (x) =>
-               x.toUpperCase()
-             )} in the ${race} election.
+             <b style="color: #4a7c47; font-size:18px">${name}</b> <br>
+             <span style="color: grey;">${toTitleCase(d.incumbency_status)}</span> <br>
+             <span style="color: grey;">Total contributions:</span> 
+             <b style="color: #4a7c47">${d3.format("$,")(d.total_$)}</b> <br>
+             <b style="color: #4a7c47">${outcome.replace(/^(\w)/, (x) => x.toUpperCase())}</b> 
+             <span style="color: grey;">in the ${race} election.</span>
              </p>          
          </div>`);
       })

@@ -111,7 +111,7 @@ body:active,
   font-size: 55px;
   padding-left: 300px;
   padding-right: 300px;
-  padding-top: 15px;
+  /*padding-top: 15px;*/
 }
 
 .subtitle {
@@ -160,4 +160,12 @@ body:active,
   margin-top: 50px;
   font-weight: bold;
   font-size: 25px;
+}
+
+.tooltip-text {
+  border: thin solid grey;
+  border-radius: 5px;
+  background: rgb(251, 251, 251);
+  padding: 10px;
+  font-family: sans-serif;
 }
