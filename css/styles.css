@@ -190,3 +190,8 @@ body:active,
   font-weight: normal;
   margin-right: 30px;
 }
+
+/* Style for candidate photos */
+.clip-circle {
+  clip-path: circle(50%);
+}
