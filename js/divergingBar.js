@@ -33,9 +33,9 @@ class DivergingBarChart {
     vis.width = document.getElementById(vis.parentElement).getBoundingClientRect().width -
       vis.margin.left -
       vis.margin.right;
-    if (vis.width < 0) vis.width = 800;
+    if (vis.width < 0) vis.width = 600;
     // vis.width = 600 - vis.margin.left - vis.margin.right;
-    vis.height = 600 - vis.margin.top - vis.margin.bottom;
+    vis.height = 500 - vis.margin.top - vis.margin.bottom;
 
     // init drawing area
     vis.svg = d3
@@ -46,7 +46,7 @@ class DivergingBarChart {
       .append("g")
       .attr(
         "transform",
-        "translate(" + vis.margin.left + "," + vis.margin.top + ")"
+        "translate(" + (400 + vis.margin.left) + "," + (300 + vis.margin.top) + ")"
       );
 
     this.getCheckedCandidates();
@@ -236,8 +236,9 @@ class DivergingBarChart {
 
     console.log(vis.barData)
 
-    d3.select("#bar-chart-title").text(
-      `Top ${vis.barData.length} ${toTitleCase(vis.sector)} Contributors to ${vis.candidate1} and ${vis.candidate2}`
+    d3.select("#bar-chart-title").html(
+      `Top ${vis.barData.length} ${toTitleCase(vis.sector)} Contributors to <br>
+       ${vis.candidate1} and ${vis.candidate2}`
     ).attr("class", "plot-title");
 
     // X axis
@@ -259,10 +260,11 @@ class DivergingBarChart {
     // Second barplot Scales
     vis.ybis = d3.scaleRadial()
         .range([innerRadius, 2])   // Domain will be defined later.
-        .domain([0, d3.max(vis.barData, (d) => d["total_$_1"])]);
+        .domain([0, d3.max(vis.barData, (d) => d["total_$_2"])]);
 
     // Bars
-    vis.svg
+    vis.obars =
+        vis.svg.append("g")
         .selectAll("path")
         .data(vis.barData)
         .enter()
@@ -276,9 +278,10 @@ class DivergingBarChart {
             .padAngle(0.01)
             .padRadius(innerRadius))
         .attr("class", "bar")
-        //.attr("transform", "translate(100,400)")
+        // .attr("transform", "translate(100,400)")
 
-    vis.svg.append("g")
+  vis.ibars =
+      vis.svg.append("g")
         .selectAll("path")
         .data(vis.barData)
         .enter()
@@ -292,7 +295,10 @@ class DivergingBarChart {
             .padAngle(0.01)
             .padRadius(innerRadius))
         .attr("class", "bar")
-        //.attr("transform", "translate(100,400)")
+        // .attr("transform", "translate(100,400)")
+
+    vis.ibars.exit().remove();
+    vis.obars.exit().remove()
 
     // Add the labels
     vis.labels = vis.svg.append("g")
@@ -300,15 +306,18 @@ class DivergingBarChart {
         .data(vis.barData)
         .enter()
         .append("g")
+        .attr("class", "select-text-legend")
         .attr("text-anchor", d=> (vis.x(d.specific_business) + vis.x.bandwidth() / 2 + Math.PI) % (2 * Math.PI) < Math.PI ? "end" : "start")
-        .attr("transform", d=>"rotate(" + ((vis.x(d.specific_business) + vis.x.bandwidth() / 2) * 180 / Math.PI - 90) + ")"+"translate(" + (vis.y(d['total_$_1'])+10) + ",0)")
+        .attr("transform", d=>
+            "rotate(" + ((vis.x(d.specific_business) + vis.x.bandwidth() / 2) * 180 / Math.PI - 90) + ")"
+            +"translate(" + (vis.y(d['total_$_1'])+10) + ",0)")
         .append("text")
-        .text(d=>d.specific_business)
+        .text(d=>d.specific_business.toLowerCase())
         .attr("transform", d => (vis.x(d.specific_business) + vis.x.bandwidth() / 2 + Math.PI) % (2 * Math.PI) < Math.PI ? "rotate(180)" : "rotate(0)")
         .style("font-size", "11px")
         .attr("alignment-baseline", "middle")
-        .attr("class", "bar")
-    vis.svg.selectAll("bar")
-        .attr("transform", "translate(300,600)")
+        .attr("class", "bar-labels")
+
+    vis.labels.exit().remove()
   }
 }

@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e10fbf76-4bc2-4266-a013-4532991a2ebe" name="Changes" comment="PRG: checkbox">
+    <list default="true" id="e10fbf76-4bc2-4266-a013-4532991a2ebe" name="Changes" comment="PRG: double circular barplot">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/divergingBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/divergingBar.js" afterDir="false" />
@@ -328,7 +328,15 @@
       <option name="project" value="LOCAL" />
       <updated>1702145539895</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="PRG: double circular barplot">
+      <option name="closed" value="true" />
+      <created>1702159831199</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1702159831199</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -366,6 +374,7 @@
     <MESSAGE value="PRG: make tooltip pretty!" />
     <MESSAGE value="PRG: style plot titles!" />
     <MESSAGE value="PRG: checkbox" />
-    <option name="LAST_COMMIT_MESSAGE" value="PRG: checkbox" />
+    <MESSAGE value="PRG: double circular barplot" />
+    <option name="LAST_COMMIT_MESSAGE" value="PRG: double circular barplot" />
   </component>
 </project>
