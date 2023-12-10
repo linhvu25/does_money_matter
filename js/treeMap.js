@@ -31,14 +31,14 @@ class TreeMap {
       document.getElementById(vis.parentElement).getBoundingClientRect().width -
       vis.margin.left -
       vis.margin.right;
-    vis.height =
-      document.getElementById(vis.parentElement).getBoundingClientRect()
-        .height -
-      vis.margin.top -
-      vis.margin.bottom;
+    vis.height = 500;
+      // document.getElementById(vis.parentElement).getBoundingClientRect()
+      //   .height -
+      // vis.margin.top -
+      // vis.margin.bottom;
 
     if (vis.height < 400) vis.height = 400;
-    if (vis.width < 400) vis.width = 400;
+    // if (vis.width < 400) vis.width = 400;
 
     d3.select("#" + vis.parentElement)
       .select("svg")

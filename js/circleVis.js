@@ -190,15 +190,35 @@ class CircleVis {
       .delay(500)
       .attr("opacity", 1);
 
-    vis.simulation.nodes(vis.data).on("tick", function (d) {
+    vis.simulation.nodes(vis.data).on("tick", function () {
+      // Update circle positions
       vis.nodes
-        .attr("cx", function (d) {
-          return d.x;
-        })
-        .attr("cy", function (d) {
-          return d.y;
-        });
+          .attr("cx", function (d) {
+            return d.x;
+          })
+          .attr("cy", function (d) {
+            return d.y;
+          });
+
+      // append candidate photos to respective circles
+
+      let images = vis.svg.selectAll("image")
+          .data(vis.data);
+
+      images.enter()
+          .append("image")
+          .merge(images)
+          .attr("xlink:href", d => "data/photos/" + d.candidate.replace(/\s/g, '') + ".jpeg")
+          .attr("x", d => d.x - vis.radius(d.total_$) * 0.45)
+          .attr("y", d => d.y - vis.radius(d.total_$) * 0.45)
+          .attr("width", d => vis.radius(d.total_$))
+          .attr("height", d => vis.radius(d.total_$))
+          .attr("id", "candidate-image") // ref mapVis.js to remove when state selection updated
+          .attr("class", "clip-circle") // clip into circle; ref css
+          .on("error", function() {
+            d3.select(this).style("display", "none"); //dont display if image does not exist for candidate
     });
+
 
     vis.nodes
       .on("mouseover", function (event, d) {
@@ -238,5 +258,5 @@ class CircleVis {
         let state = state_abbrev[d.election_jurisdiction];
         new TreeMap("treeMap", state, selectedIndex);
       });
-  }
-}
+  })
+}};
