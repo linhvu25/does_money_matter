@@ -221,6 +221,7 @@ class MapVis {
                 : `translate(0,20), scale(${vis.zoom / 3} ${vis.zoom / 3})`
             );
 
+          //removing candidate images
           d3.selectAll("#candidate-image").remove();
 
           vis.scaled = !vis.scaled;
