@@ -41,7 +41,9 @@ class DivBarChart {
         vis.y = d3.scaleBand().range([vis.height, 0]).padding(0.1);
 
         // initialize axes
-        vis.xAxis = d3.axisBottom(vis.x).ticks(5);
+        vis.xAxis = d3.axisBottom(vis.x)
+            .ticks(12)
+            .tickFormat(d => Math.abs(d));
         vis.yAxis = d3.axisLeft(vis.y);
 
         // x-axis
