@@ -193,69 +193,76 @@ class CircleVis {
     vis.simulation.nodes(vis.data).on("tick", function () {
       // Update circle positions
       vis.nodes
-          .attr("cx", function (d) {
-            return d.x;
-          })
-          .attr("cy", function (d) {
-            return d.y;
-          });
+        .attr("cx", function (d) {
+          return d.x;
+        })
+        .attr("cy", function (d) {
+          return d.y;
+        });
 
       // append candidate photos to respective circles
 
-      let images = vis.svg.selectAll("image")
-          .data(vis.data);
+      //   let images = vis.svg.selectAll("image")
+      //       .data(vis.data);
 
-      images.enter()
-          .append("image")
-          .merge(images)
-          .attr("xlink:href", d => "data/photos/" + d.candidate.replace(/\s/g, '') + ".jpeg")
-          .attr("x", d => d.x - vis.radius(d.total_$) * 0.45)
-          .attr("y", d => d.y - vis.radius(d.total_$) * 0.45)
-          .attr("width", d => vis.radius(d.total_$))
-          .attr("height", d => vis.radius(d.total_$))
-          .attr("id", "candidate-image") // ref mapVis.js to remove when state selection updated
-          .attr("class", "clip-circle") // clip into circle; ref css
-          .on("error", function() {
-            d3.select(this).style("display", "none"); //dont display if image does not exist for candidate
-    });
+      //   images.enter()
+      //       .append("image")
+      //       .merge(images)
+      //       .attr("xlink:href", d => "data/photos/" + d.candidate.replace(/\s/g, '') + ".jpeg")
+      //       .attr("x", d => d.x - vis.radius(d.total_$) * 0.45)
+      //       .attr("y", d => d.y - vis.radius(d.total_$) * 0.45)
+      //       .attr("width", d => vis.radius(d.total_$))
+      //       .attr("height", d => vis.radius(d.total_$))
+      //       .attr("id", "candidate-image") // ref mapVis.js to remove when state selection updated
+      //       .attr("class", "clip-circle") // clip into circle; ref css
+      //       .on("error", function() {
+      //         d3.select(this).style("display", "none"); //dont display if image does not exist for candidate
+      // });
 
-    vis.nodes
-      .on("mouseover", function (event, d) {
-        //   console.log(d);
-        const [outcome, race] = d.election_status
-          .split("-")
-          .map((x) => x.toLowerCase());
+      vis.nodes
+        .on("mouseover", function (event, d) {
+          //   console.log(d);
+          const [outcome, race] = d.election_status
+            .split("-")
+            .map((x) => x.toLowerCase());
 
-        var name = getName(d.candidate);
+          var name = getName(d.candidate);
 
-        vis.tooltip
-          .style("opacity", 1)
-          .style("left", event.pageX + 20 + "px")
-          .style("top", event.pageY + "px").html(`
+          vis.tooltip
+            .style("opacity", 1)
+            .style("left", event.pageX + 20 + "px")
+            .style("top", event.pageY + "px").html(`
          <div class="tooltip-text">
              <p>
              <b style="color: #4a7c47; font-size:18px">${name}</b> <br>
-             <span style="color: grey;">${toTitleCase(d.incumbency_status)}</span> <br>
+             <span style="color: grey;">${toTitleCase(
+               d.incumbency_status
+             )}</span> <br>
              <span style="color: grey;">Total contributions:</span> 
              <b style="color: #4a7c47">${d3.format("$,")(d.total_$)}</b> <br>
-             <b style="color: #4a7c47">${outcome.replace(/^(\w)/, (x) => x.toUpperCase())}</b> 
+             <b style="color: #4a7c47">${outcome.replace(/^(\w)/, (x) =>
+               x.toUpperCase()
+             )}</b> 
              <span style="color: grey;">in the ${race} election.</span>
              </p>          
          </div>`);
-      })
-      .on("mouseout", function (event, d) {
-        vis.tooltip
-          .style("opacity", 0)
-          .style("left", 0)
-          .style("top", 0)
-          .html(``);
-      })
-      .on("click", function (event, d) {
-        const selectBox = document.getElementById("map-tree-candidate-select");
-        const candidates = Array.from(selectBox.options).map((d) => d.value);
-        const selectedIndex = candidates.indexOf(d.candidate);
-        let state = state_abbrev[d.election_jurisdiction];
-        new TreeMap("treeMap", state, selectedIndex);
-      });
-  })
-}};
+        })
+        .on("mouseout", function (event, d) {
+          vis.tooltip
+            .style("opacity", 0)
+            .style("left", 0)
+            .style("top", 0)
+            .html(``);
+        })
+        .on("click", function (event, d) {
+          const selectBox = document.getElementById(
+            "map-tree-candidate-select"
+          );
+          const candidates = Array.from(selectBox.options).map((d) => d.value);
+          const selectedIndex = candidates.indexOf(d.candidate);
+          let state = state_abbrev[d.election_jurisdiction];
+          new TreeMap("treeMap", state, selectedIndex);
+        });
+    });
+  }
+}
