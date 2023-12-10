@@ -146,20 +146,19 @@ class MapVis {
 
     function setFill() {
       var map_fill_select = document.getElementById("map-fill-select");
-      var map_fill =
-        map_fill_select.options[map_fill_select.selectedIndex].value;
-      if (map_fill == "all") {
+      var map_fill = map_fill_select.options[map_fill_select.selectedIndex].value;
+      if (map_fill === "all") {
         vis.states
           .transition()
           .duration(500)
-          .attr("fill", (d) =>
+          .style("fill", (d) =>
             vis.color(vis.senateSpending[d.properties.name].total_$)
           );
       } else {
         vis.states
           .transition()
           .duration(500)
-          .attr("fill", (d) =>
+          .style("fill", (d) =>
             vis.senateSpending[d.properties.name].total_$ > 100000000
               ? vis.color(vis.senateSpending[d.properties.name].total_$)
               : backgroundColor
@@ -227,7 +226,11 @@ class MapVis {
           vis.scaled = !vis.scaled;
           if (vis.scaled) {
             new CircleVis(vis.parentElement, d.properties.name);
-            new TreeMap("treeMap", d.properties.name);
+
+            if(d.properties.name === "South Carolina") d.properties.name = 'south_carolina'
+            d3.csv(`data/candidate_totals/${d.properties.name}.csv`).then((data) => {
+              new TreeMap("treeMap", d.properties.name, data);
+            });
 
             vis.states.transition().duration(500).attr("fill", backgroundColor);
             d3.select(this)

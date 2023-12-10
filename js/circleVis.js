@@ -1,11 +1,9 @@
 class CircleVis {
-  constructor(parentElement, stateName) {
-    var clean_state = stateName.replace(/\s/, "_").toLowerCase();
-    this.state = clean_state;
-    this.stateName = stateName;
-    this.parentElement = parentElement;
+  constructor(_parentElement, _stateName) {
+    this.state = _stateName.replace(/\s/, "_").toLowerCase();
+    this.stateName = _stateName;
+    this.parentElement = _parentElement;
     this.data = [];
-    this.raceSummary = "";
     this.initVis();
   }
 

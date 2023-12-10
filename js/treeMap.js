@@ -4,33 +4,22 @@
 
 class TreeMap {
   // constructor method to initialize Timeline object
-  constructor(_parentElement, _state, selectedCandidate = 0) {
+  constructor(_parentElement, _state, _data) {
     this.parentElement = _parentElement;
-    var clean_state = _state.replace(/\s/, "_").toLowerCase();
-    this.state = clean_state;
-    this.year = "";
-    this.candidates = [];
-    this.selectedCandidate = selectedCandidate;
-    this.data = [];
+    this.state = _state.replace(/\s/, "_").toLowerCase();
+    this.data = _data;
+    console.log("tree data", this.data)
+    this.candidates = [
+      "All Candidates",
+      ...new Set(_data.map((d) => d.candidate)),
+    ];
+    this.year = this.data[0].election_year;
     this.displayData = [];
     this.wrangledData = [];
     this.treeData = [];
 
     // call initVis method
-    this.getData();
-  }
-  getData() {
-    let vis = this;
-
-    d3.csv(`data/candidate_totals/${vis.state}.csv`).then((data) => {
-      vis.data = data;
-      vis.year = vis.data[0].election_year;
-      vis.candidates = [
-        "All Candidates",
-        ...new Set(vis.data.map((d) => d.candidate)),
-      ];
-      vis.initVis();
-    });
+    this.initVis();
   }
   initVis() {
     let vis = this;
@@ -80,9 +69,6 @@ class TreeMap {
       .append("option")
       .attr("value", (d) => (d == "All Candidates" ? "all" : d))
       .text((d) => (d == "All Candidates" ? d : getName(d)));
-
-    document.getElementById("map-tree-candidate-select").selectedIndex =
-      vis.selectedCandidate;
 
     vis.wrangleData();
 
@@ -248,7 +234,11 @@ class TreeMap {
       })
       .on("click", function (event, d) {
         d3.select("#barChart").select("svg").remove();
-        new DivergingBarChart("barChart", vis.state, d.id);
+
+        d3.csv(`data/candidate_totals/${vis.state}.csv`).then((data) => {
+          console.log("diverging bar", data)
+          new DivergingBarChart("barChart", data, vis.state, d.id);
+        });
       });
 
     // and to add the text labels
