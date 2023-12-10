@@ -278,7 +278,7 @@ class DivBarChart {
             .attr("y", d => vis.y(d.specific_business))
             .attr("width", d => Math.abs(vis.x(0) - vis.x(-d.total_$_1))) // Width = distance from zero
             .attr("height", vis.y.bandwidth())
-            .attr("fill", "#1f77b4"); // change color for candidate1 to match color scheme
+            .attr("fill", "green"); // change color for candidate1 to match color scheme
 
         //console.log("bar candidate 1")
 
@@ -292,7 +292,7 @@ class DivBarChart {
             .attr("y", d => vis.y(d.specific_business))
             .attr("width", d => Math.abs(vis.x(d.total_$_2) - vis.x(0))) // width = distance from zero
             .attr("height", vis.y.bandwidth())
-            .attr("fill", "#ff7f0e"); // chage color for candidate2 to match color scheme
+            .attr("fill", "red"); // chage color for candidate2 to match color scheme
 
         // Remove previous labels to update
         vis.svg.selectAll(".candidate-label").remove();
