@@ -1,6 +1,6 @@
-let backgroundColor = "rgb(221,255,221)"
-    plotColor = "rgb(89,182,105)"
-    highlightColor = "#4a7c47"
+let backgroundColor = "#aaaaaa40";
+plotColor = "rgb(89,182,105)";
+highlightColor = "#4a7c47";
 
 let promises = [
   d3.json("https://cdn.jsdelivr.net/npm/us-atlas@3/states-albers-10m.json"),
@@ -101,14 +101,17 @@ function initVis(states, senateSpending) {
   //new TreeMap("treeMap", "georgia");
 }
 
-
 //below is for the diverging bar chart
 //need to change it to make dynamic like the other visualiations
-d3.csv("data/candidate_totals/arizona.csv").then(data => {
-
-  data.forEach(d => {
+d3.csv("data/candidate_totals/arizona.csv").then((data) => {
+  data.forEach((d) => {
     d.total_$ = +d.total_$.replace(/[$,]/g, "");
   });
 
-  myDivBar = new DivBarChart("#divBar", data, 'KELLY, MARK', 'MCSALLY, MARTHA E');
+  myDivBar = new DivBarChart(
+    "#divBar",
+    data,
+    "KELLY, MARK",
+    "MCSALLY, MARTHA E"
+  );
 });
