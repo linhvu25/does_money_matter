@@ -22,9 +22,11 @@ class MapVis {
       vis.margin.top -
       vis.margin.bottom;
 
-    console.log(document.getElementById(vis.parentElement).getBoundingClientRect().width,
-        document.getElementById(vis.parentElement).getBoundingClientRect().height)
-    
+    console.log(
+      document.getElementById(vis.parentElement).getBoundingClientRect().width,
+      document.getElementById(vis.parentElement).getBoundingClientRect().height
+    );
+
     if (vis.height < 400) vis.height = 400;
 
     vis.svg = d3
@@ -150,19 +152,20 @@ class MapVis {
 
     function setFill() {
       var map_fill_select = document.getElementById("map-fill-select");
-      var map_fill = map_fill_select.options[map_fill_select.selectedIndex].value;
+      var map_fill =
+        map_fill_select.options[map_fill_select.selectedIndex].value;
       if (map_fill === "all") {
         vis.states
           .transition()
           .duration(500)
-          .style("fill", (d) =>
+          .attr("fill", (d) =>
             vis.color(vis.senateSpending[d.properties.name].total_$)
           );
       } else {
         vis.states
           .transition()
           .duration(500)
-          .style("fill", (d) =>
+          .attr("fill", (d) =>
             vis.senateSpending[d.properties.name].total_$ > 100000000
               ? vis.color(vis.senateSpending[d.properties.name].total_$)
               : backgroundColor
@@ -209,7 +212,6 @@ class MapVis {
          </div>`);
       })
       .on("click", function (event, d) {
-
         if (
           vis.scaled ||
           vis.senateSpending[d.properties.name].total_$ > 100000000
@@ -231,8 +233,8 @@ class MapVis {
           if (vis.scaled) {
             new CircleVis(vis.parentElement, d.properties.name);
 
-            if(d.properties.name === "South Carolina") d.properties.name = 'south_carolina'
-            d3.csv(`data/candidate_totals/${d.properties.name}.csv`).then((data) => {
+            var state_name = d.properties.name.replace(/\s/, "_").toLowerCase();
+            -d3.csv(`data/candidate_totals/${state_name}.csv`).then((data) => {
               new TreeMap("treeMap", d.properties.name, data);
             });
 
@@ -240,7 +242,9 @@ class MapVis {
             d3.select(this)
               .transition()
               .duration(500)
-              .attr("fill", highlightColor);
+              .attr("fill", (d) =>
+                vis.color(vis.senateSpending[d.properties.name].total_$)
+              );
             d3.select("#map-desc").html(``);
           } else {
             d3.select("#candidate-circles")
@@ -285,7 +289,6 @@ class MapVis {
             );
           d3.select("#candidate-circles").transition().delay(500).remove();
           //d3.select("#candidate-image").remove();
-
         }
       });
     vis.states.on("mouseout", function (event, d) {
