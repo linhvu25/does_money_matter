@@ -234,10 +234,12 @@ class TreeMap {
       })
       .on("click", function (event, d) {
         d3.select("#barChart").select("svg").remove();
+        d3.select("#divBarChart").select("svg").remove();
 
         d3.csv(`data/candidate_totals/${vis.state}.csv`).then((data) => {
           // console.log("diverging bar", data)
           myDivergingViz = new DivergingBarChart("barChart", data, vis.state, d.id);
+          myDivBarChart = new DivBarChart("divBarChart", data, vis.state, d.id);
         });
       });
 

@@ -175,8 +175,22 @@
 
       <section>
         <div class="inner">
-          <div class="row justify-content-center">
-            <div id="divBar"></div>
+          <div class="col">
+            <div class="row" id="div-bar-chart-title">
+
+            </div>
+            <div class="row justify-content-center">
+              <div class="col">
+                <div class="row justify-content-center" id="checkboxContainer2"></div>
+              </div>
+              <div class="col-2 checkbox-label" style="margin-top: 30px">
+                <button onclick="myDivBarChart.getCheckedCandidates()"> Update chart! </button>
+              </div>
+            </div>
+            <div class="row justify-content-center" id="divBarChart">
+              <!--Barchart-->
+
+            </div>
           </div>
         </div>
       </section>

@@ -1,5 +1,6 @@
 
 let myDivergingViz;
+let myDivBarChart;
 
 let backgroundColor = "rgb(221,255,221)"
     plotColor = "rgb(89,182,105)"
@@ -107,11 +108,11 @@ function initVis(states, senateSpending) {
 
 //below is for the diverging bar chart
 //need to change it to make dynamic like the other visualiations
-d3.csv("data/candidate_totals/arizona.csv").then(data => {
+/*d3.csv("data/candidate_totals/arizona.csv").then(data => {
 
   data.forEach(d => {
     d.total_$ = +d.total_$.replace(/[$,]/g, "");
   });
 
   myDivBar = new DivBarChart("#divBar", data, 'KELLY, MARK', 'MCSALLY, MARTHA E');
-});
+});*/
