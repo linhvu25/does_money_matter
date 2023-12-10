@@ -219,7 +219,6 @@ class CircleVis {
             d3.select(this).style("display", "none"); //dont display if image does not exist for candidate
     });
 
-
     vis.nodes
       .on("mouseover", function (event, d) {
         //   console.log(d);
