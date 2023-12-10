@@ -21,6 +21,10 @@ class MapVis {
         .height -
       vis.margin.top -
       vis.margin.bottom;
+
+    console.log(document.getElementById(vis.parentElement).getBoundingClientRect().width,
+        document.getElementById(vis.parentElement).getBoundingClientRect().height)
+    
     if (vis.height < 400) vis.height = 400;
 
     vis.svg = d3
@@ -221,7 +225,6 @@ class MapVis {
                 : `translate(0,20), scale(${vis.zoom / 3} ${vis.zoom / 3})`
             );
 
-          //removing candidate images
           d3.selectAll("#candidate-image").remove();
 
           vis.scaled = !vis.scaled;
