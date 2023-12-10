@@ -237,7 +237,7 @@ class TreeMap {
 
         d3.csv(`data/candidate_totals/${vis.state}.csv`).then((data) => {
           // console.log("diverging bar", data)
-          myDivergingViz= new DivergingBarChart("barChart", data, vis.state, d.id);
+          myDivergingViz = new DivergingBarChart("barChart", data, vis.state, d.id);
         });
       });
 

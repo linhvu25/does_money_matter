@@ -1,5 +1,5 @@
 
-let myDivervingViz;
+let myDivergingViz;
 
  let backgroundColor = "rgb(221,255,221)"
     plotColor = "rgb(89,182,105)"
