@@ -4,38 +4,33 @@
 
 class DivergingBarChart {
   // constructor method to initialize Timeline object
-  constructor(_parentElement, _state, sector) {
+  constructor(_parentElement, _data, _state, _sector) {
     this.parentElement = _parentElement;
-    var clean_state = _state.replace(/\s/, "_").toLowerCase();
-    this.state = clean_state;
-    this.sector = sector;
-    this.data = [];
+    this.data = _data;
+    this.state = _state.replace(/\s/, "_").toLowerCase();;
+    this.sector = _sector;
     this.barData = [];
 
     // call initVis method
-    this.getData();
-  }
-
-  getData() {
-    let vis = this;
-
-    d3.csv(`data/candidate_totals/${vis.state}.csv`).then((data) => {
-      vis.data = data;
-      vis.initVis();
-    });
+    this.initVis();
   }
 
   initVis() {
     let vis = this;
 
     // margin conventions
-    vis.margin = { top: 10, right: 50, bottom: 20, left: 300 };
+    vis.margin = { top: 10, right: 50, bottom: 20, left: 50 };
     vis.width = document.getElementById(vis.parentElement).getBoundingClientRect().width -
       vis.margin.left -
       vis.margin.right;
-    if (vis.width < 0) vis.width = 600;
-    // vis.width = 600 - vis.margin.left - vis.margin.right;
-    vis.height = 500 - vis.margin.top - vis.margin.bottom;
+    vis.height = document.getElementById(vis.parentElement).getBoundingClientRect().height -
+        vis.margin.top -
+        vis.margin.bottom;
+
+    if (vis.height < 400) vis.height = 400 - vis.margin.top - vis.margin.bottom;
+    // if (vis.width < 0) vis.width = 600;
+    // // vis.width = 600 - vis.margin.left - vis.margin.right;
+    // vis.height = 500 - vis.margin.top - vis.margin.bottom;
 
     // init drawing area
     vis.svg = d3
