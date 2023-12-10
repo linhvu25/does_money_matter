@@ -1,3 +1,6 @@
+
+let myDivergingViz;
+
 let backgroundColor = "rgb(221,255,221)"
     plotColor = "rgb(89,182,105)"
     highlightColor = "#4a7c47"
