@@ -233,7 +233,9 @@ class TreeMap {
           .html(``);
       })
       .on("click", function (event, d) {
+        //circular diverging bar chart
         d3.select("#barChart").select("svg").remove();
+        //linear diverging bar chart
         d3.select("#divBarChart").select("svg").remove();
 
         d3.csv(`data/candidate_totals/${vis.state}.csv`).then((data) => {

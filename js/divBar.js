@@ -1,3 +1,4 @@
+//linear horizontal diverging bar chart
 
 class DivBarChart {
     constructor(_parentElement, _data, _state, _sector) {

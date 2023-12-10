@@ -104,15 +104,3 @@ function initVis(states, senateSpending) {
   myMapVis = new MapVis("map-svg", states, senateSpending);
   //new TreeMap("treeMap", "georgia");
 }
-
-
-//below is for the diverging bar chart
-//need to change it to make dynamic like the other visualiations
-/*d3.csv("data/candidate_totals/arizona.csv").then(data => {
-
-  data.forEach(d => {
-    d.total_$ = +d.total_$.replace(/[$,]/g, "");
-  });
-
-  myDivBar = new DivBarChart("#divBar", data, 'KELLY, MARK', 'MCSALLY, MARTHA E');
-});*/
