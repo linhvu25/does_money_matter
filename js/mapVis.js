@@ -206,6 +206,7 @@ class MapVis {
          </div>`);
       })
       .on("click", function (event, d) {
+
         if (
           vis.scaled ||
           vis.senateSpending[d.properties.name].total_$ > 100000000
@@ -220,6 +221,8 @@ class MapVis {
                 ? `translate(0,20), scale(${vis.zoom} ${vis.zoom})`
                 : `translate(0,20), scale(${vis.zoom / 3} ${vis.zoom / 3})`
             );
+
+          d3.selectAll("#candidate-image").remove();
 
           vis.scaled = !vis.scaled;
           if (vis.scaled) {
@@ -266,12 +269,16 @@ class MapVis {
           </h6>`);
           }
 
+          //d3.selectAll("#candidate-image").remove();
+
           d3.select("#race-info")
             .attr("class", "support-text")
             .text(
               "States with more than $100 million in total contributions are clickable."
             );
           d3.select("#candidate-circles").transition().delay(500).remove();
+          //d3.select("#candidate-image").remove();
+
         }
       });
     vis.states.on("mouseout", function (event, d) {
