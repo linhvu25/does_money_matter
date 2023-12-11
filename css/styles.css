@@ -217,3 +217,10 @@ body:active,
   border-radius: 8px;
   pointer-events: none;
 }
+
+/*!* Style for divBar gridlines*!
+.grid line {
+  stroke: lightgrey;
+  stroke-opacity: 0.7;
+  shape-rendering: crispEdges;
+}*/

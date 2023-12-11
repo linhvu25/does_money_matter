@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e10fbf76-4bc2-4266-a013-4532991a2ebe" name="Changes" comment="reformatted names">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="e10fbf76-4bc2-4266-a013-4532991a2ebe" name="Changes" comment="currency formatted">
       <change beforePath="$PROJECT_DIR$/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/divBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/divBar.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/mapVis.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/mapVis.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -441,7 +439,15 @@
       <option name="project" value="LOCAL" />
       <updated>1702261480210</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="currency formatted">
+      <option name="closed" value="true" />
+      <created>1702265868650</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1702265868651</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -459,7 +465,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="note where bug is" />
     <MESSAGE value="PRG: add bar charts" />
     <MESSAGE value="PRG: fixed tree map bug(ish)" />
     <MESSAGE value="PRG: add hover for tree map" />
@@ -484,6 +489,7 @@
     <MESSAGE value="added hover tooltip" />
     <MESSAGE value="fixed tooltips to match the others" />
     <MESSAGE value="reformatted names" />
-    <option name="LAST_COMMIT_MESSAGE" value="reformatted names" />
+    <MESSAGE value="currency formatted" />
+    <option name="LAST_COMMIT_MESSAGE" value="currency formatted" />
   </component>
 </project>
