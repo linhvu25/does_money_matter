@@ -300,7 +300,7 @@ class DivergingBarChart {
                    <br/>
                    <span style="color: grey;">Contributions: </span> 
                    <b style="color: #4a7c47">${d3.format("$,")(
-                        d.total_$_2
+                        d.total_$_1
                     )}</b>
                    </p>          
                </div>`)
