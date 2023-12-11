@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e10fbf76-4bc2-4266-a013-4532991a2ebe" name="Changes" comment="added hover tooltip">
+    <list default="true" id="e10fbf76-4bc2-4266-a013-4532991a2ebe" name="Changes" comment="fixed tooltips to match the others">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/styles.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/divBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/divBar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/mapVis.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/mapVis.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -424,7 +424,15 @@
       <option name="project" value="LOCAL" />
       <updated>1702258964673</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="fixed tooltips to match the others">
+      <option name="closed" value="true" />
+      <created>1702260430063</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1702260430063</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -442,7 +450,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="BUG: can't get treemap to work (if I remove the example then code doesn't run)" />
     <MESSAGE value="still bug" />
     <MESSAGE value="note where bug is" />
     <MESSAGE value="PRG: add bar charts" />
@@ -467,6 +474,7 @@
     <MESSAGE value="x axis is now all positive values" />
     <MESSAGE value="padding added to prevent divBar title cut off" />
     <MESSAGE value="added hover tooltip" />
-    <option name="LAST_COMMIT_MESSAGE" value="added hover tooltip" />
+    <MESSAGE value="fixed tooltips to match the others" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed tooltips to match the others" />
   </component>
 </project>

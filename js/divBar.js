@@ -247,7 +247,7 @@ class DivBarChart {
 
         d3.select("#div-bar-chart-title").html(
             `Top ${vis.barData.length} ${toTitleCase(vis.sector)} Contributors to <br>
-       ${vis.candidate1} and ${vis.candidate2}`
+       <u>${getName(vis.candidate1)}</u> and <u>${getName(vis.candidate2)}</u>`
         ).attr("class", "plot-title");
 
         // maxTotal is max value for total_$ across all candidates and specific businesses
@@ -290,7 +290,7 @@ class DivBarChart {
             .attr("y", 0) // Positioned just at top of the x-axis
             .attr("dy", "-0.5em") // Slightly above the x-axis line
             .style("text-anchor", "middle") // center the text above the bar?
-            .text(vis.candidate1); // Candidate1 name from constructor
+            .text(getName(vis.candidate1)); // Candidate1 name from constructor
 
         // Add candidate label for candidate2 above the right bars
         vis.svg.append("text")
@@ -299,7 +299,7 @@ class DivBarChart {
             .attr("y", 0)
             .attr("dy", "-0.5em")
             .style("text-anchor", "middle")
-            .text(vis.candidate2);
+            .text(getName(vis.candidate2));
 
         // x axis label
         vis.svg.append("text")
@@ -335,7 +335,7 @@ class DivBarChart {
                     .style("opacity", .9);
                 vis.tooltip.html(`
           <div class="tooltip-text">
-             <b style="color: #4a7c47; font-size:18px">${vis.candidate1}</b>
+             <b style="color: #4a7c47; font-size:18px">${getName(vis.candidate1)}</b>
              <p>
              <span style="color: grey;">Business: </span> 
              <b style="color: #4a7c47">${
@@ -375,7 +375,7 @@ class DivBarChart {
                     .style("opacity", .9);
                 vis.tooltip.html(`
           <div class="tooltip-text">
-             <b style="color: #4a7c47; font-size:18px">${vis.candidate2}</b>
+             <b style="color: #4a7c47; font-size:18px">${getName(vis.candidate2)}</b>
              <p>
              <span style="color: grey;">Business: </span> 
              <b style="color: #4a7c47">${
