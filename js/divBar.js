@@ -417,4 +417,5 @@ class DivBarChart {
         //bars.exit().remove();
     };
 
+
 };
