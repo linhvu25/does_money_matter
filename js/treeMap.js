@@ -192,6 +192,12 @@ class TreeMap {
     // console.log("my root", vis.root);
 
     //console.log("my leaves", vis.root.leaves());
+    d3.csv(`data/candidate_totals/maine.csv`).then((data) => {
+      //new TreeMap("treeMap", "Maine", data);
+      myDivergingViz = new DivergingBarChart("barChart", data, "Maine", "FINANCE, INSURANCE & REAL ESTATE");
+      myDivBarChart = new DivBarChart("divBarChart", data, "Maine", "FINANCE, INSURANCE & REAL ESTATE");
+    });
+
     // use this information to add rectangles:
     vis.leaves = vis.svg
       .selectAll("rect")
