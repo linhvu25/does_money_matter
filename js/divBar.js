@@ -398,7 +398,7 @@ class DivBarChart {
                     .duration(500)
                     .style("opacity", 0)});
 
-        bars.exit().remove();
+        //bars.exit().remove();
     };
 
 };

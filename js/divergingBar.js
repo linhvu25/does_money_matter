@@ -9,6 +9,7 @@ class DivergingBarChart {
     this.data = _data;
     this.state = _state.replace(/\s/, "_").toLowerCase();;
     this.sector = _sector;
+    this.bothCandidates = [];
     this.barData = [];
 
     // call initVis method
@@ -19,7 +20,7 @@ class DivergingBarChart {
     let vis = this;
 
     // margin conventions
-    vis.margin = { top: 10, right: 50, bottom: 20, left: 50 };
+    vis.margin = { top: 50, right: 150, bottom: 50, left: 150 };
     vis.width = document.getElementById(vis.parentElement).getBoundingClientRect().width -
       vis.margin.left -
       vis.margin.right;
@@ -41,7 +42,7 @@ class DivergingBarChart {
       .append("g")
       .attr(
         "transform",
-        "translate(" + (400 + vis.margin.left) + "," + (300 + vis.margin.top) + ")"
+        "translate(" + (500 + vis.margin.left) + "," + (200 + vis.margin.top) + ")"
       );
 
     this.getCheckedCandidates();
@@ -78,14 +79,17 @@ class DivergingBarChart {
       checkbox.id = "checkbox" + candidate.id;
       checkbox.className = "custom-checkbox";
 
-      // Check the first two checkboxes automatically
-      if (candidate.id <= 2) {
-        checkbox.checked = true;
-        vis.checkedCandidates.push(candidate.name);
+      // Check the first two checkboxes automatically for states that are not Georgia
+      if (vis.state !== "georgia"){
+        if (candidate.id <= 2){
+          checkbox.checked = true;
+          vis.checkedCandidates.push(candidate.name);
+        }
       }
 
       // Add event listener to track checkbox changes
-      checkbox.addEventListener("change", function() {
+      checkbox.addEventListener("change", function(event) {
+        console.log(candidate.name, checkbox.checked)
         updateCheckedCandidates(candidate.name, checkbox.checked);
       });
 
@@ -123,6 +127,7 @@ class DivergingBarChart {
         var index = vis.checkedCandidates.indexOf(candidateName);
         if (index !== -1) vis.checkedCandidates.splice(index, 1);
       }
+      vis.bothCandidates = vis.checkedCandidates;
     }
 
     // Initial creation of checkboxes
@@ -133,6 +138,9 @@ class DivergingBarChart {
 
   wrangleData() {
     let vis = this;
+    console.log("here")
+
+    console.log(vis.bothCandidates);
 
     // var candidate_select = document.getElementById("map-tree-candidate-select");
     vis.candidate1 = vis.checkedCandidates[0]
@@ -231,6 +239,10 @@ class DivergingBarChart {
 
     console.log(vis.barData)
 
+    this.tooltip = d3.select("body").append("div")
+        .attr("class", "tooltip")
+        .style("opacity", 0);
+
     d3.select("#bar-chart-title").html(
       `Top ${vis.barData.length} ${toTitleCase(vis.sector)} Contributors to <br>
        ${vis.candidate1} and ${vis.candidate2}`
@@ -273,6 +285,32 @@ class DivergingBarChart {
             .padAngle(0.01)
             .padRadius(innerRadius))
         .attr("class", "bar")
+            .on("mouseover", function(event, d) {
+              vis.tooltip.transition()
+                  .duration(200)
+                  .style("opacity", .9);
+              vis.tooltip.html(`
+                <div class="tooltip-text">
+                   <b style="color: #4a7c47; font-size:18px">${getName(vis.candidate1)}</b>
+                   <p>
+                   <span style="color: grey;">Business: </span> 
+                   <b style="color: #4a7c47">${
+                        d.specific_business
+                    }</b> 
+                   <br/>
+                   <span style="color: grey;">Contributions: </span> 
+                   <b style="color: #4a7c47">${d3.format("$,")(
+                        d.total_$_2
+                    )}</b>
+                   </p>          
+               </div>`)
+                  .style("left", (event.pageX) + "px")
+                  .style("top", (event.pageY - 28) + "px");
+            })
+            .on("mouseout", function(event, d) {
+              vis.tooltip.transition()
+                  .duration(500)
+                  .style("opacity", 0)});
         // .attr("transform", "translate(100,400)")
 
   vis.ibars =
@@ -290,7 +328,32 @@ class DivergingBarChart {
             .padAngle(0.01)
             .padRadius(innerRadius))
         .attr("class", "bar")
-        // .attr("transform", "translate(100,400)")
+          .on("mouseover", function(event, d) {
+      vis.tooltip.transition()
+          .duration(200)
+          .style("opacity", .9);
+      vis.tooltip.html(`
+            <div class="tooltip-text">
+               <b style="color: #4a7c47; font-size:18px">${getName(vis.candidate2)}</b>
+               <p>
+               <span style="color: grey;">Business: </span> 
+               <b style="color: #4a7c47">${
+            d.specific_business
+        }</b> 
+               <br/>
+               <span style="color: grey;">Contributions: </span> 
+               <b style="color: #4a7c47">${d3.format("$,")(
+            d.total_$_2
+        )}</b>
+               </p>          
+           </div>`)
+          .style("left", (event.pageX) + "px")
+          .style("top", (event.pageY - 28) + "px");
+    })
+        .on("mouseout", function(event, d) {
+          vis.tooltip.transition()
+              .duration(500)
+              .style("opacity", 0)});
 
     vis.ibars.exit().remove();
     vis.obars.exit().remove()
