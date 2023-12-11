@@ -8,6 +8,18 @@ class DivBarChart {
         this.sector = _sector;
         this.barData = [];
 
+
+        console.log("Attempting to append placeholder text to", this.parentElement);
+
+        // Add placeholder message
+        d3.select("#" + this.parentElement)
+            .append("div")
+            .attr("class", "viz-placeholder")
+            .text("Visualization will appear here after data is loaded.");
+
+        console.log("Placeholder text appended to", this.parentElement);
+
+
         // call initVis method
         this.initVis();
     }
@@ -56,6 +68,10 @@ class DivBarChart {
         //  y-axis
         vis.svg.append("g")
             .attr("class", "y-axis");
+
+        //remove placeholder message when svg is appended
+        d3.select("#" + this.parentElement).select(".viz-placeholder").remove();
+
 
         vis.getCheckedCandidates();
     }
@@ -305,7 +321,7 @@ class DivBarChart {
 
         // x axis label
         vis.svg.append("text")
-            .attr("class", "x label")
+            .attr("class", "x-label")
             .attr("text-anchor", "middle")
             .attr("x", vis.width / 4 )
             .attr("y", vis.height + vis.margin.bottom - 25)
@@ -313,7 +329,7 @@ class DivBarChart {
 
         // y axis label
         vis.svg.append("text")
-            .attr("class", "y label")
+            .attr("class", "y-label")
             .attr("text-anchor", "end")
             .attr("y", 6)
             .attr("dy", ".75em")

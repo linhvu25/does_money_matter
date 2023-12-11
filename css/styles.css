@@ -210,7 +210,7 @@ body:active,
 .tooltip {
   position: absolute;
   text-align: center;
-  padding: 8px;
+  padding: 4px;
   font: 12px sans-serif;
   background: lightgreen;
   border: 0px;
@@ -224,3 +224,30 @@ body:active,
   stroke-opacity: 0.7;
   shape-rendering: crispEdges;
 }*/
+
+.viz-placeholder {
+  padding: 10px;
+  text-align: center;
+  color: #666;
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  margin-top: 20px;
+}
+
+.y-axis {
+  font-weight: normal;
+}
+
+.x-axis {
+  font-weight: normal;
+}
+
+.y-label {
+  font-weight: normal;
+  font-size: large;
+}
+
+.x-label {
+  font-weight:normal;
+  font-size: large;
+}
