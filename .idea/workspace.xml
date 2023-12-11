@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e10fbf76-4bc2-4266-a013-4532991a2ebe" name="Changes" comment="bar colors changed to match circular bar chart">
+    <list default="true" id="e10fbf76-4bc2-4266-a013-4532991a2ebe" name="Changes" comment="x axis is now all positive values">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/divBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/divBar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -399,7 +400,15 @@
       <option name="project" value="LOCAL" />
       <updated>1702245489472</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="x axis is now all positive values">
+      <option name="closed" value="true" />
+      <created>1702250651688</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1702250651688</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -417,7 +426,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="PRG: made pie chart" />
     <MESSAGE value="add group members" />
     <MESSAGE value="PRG: work on tree maps" />
     <MESSAGE value="BUG: can't get treemap to work (if I remove the example then code doesn't run)" />
@@ -442,6 +450,7 @@
     <MESSAGE value="added linear diverging bar chart. data filtering is based on that of the circular bar chart so that the data presented would be linearized version to reduce biased view" />
     <MESSAGE value="bar colors changed to reflect circular bar chart" />
     <MESSAGE value="bar colors changed to match circular bar chart" />
-    <option name="LAST_COMMIT_MESSAGE" value="bar colors changed to match circular bar chart" />
+    <MESSAGE value="x axis is now all positive values" />
+    <option name="LAST_COMMIT_MESSAGE" value="x axis is now all positive values" />
   </component>
 </project>

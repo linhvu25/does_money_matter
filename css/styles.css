@@ -195,3 +195,13 @@ body:active,
 .clip-circle {
   clip-path: circle(50%);
 }
+
+/* Style for candidate name labels for divBar*/
+.candidate-label {
+  font-size: 20px;
+}
+
+/* Style for divBar title*/
+#div-bar-chart-title {
+  padding-top: 40px;
+}
