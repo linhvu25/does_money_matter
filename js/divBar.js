@@ -17,7 +17,7 @@ class DivBarChart {
         let vis = this;
 
         // Dimensions & margins
-        const margin = { top: 50, right: 50, bottom: 30, left: 300 };
+        const margin = { top: 50, right: 50, bottom: 80, left: 400 };
         const width = 2000 - margin.left - margin.right;
         const height = 600 - margin.top - margin.bottom;
 
@@ -239,7 +239,11 @@ class DivBarChart {
     updateVis() {
         let vis = this;
 
-        console.log(vis.barData)
+        //console.log(vis.barData)
+
+        this.tooltip = d3.select("body").append("div")
+            .attr("class", "tooltip")
+            .style("opacity", 0);
 
         d3.select("#div-bar-chart-title").html(
             `Top ${vis.barData.length} ${toTitleCase(vis.sector)} Contributors to <br>
@@ -260,6 +264,9 @@ class DivBarChart {
         // Remove previous bars to update
         vis.svg.selectAll(".bar").remove();
 
+        // Remove previous labels to update
+        vis.svg.selectAll(".candidate-label").remove();
+
         // Update the y-axis scale
         this.y.domain(this.barData.map(d => d.specific_business));
 
@@ -269,35 +276,6 @@ class DivBarChart {
             .call(vis.xAxis);
 
         this.svg.select(".y-axis").call(vis.yAxis);
-
-        // Draw bars for candidate1 on left side of axis
-        vis.svg.selectAll(".bar.candidate1")
-            .data(vis.barData)
-            .enter()
-            .append("rect")
-            .attr("class", "bar candidate1")
-            .attr("x", d => vis.x(Math.min(0, -d.total_$_1))) // Position bars on the neg side of axis
-            .attr("y", d => vis.y(d.specific_business))
-            .attr("width", d => Math.abs(vis.x(0) - vis.x(-d.total_$_1))) // Width = distance from zero
-            .attr("height", vis.y.bandwidth())
-            .attr("fill", "green");
-
-        //console.log("bar candidate 1")
-
-        // Draw bars for candidate2 on right side of axis
-        vis.svg.selectAll(".bar.candidate2")
-            .data(vis.barData)
-            .enter()
-            .append("rect")
-            .attr("class", "bar candidate2")
-            .attr("x", vis.x(0)) // Start at the central axis
-            .attr("y", d => vis.y(d.specific_business))
-            .attr("width", d => Math.abs(vis.x(d.total_$_2) - vis.x(0))) // width = distance from zero
-            .attr("height", vis.y.bandwidth())
-            .attr("fill", "red");
-
-        // Remove previous labels to update
-        vis.svg.selectAll(".candidate-label").remove();
 
         // Calculate the center position for the left side label
         const leftLabelX = vis.x(0) - (vis.width / 7);
@@ -322,6 +300,75 @@ class DivBarChart {
             .attr("dy", "-0.5em")
             .style("text-anchor", "middle")
             .text(vis.candidate2);
-    }
 
-}
+        // x axis label
+        vis.svg.append("text")
+            .attr("class", "x label")
+            .attr("text-anchor", "middle")
+            .attr("x", vis.width / 4 )
+            .attr("y", vis.height + vis.margin.bottom - 25)
+            .text("Contribution Amount ($)");
+
+        // y axis label
+        vis.svg.append("text")
+            .attr("class", "y label")
+            .attr("text-anchor", "end")
+            .attr("y", 6)
+            .attr("dy", ".75em")
+            .attr("transform", "rotate(-90)")
+            .text("Specific Business");
+
+        // Draw bars for candidate1 on left side of axis
+        vis.svg.selectAll(".bar.candidate1")
+            .data(vis.barData)
+            .enter()
+            .append("rect")
+            .attr("class", "bar candidate1")
+            .attr("x", d => vis.x(Math.min(0, -d.total_$_1))) // Position bars on the neg side of axis
+            .attr("y", d => vis.y(d.specific_business))
+            .attr("width", d => Math.abs(vis.x(0) - vis.x(-d.total_$_1))) // Width = distance from zero
+            .attr("height", vis.y.bandwidth())
+            .attr("fill", "green")
+            .on("mouseover", function(event, d) {
+                vis.tooltip.transition()
+                    .duration(200)
+                    .style("opacity", .9);
+                vis.tooltip.html(vis.candidate1 + "<br/>" + "$" + d.total_$_1 + "<br/>" + d.specific_business)
+                    .style("left", (event.pageX) + "px")
+                    .style("top", (event.pageY - 28) + "px");
+            })
+            .on("mouseout", function(d) {
+                vis.tooltip.transition()
+                    .duration(500)
+                    .style("opacity", 0)});
+
+        //console.log("bar candidate 1")
+
+        // Draw bars for candidate2 on right side of axis
+        vis.svg.selectAll(".bar.candidate2")
+            .data(vis.barData)
+            .enter()
+            .append("rect")
+            .attr("class", "bar candidate2")
+            .attr("x", vis.x(0)) // Start at the central axis
+            .attr("y", d => vis.y(d.specific_business))
+            .attr("width", d => Math.abs(vis.x(d.total_$_2) - vis.x(0))) // width = distance from zero
+            .attr("height", vis.y.bandwidth())
+            .attr("fill", "red")
+            .on("mouseover", function(event, d) {
+                vis.tooltip.transition()
+                    .duration(200)
+                    .style("opacity", .9);
+                vis.tooltip.html(vis.candidate2 + "<br/>" + "$" + d.total_$_2 + "<br/>" + d.specific_business)
+                    .style("left", (event.pageX) + "px")
+                    .style("top", (event.pageY - 28) + "px");
+            })
+            .on("mouseout", function(event, d) {
+                vis.tooltip.transition()
+                    .duration(500)
+                    .style("opacity", 0)});
+
+        bars.exit().remove();
+    };
+
+};
