@@ -251,3 +251,7 @@ body:active,
   font-weight:normal;
   font-size: large;
 }
+
+#tree-map-title {
+  padding-top: 30px;
+}

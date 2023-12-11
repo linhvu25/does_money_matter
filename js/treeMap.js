@@ -25,7 +25,7 @@ class TreeMap {
     let vis = this;
 
     // margin conventions
-    vis.margin = { top: 10, right: 100, bottom: 0, left: 100 };
+    vis.margin = { top: 0, right: 100, bottom: 0, left: 100 };
 
     vis.width =
       document.getElementById(vis.parentElement).getBoundingClientRect().width -

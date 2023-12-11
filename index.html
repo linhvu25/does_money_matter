@@ -121,11 +121,12 @@
         <div class="inner">
           <div class="col">
             <div class="row" id="tree-map-title"></div>
+            <h6 class="row justify-content-center">Campaign donors occupy a variety of sectors. Select a candidate and sector and see how it breaks down for that campaign.
+            </h6>
             <div class="row justify-content-center">
               <div class="col-3">
                 <label for="map-fill-select" class="select-text-legend"
-                  ><b style="color: darkgreen">Select</b> sectors:</label
-                >
+                  ><b style="color: darkgreen">Select</b> sectors:</label>
                 <select class="form-control" id="map-tree-select">
                   <option value="none" selected>
                     Include Coded and Itemized Contributions
@@ -147,6 +148,8 @@
                   id="map-tree-candidate-select"
                 ></select>
               </div>
+              <p>Those that fall below a state's reporting threshold for disclosing identifying information about the donor. For example: a contributor who gives $60 in a state where the disclosure reporting threshold is $100 is not required to be identified by name. The $60 is instead lumped in with other contributions that are below $100, and then classified as “unitemized.”</p>
+
             </div>
             <div class="row" id="treeMap"></div>
           </div>
