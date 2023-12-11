@@ -210,9 +210,9 @@ body:active,
 .tooltip {
   position: absolute;
   text-align: center;
-  padding: 4px;
+  /*padding: 2px;*/
   font: 12px sans-serif;
-  background: lightgreen;
+  /*background: lightgreen;*/
   border: 0px;
   border-radius: 8px;
   pointer-events: none;
