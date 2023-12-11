@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e10fbf76-4bc2-4266-a013-4532991a2ebe" name="Changes" comment="fixed tooltips to match the others">
+    <list default="true" id="e10fbf76-4bc2-4266-a013-4532991a2ebe" name="Changes" comment="reformatted names">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/styles.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/divBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/divBar.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/mapVis.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/mapVis.js" afterDir="false" />
     </list>
@@ -432,7 +433,15 @@
       <option name="project" value="LOCAL" />
       <updated>1702260430063</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="reformatted names">
+      <option name="closed" value="true" />
+      <created>1702261480210</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1702261480210</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -450,7 +459,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="still bug" />
     <MESSAGE value="note where bug is" />
     <MESSAGE value="PRG: add bar charts" />
     <MESSAGE value="PRG: fixed tree map bug(ish)" />
@@ -475,6 +483,7 @@
     <MESSAGE value="padding added to prevent divBar title cut off" />
     <MESSAGE value="added hover tooltip" />
     <MESSAGE value="fixed tooltips to match the others" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed tooltips to match the others" />
+    <MESSAGE value="reformatted names" />
+    <option name="LAST_COMMIT_MESSAGE" value="reformatted names" />
   </component>
 </project>

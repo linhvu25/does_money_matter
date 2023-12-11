@@ -34,16 +34,18 @@ class DivBarChart {
         vis.width = width;
         vis.height = height;
 
-
-
         // define scales and axes
         vis.x = d3.scaleLinear().range([0, vis.width / 2]);
         vis.y = d3.scaleBand().range([vis.height, 0]).padding(0.1);
 
+        //currency formatter
+        const formatAsCurrency = d3.format(",");
+
         // initialize axes
         vis.xAxis = d3.axisBottom(vis.x)
             .ticks(12)
-            .tickFormat(d => Math.abs(d));
+            .tickFormat(function(d) { return formatAsCurrency(Math.abs(d)); });
+
         vis.yAxis = d3.axisLeft(vis.y);
 
         // x-axis
@@ -328,7 +330,7 @@ class DivBarChart {
             .attr("y", d => vis.y(d.specific_business))
             .attr("width", d => Math.abs(vis.x(0) - vis.x(-d.total_$_1))) // Width = distance from zero
             .attr("height", vis.y.bandwidth())
-            .attr("fill", "green")
+            .attr("fill", plotColor)
             .on("mouseover", function(event, d) {
                 vis.tooltip.transition()
                     .duration(200)
@@ -343,7 +345,7 @@ class DivBarChart {
                 }</b> 
              <br/>
              <span style="color: grey;">Contributions: </span> 
-             <b style="color: #4a7c47">${d3.format("$")(
+             <b style="color: #4a7c47">${d3.format("$,")(
                     d.total_$_1
                 )}</b>
              </p>          
@@ -383,7 +385,7 @@ class DivBarChart {
                 }</b> 
              <br/>
              <span style="color: grey;">Contributions: </span> 
-             <b style="color: #4a7c47">${d3.format("$")(
+             <b style="color: #4a7c47">${d3.format("$,")(
                     d.total_$_2
                 )}</b>
              </p>          
