@@ -97,7 +97,7 @@ class DivergingBarChart {
       var checkboxLabel = document.createElement("label");
       checkboxLabel.htmlFor = "checkbox" + candidate.id;
       checkboxLabel.className = "checkbox-label";
-      checkboxLabel.appendChild(document.createTextNode(candidate.name));
+      checkboxLabel.appendChild(document.createTextNode(getName(candidate.name)));
 
       // Append checkbox and label to the container
       checkboxContainer.appendChild(checkbox);
@@ -245,7 +245,7 @@ class DivergingBarChart {
 
     d3.select("#bar-chart-title").html(
       `Top ${vis.barData.length} ${toTitleCase(vis.sector)} Contributors to <br>
-       ${vis.candidate1} and ${vis.candidate2}`
+       ${getName(vis.candidate1)} and ${getName(vis.candidate2)}`
     ).attr("class", "plot-title");
 
     // X axis
