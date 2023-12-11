@@ -183,6 +183,10 @@ class MapVis {
 
     if (!vis.scaled) vis.svg.attr("height", vis.height);
 
+    d3.csv(`data/candidate_totals/maine.csv`).then((data) => {
+      new TreeMap("treeMap", "Maine", data);
+    });
+
     vis.states
       .on("mouseover", function (event, d) {
         if (vis.scaled) return;
@@ -234,7 +238,7 @@ class MapVis {
             new CircleVis(vis.parentElement, d.properties.name);
 
             var state_name = d.properties.name.replace(/\s/, "_").toLowerCase();
-            -d3.csv(`data/candidate_totals/${state_name}.csv`).then((data) => {
+            d3.csv(`data/candidate_totals/${state_name}.csv`).then((data) => {
               new TreeMap("treeMap", d.properties.name, data);
             });
 
