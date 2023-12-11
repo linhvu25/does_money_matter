@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e10fbf76-4bc2-4266-a013-4532991a2ebe" name="Changes" comment="padding added to prevent divBar title cut off">
+    <list default="true" id="e10fbf76-4bc2-4266-a013-4532991a2ebe" name="Changes" comment="added hover tooltip">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/styles.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/divBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/divBar.js" afterDir="false" />
@@ -416,7 +416,15 @@
       <option name="project" value="LOCAL" />
       <updated>1702253244933</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="added hover tooltip">
+      <option name="closed" value="true" />
+      <created>1702258964673</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1702258964673</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -434,7 +442,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="PRG: work on tree maps" />
     <MESSAGE value="BUG: can't get treemap to work (if I remove the example then code doesn't run)" />
     <MESSAGE value="still bug" />
     <MESSAGE value="note where bug is" />
@@ -459,6 +466,7 @@
     <MESSAGE value="bar colors changed to match circular bar chart" />
     <MESSAGE value="x axis is now all positive values" />
     <MESSAGE value="padding added to prevent divBar title cut off" />
-    <option name="LAST_COMMIT_MESSAGE" value="padding added to prevent divBar title cut off" />
+    <MESSAGE value="added hover tooltip" />
+    <option name="LAST_COMMIT_MESSAGE" value="added hover tooltip" />
   </component>
 </project>

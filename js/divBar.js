@@ -333,7 +333,21 @@ class DivBarChart {
                 vis.tooltip.transition()
                     .duration(200)
                     .style("opacity", .9);
-                vis.tooltip.html(vis.candidate1 + "<br/>" + "$" + d.total_$_1 + "<br/>" + d.specific_business)
+                vis.tooltip.html(`
+          <div class="tooltip-text">
+             <b style="color: #4a7c47; font-size:18px">${vis.candidate1}</b>
+             <p>
+             <span style="color: grey;">Business: </span> 
+             <b style="color: #4a7c47">${
+                    d.specific_business
+                }</b> 
+             <br/>
+             <span style="color: grey;">Contributions: </span> 
+             <b style="color: #4a7c47">${d3.format("$")(
+                    d.total_$_1
+                )}</b>
+             </p>          
+         </div>`)
                     .style("left", (event.pageX) + "px")
                     .style("top", (event.pageY - 28) + "px");
             })
@@ -359,7 +373,21 @@ class DivBarChart {
                 vis.tooltip.transition()
                     .duration(200)
                     .style("opacity", .9);
-                vis.tooltip.html(vis.candidate2 + "<br/>" + "$" + d.total_$_2 + "<br/>" + d.specific_business)
+                vis.tooltip.html(`
+          <div class="tooltip-text">
+             <b style="color: #4a7c47; font-size:18px">${vis.candidate2}</b>
+             <p>
+             <span style="color: grey;">Business: </span> 
+             <b style="color: #4a7c47">${
+                    d.specific_business
+                }</b> 
+             <br/>
+             <span style="color: grey;">Contributions: </span> 
+             <b style="color: #4a7c47">${d3.format("$")(
+                    d.total_$_2
+                )}</b>
+             </p>          
+         </div>`)
                     .style("left", (event.pageX) + "px")
                     .style("top", (event.pageY - 28) + "px");
             })

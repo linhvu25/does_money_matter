@@ -206,12 +206,13 @@ body:active,
   padding-top: 40px;
 }
 
+/* Style for tooltips*/
 .tooltip {
   position: absolute;
   text-align: center;
   padding: 8px;
   font: 12px sans-serif;
-  background: lightsteelblue;
+  background: lightgreen;
   border: 0px;
   border-radius: 8px;
   pointer-events: none;
